@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>javascript中的继承</title>
+</head>
+<body>
+<div id="box"></div>
+<script type="text/javascript">
+    (function(){
+        //原型链继承（对象间的继承）
+        //类式继承（构造函数间的继承）
+        function cat(){
+        }
+        cat.prototype={
+            food:"fish",
+            say: function(){
+                console.log("I love "+this.food);
+            }
+        };
+
+
+        var blackCat = new cat;
+        blackCat.say();
+
+        var whiteDog = {food:"bone"};
+        blackCat.say.apply(whiteDog);
+
+        var yellowDog={food:"big bone"};
+        blackCat.say.call(yellowDog);
+    })();
+
+    (function(){
+        function changeStyle(attr, value){
+            this.style[attr] = value;
+        }
+        var box = document.getElementById('box');
+        changeStyle.call(box, "height", "200px");
+    })();
+
+    (function(){
+        var func = new function()
+        {
+            this.a = "func";
+        };
+
+        var func2 = function(x)
+        {
+            var a = "func2";
+            console.log(this.a);
+            console.log(x);
+        };
+
+        func2.call(func, "func2");                      // show func and func2
+    })();
+
+    (function(){
+        function baseA()        // base Class A
+        {
+            this.member = "baseA member";
+            this.showSelfA = function()
+            {
+                console.info(this.member);
+            }
+        }
+
+        function baseB()        // base Class B
+        {
+            this.member = "baseB member";
+            this.showSelfB = function()
+            {
+                console.info(this.member);
+            }
+        }
+
+        function extendAB()     // Inherit Class from A and B
+        {
+            //易主
+            baseA.call(this);   // call for A
+            baseB.call(this);   // call for B
+        }
+
+        window.onload = function()
+        {
+            var extend = new extendAB();
+            extend.showSelfA();     // show A
+            extend.showSelfB();     // show B
+        }
+    })();
+
+    (function(){
+        var Class = {
+            create: function()              // create Function
+            {
+                return function()
+                {
+                    this.initialize.apply(this, arguments);
+                }
+            }
+        };
+
+        var Person = Class.create();        // Create Class Person
+        Person.prototype = {                // prototype initialize
+            initialize: function(obj1, obj2)
+            {
+                this.obj1 = obj1;
+                this.obj2 = obj2;
+            },
+            showSelf: function()
+            {
+                console.info("obj: " + this.obj1 + " and " + this.obj2);
+            }
+        }
+
+        // instance Class 实例化
+        var person = new Person("man", "women");    // two params
+        person.showSelf();                          // show person
+    })();
+    (function(){
+        function Super(){
+            this.colors=["red","blue"];
+        }
+
+        function Sub(){
+            Super.call(this);
+        }
+
+        var single=new Sub();
+        console.info(single);
+    })();
+
+    (function(){
+        function Parent(){
+            this.name = 'mike';
+        }
+
+        function Child(){
+            this.age = 12;
+        }
+        Child.prototype = new Parent();//Child继承Parent，通过原型，形成链条
+
+        var test = new Child();
+        console.info(test.age);
+        console.info(test.name);//得到被继承的属性
+        //继续原型链继承
+        function Brother(){   //brother构造
+            this.weight = 60;
+        }
+        Brother.prototype = new Child();//继续原型链继承
+        var brother = new Brother();
+        console.info(brother.name);//继承了Parent和Child,弹出mike
+        console.info(brother.age);//弹出12
+
+        console.info(brother instanceof Object);//true
+        console.info(test instanceof Brother);//false,test 是brother的超类
+        console.info(brother instanceof Child);//true
+        console.info(brother instanceof Parent);//true
+    })();
+</script>
+</body>
+</html>

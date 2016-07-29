@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>曲线</title>
+    <style type="text/css">
+        body{
+            margin:0;
+            padding:0;
+        }
+        #myCanvas{
+            border:1px solid #f99027;
+        }
+        #myCanvas3{
+            border:1px solid #f93c1c;
+        }
+    </style>
+</head>
+<body>
+<!--<canvas id="myCanvas"></canvas>
+<canvas id="myCanvas2"></canvas>-->
+<canvas id="myCanvas3"></canvas>
+<script type="text/javascript">
+    /*(function(){
+        function PI(deg)
+        {
+            return deg/180*Math.PI;
+        }
+        var canvas = document.getElementById('myCanvas');
+        var context = canvas.getContext('2d');
+        /!*context.beginPath();
+        context.arc(200, 200, 100, PI(-90), PI(0), false);
+        context.lineWidth = 10;
+        context.strokeStyle = 'black';
+        context.stroke();*!/
+
+        /!*var pi=Math.PI;
+        context.beginPath();
+        context.moveTo(10, 290);
+        context.quadraticCurveTo(150, -200, 300, 290);
+        context.lineWidth = 10;
+        context.strokeStyle = 'black';
+        context.lineCap='round';
+        context.stroke();*!/
+
+        var pi=Math.PI;
+        context.beginPath();
+        context.moveTo(10, 290);
+        context.bezierCurveTo(50,-200,150,200,500,290);
+        context.lineWidth = 10;
+        context.strokeStyle = '#444';
+        context.lineCap='round';
+        context.stroke();
+    })();*/
+
+    /*(function(){
+        var myCanvas = document.getElementById("myCanvas2");
+        var context =  myCanvas.getContext("2d");
+        function drawPath(x, y, n, r)
+        {
+            var i,ang;
+            ang = Math.PI*2/n //旋转的角度
+            context.save();//保存状态
+            context.fillStyle ='rgba(255,0,0,.3)';//填充红色，半透明
+            context.strokeStyle ='hsl(120,50%,50%)';//填充绿色
+            context.lineWidth = 1;//设置线宽
+            context.translate(x, y);//原点移到x,y处，即要画的多边形中心
+            context.moveTo(0, -r);//据中心r距离处画点
+            context.beginPath();
+            for(i = 0;i < n; i ++)
+            {
+                context.rotate(ang)//旋转
+                context.lineTo(0, -r);//据中心r距离处连线
+            }
+            context.closePath();
+            context.stroke();
+            context.fill();
+            context.restore();//返回原始状态
+        }
+        drawPath(100, 100, 5, 40)//在100,100处画一个半径为40的五边形
+        drawPath(200, 100, 3, 40)//在200,100处画一个半径为40的三角形
+        drawPath(300, 100, 7, 40)//在300,100处画一个半径为40的七边形
+        drawPath(100, 200, 15, 40)//在100,200处画一个半径为40的十五边形
+        drawPath(200, 200, 4, 40)//在100,200处画一个半径为40的四边形
+    })();*/
+</script>
+<script type="text/javascript" src="js/module.js"></script>
+<script type="text/javascript" src="js/board.js"></script>
+<script type="text/javascript" src="js/ui.js"></script>
+<script type="text/javascript" src="js/data.js"></script>
+<script type="text/javascript" src="js/quxian.js"></script>
+<script type="text/javascript" src="js/init.js"></script>
+</body>
+</html>
