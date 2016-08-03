@@ -3,15 +3,15 @@
  * author yaoqianfeng
  */
 //工具函数
-function $$(id){
+function $$(id) {
     return document.getElementById(id);
 }
 
-function debug(html){
+function debug(html) {
     var oTest = $$("debug-info");
     var newNode = document.createElement("div");
-    newNode.innerHTML =html;
-    oTest.insertBefore(newNode,null);
+    newNode.innerHTML = html;
+    oTest.insertBefore(newNode, null);
 }
 
 function randomNum(Min, Max) {
@@ -19,25 +19,31 @@ function randomNum(Min, Max) {
     var Rand = Math.random();
     return (Min + Math.round(Rand * Range));
 }
-
-
+//停止事件冒泡
+function stopBubble(e) {
+    if (e && e.stopPropagation){
+        e.stopPropagation();
+    }else{
+        window.event.cancelBubble = true
+    }
+}
 
 /*保存渲染的某帧为图片*/
-function saveImage() {
+function saveImage(canvas) {
     var image = new Image();
 
-    if($$("canvasImg")){
-        $$("canvasImg").src = lzb_canvas.toDataURL("image/png");
-    }else{
+    if ($$("canvasImg")) {
+        $$("canvasImg").src = canvas.toDataURL("image/png");
+    } else {
         var imgObj = document.createElement("img");
-        imgObj.src = lzb_canvas.toDataURL("image/png");
+        imgObj.src = canvas.toDataURL("image/png");
         imgObj.id = "canvasImg";
         $$("imgbox").appendChild(imgObj);
     }
 }
 
 /*图片加载进度*/
-function imageLoad(s) {
+function loadImage(s) {
     var urlset = [],
         undefined,
         toString = Object.prototype.toString;
@@ -89,13 +95,13 @@ function imageLoad(s) {
         imgset[imgset.length] = img;
     }
     for (i = 0, l = imgset.length; i < l; i++) {
-        imgset[i].onload = function() {
+        imgset[i].onload = function () {
             _imageHandle.call(this, 'load', i);
         };
-        imgset[i].onerror = function() {
+        imgset[i].onerror = function () {
             _imageHandle.call(this, 'error', i);
         };
-        imgset[i].onabort = function() {
+        imgset[i].onabort = function () {
             _imageHandle.call(this, 'abort', i);
         };
         imgset[i].src = '' + urlset[i];
@@ -133,6 +139,7 @@ function imageLoad(s) {
             _callback();
         }
     }
+
     function _callback() {
         clearTimeout(timer);
         if (_isFn(s.complete)) {
@@ -140,8 +147,10 @@ function imageLoad(s) {
                 imgset, r);
         }
     }
+
     function _isFn(fn) {
         return toString.apply(fn) === '[object Function]';
     }
+
     return true;
 }
