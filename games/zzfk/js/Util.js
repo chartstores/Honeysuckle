@@ -63,6 +63,7 @@ function loadImage(s) {
         default:
             return false;
     }
+
     var imgset = [],
         r = {
             total: urlset.length,
