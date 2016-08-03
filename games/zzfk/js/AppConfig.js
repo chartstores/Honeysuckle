@@ -4,6 +4,9 @@
  */
 var appConfig={
     container:"canvas",
+    canvas:null,
+    context:null,
+    isShowDebugInfo:true,
     passScore:200,
     secondsBetweenFrames:1000/28, //频率
     countdown:20*1000
