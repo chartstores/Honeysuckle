@@ -3,3 +3,6 @@
  * author yaoqianfeng
  */
 //ÌØÐ§
+function gameEffect(){
+
+}

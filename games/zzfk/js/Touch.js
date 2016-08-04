@@ -29,3 +29,6 @@ touch.prototype.eventHandle=function(eventType,element, eType, handle, bol){
     };
     packageFn[eventType](element, eType, handle, bol);
 }
+touch.prototype.touchGrid=function(){
+    //当触摸到相应的格子时，返回当前坐标，计算坐标所在的格子数组索引，计算是否抽中图片
+}

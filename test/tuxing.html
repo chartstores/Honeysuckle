@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>不同的图形</title>
+</head>
+<body>
+<div>点、线、矩形、圆形、椭圆形、三角形、多边形</div>
+<div>
+    <canvas id="dian"></canvas>
+</div>
+<div>
+    <canvas id="xian"></canvas>
+</div>
+<div>
+    <canvas id="juxing"></canvas>
+</div>
+<div>
+    <canvas id="yuanxing"></canvas>
+</div>
+<div>
+    <canvas id="tuoyuan"></canvas>
+</div>
+<div>
+    <canvas id="sanjiaoxing"></canvas>
+</div>
+<div>
+    <canvas id="duobianxing"></canvas>
+</div>
+<script type="text/javascript">
+    function $$(id) {
+        return document.getElementById(id);
+    }
+
+    //点
+    (function(){
+        var canvas=$$("dian");
+        var ctx=canvas.getContext("2d");
+        canvas.width=200;
+        canvas.height=200;
+    })();
+
+    //线
+    (function(){
+        var canvas=$$("xian");
+        var ctx=canvas.getContext("2d");
+        canvas.width=200;
+        canvas.height=200;
+    })();
+
+    //矩形
+    (function(){
+        var canvas=$$("juxing");
+        var ctx=canvas.getContext("2d");
+        canvas.width=200;
+        canvas.height=200;
+        ctx.strokeRect(20,20,150,100);
+    })();
+
+    //圆形
+    (function(){
+        var canvas=$$("yuanxing");
+        var ctx=canvas.getContext("2d");
+        canvas.width=200;
+        canvas.height=200;
+    })();
+
+    //椭圆形
+    (function(){
+        var canvas=$$("tuoyuan");
+        var ctx=canvas.getContext("2d");
+        canvas.width=200;
+        canvas.height=200;
+    })();
+
+    //三角形
+    (function(){
+        var canvas=$$("sanjiaoxing");
+        var ctx=canvas.getContext("2d");
+        canvas.width=200;
+        canvas.height=200;
+    })();
+
+    //多边形
+    (function(){
+        var canvas=$$("duobianxing");
+        var ctx=canvas.getContext("2d");
+        canvas.width=200;
+        canvas.height=200;
+    })();
+</script>
+</body>
+</html>
