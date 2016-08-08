@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU="   crossorigin="anonymous"></script>
+<script type="text/javascript">
+    $(function(){
+        var promise=$.ajax({
+            url:'http://'+window.location.host+'/test/json/te0st.json'
+        });
+        promise.done(mySuccessFunction);
+        promise.fail(myErrorFunction);
+    });
+    function mySuccessFunction(){
+        console.info("success");
+    }
+    function myErrorFunction(){
+        console.info("error");
+    }
+</script>
+</body>
+</html>
