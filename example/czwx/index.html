@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport"
+          content="width=device-width,target-densitydpi=high-dpi,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title></title>
+
+    <link rel="stylesheet" href="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/map/style.css"/>
+    <link rel="stylesheet" type="text/css" href="css/index.css"/>
+</head>
+<body>
+<div id="debug-info"></div>
+<form name="form1" method="post" action="CampusMap.aspx?openid=ouK-ajls5bx_3CHDKGzsW0ZZA1hc" id="form1">
+    <nav class="nav">
+        <a id="a" class="active" onclick="redirect1(this)"><span>手绘地图</span></a>
+        <a id="b" onclick="redirect2(this)"><span>百度地图</span></a>
+    </nav>
+    <div id="map_drawing" class="map-area">
+        <div class="map-img">
+            <img src="images/map.png" id="map" style="cursor: pointer;"/>
+        </div>
+        <div class="map-zoom-label">
+            <img src="images/zoom-in.png" onclick="return zoomInImg(this);"/>
+            <img src="images/zoom-out.png" onclick="return zoomOutImg(this);"/>
+        </div>
+    </div>
+    <div id="map_container" class="map-area" style="display:none;"></div>
+
+    <div>
+        <input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE"
+               value="KEtMqBjpkBHjtlylDJkCU0uxVeo4x12asW8DwhpBi8bQKKuFLmB4hGAbC+vRE+ZCB95vnlgGepFfsK8wDhsHXCcFVz2G7mm8sSLkUTsTQKJ4JBppgKrLb8FcuQYoiF89"/>
+        <input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="U7aAs7hV2axIPO8lD+vpRafv9yoK32Bpp/0IaSLTCgrfSmN/IsEWOwB96JCo952l"/>
+        <input type="hidden" name="SchoolID" id="SchoolID" value="1"/>
+        <input type="hidden" name="school" id="school"/>
+    </div>
+</form>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=VYkr3Aia9hYWmfNAKp3KhGNmkZZzStq4"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.js"></script>
+<script type="text/javascript" src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+<script type="text/javascript" src="libs/pinchzoom.js"></script>
+<script type="text/javascript" src="javascript/appConfig.js"></script>
+<script type="text/javascript" src="javascript/index.js"></script>
+</body>
+</html>
