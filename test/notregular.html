@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>不规则图形</title>
+    <link type="text/css" rel="stylesheet" href="../libs/normalize/normalize.css"/>
+    <style type="text/css">
+        .container{
+            position:relative;
+        }
+        .outer{
+            width:200px;
+            height:200px;
+            border:5px solid #ff8b24;
+            border-radius:100%;
+        }
+        .a{
+            position:relative;
+            top: 29px;
+            left: 29px;
+            width:132px;
+            height:132px;
+            border:5px solid #008800;
+        }
+        .b{
+            position:relative;
+            top: 14px;
+            left: 14px;
+            width:94px;
+            height:94px;
+            border:5px solid #008800;
+        }
+        .c{
+            position:relative;
+            top: 14px;
+            left: 14px;
+            width:56px;
+            height:56px;
+            border:5px solid #008800;
+        }
+        .d{
+            position:relative;
+            top: 14px;
+            left: 14px;
+            width:18px;
+            height:18px;
+            border:5px solid #008800;
+        }
+        .line{
+            position:absolute;
+            top:0;
+            width:100%;
+            border-width:5px;
+            border-style:solid;
+        }
+        .line-a{
+            border-color:#008800;
+        }
+        .line-b{
+            border-color:#000088;
+        }
+        .line-c{
+            border-color:#f99027;
+        }
+        .line-d{
+            border-color:#f93c1c;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="outer">
+            <div class="a">
+                <div class="b">
+                    <div class="c">
+                        <div class="d"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="line line-a"></div>
+        <div class="line line-b"></div>
+        <div class="line line-c"></div>
+        <div class="line line-d"></div>
+    </div>
+
+
+</body>
+</html>

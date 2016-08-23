@@ -2,9 +2,36 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>串联矩形</title>
+    <style type="text/css">
+        *{
+            margin:0;
+            padding:0;
+        }
+        body{
+            position:relative;
+            background-color: rgba(51, 51, 51,1);
+        }
+        div{
+            display:inline-block;
+            width:60px;
+            height:60px;
+            border-radius: 10px;
+        }
+        .rect-a{
+            border:rgb(38,130,200) 20px solid;
+        }
+        .rect-b{
+            position:absolute;
+            left:40px;
+            top:40px;
+            border:rgb(202,31,35) 20px solid;
+        }
+    </style>
 </head>
 <body>
-
+<div class="rect-a">
+</div>
+<div class="rect-b"></div>
 </body>
 </html>
