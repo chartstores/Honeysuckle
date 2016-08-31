@@ -1,6 +1,8 @@
 .idea/
 node_modules/
-pinchzoom/
-touchzoom/
+example/czwx
 example/pinchzoom
 libs/jquery/
+H5-Animation/
+pinchzoom/
+touchzoom/
