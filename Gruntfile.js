@@ -32,17 +32,19 @@ module.exports = function (grunt) {
         'test/**/*.js',
         'games/**/*.js',
         'test/**/*.json',
-        'games/**/*.json'
+        'games/**/*.json',
+        'example/easing/**/*.js'
     ];
     var cssWork=[
         'assets/sources/**/*.sass',
         'assets/sources/**/*.scss',
-        'assets/sources/**/*.css'
+        'example/easing/**/*.css'
     ];
     var htmlWork=[
         '**/*.html',
         'games/**/*.html',
-        'test/**/*.html'
+        'test/**/*.html',
+        'example/easing/**/*.html'
     ];
 
     grunt.initConfig({

@@ -7,28 +7,45 @@
     <link type="text/css" rel="stylesheet" href="../css/main.css"/>
 </head>
 <body>
+<div>点动成线，线动成面</div>
 <div>a、b均为正数</div>
-<dl>
-    <dt>y=ax+b</dt>
-    <dd></dd>
-    <dt>y=ax-b</dt>
-    <dd></dd>
-    <dt>y=-ax+b</dt>
-    <dd></dd>
-    <dt>y=-ax-b</dt>
-    <dd></dd>
-    <dt>y=a</dt>
-    <dd></dd>
-    <dt>y=-a</dt>
-    <dd></dd>
-    <dt>y=x</dt>
-    <dd></dd>
-    <dt>y=-x</dt>
-    <dd></dd>
-    <dt>y=tan(a)*x</dt>
-    <dd></dd>
-</dl>
+<div class="index">
+    <dl>
+        <dt>y=ax+b</dt>
+        <dd><canvas id="line-a" width="600" height="372"></canvas></dd>
+        <dd><input type="button" value="show" class="btn" line-type="a"/></dd>
+        <dt>y=ax-b</dt>
+        <dd><canvas id="line-b" width="600" height="372"></canvas></dd>
+        <dd><input type="button" value="show" class="btn" line-type="b"/></dd>
+        <dt>y=-ax+b</dt>
+        <dd><canvas id="line-c" width="600" height="372"></canvas></dd>
+        <dd><input type="button" value="show" class="btn" line-type="c"/></dd>
+        <dt>y=-ax-b</dt>
+        <dd><canvas id="line-d" width="600" height="372"></canvas></dd>
+        <dd><input type="button" value="show" class="btn" line-type="d"/></dd>
+        <dt>y=a</dt>
+        <dd><canvas id="line-e" width="600" height="372"></canvas></dd>
+        <dd><input type="button" value="show" class="btn" line-type="e"/></dd>
+        <dt>y=-a</dt>
+        <dd><canvas id="line-f" width="600" height="372"></canvas></dd>
+        <dd><input type="button" value="show" class="btn" line-type="f"/></dd>
+        <dt>y=x</dt>
+        <dd><canvas id="line-g" width="600" height="372"></canvas></dd>
+        <dd><input type="button" value="show" class="btn" line-type="g"/></dd>
+        <dt>y=-x</dt>
+        <dd><canvas id="line-h" width="600" height="372"></canvas></dd>
+        <dd><input type="button" value="show" class="btn" line-type="h"/></dd>
+        <dt>y=tan(a)*x</dt>
+        <dd><canvas id="line-i" width="600" height="372"></canvas></dd>
+        <dd><input type="button" value="show" class="btn" line-type="i"/></dd>
+    </dl>
+</div>
 <script type="text/javascript" src="../libs/jquery/jquery-1.8.3.min.js"></script>
-<script type="text/javascript" src="../js/main.js"></script>
+<script type="text/javascript" src="../js/RequestAnimationFrame.js"></script>
+<script type="text/javascript" src="../js/utils.js"></script>
+<script type="text/javascript" src="../js/Point.js"></script>
+<script type="text/javascript" src="../js/Line.js"></script>
+<script type="text/javascript" src="../js/Axis.js"></script>
+<script type="text/javascript" src="../js/Main.js"></script>
 </body>
 </html>

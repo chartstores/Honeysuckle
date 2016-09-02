@@ -1,4 +1,12 @@
+/*reset*/
 .index {
-  border: 1px solid #ddd; }
+  padding: 0 10px; }
+
+.index dd {
+  margin: 0;
+  padding: 0 0 10px; }
+
+.index canvas {
+  border: 1px solid #efefef; }
 
 /*# sourceMappingURL=main.css.map */
