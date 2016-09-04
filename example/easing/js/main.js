@@ -43,10 +43,15 @@ $(function(){
                     console.log(type);
                 break;
                 case "g"://y=x
-                    point.startX=center.x-length/2;
+                    /*point.startX=center.x-length/2;
                     point.startY=center.y+length/2;
                     point.targetX = center.x+length/2;
-                    point.targetY = center.y-length/2;
+                    point.targetY = center.y-length/2;*/
+
+                    point.startX=utils.coordinateTransfer(-length/2,-length/2,center).cx;
+                    point.startY=utils.coordinateTransfer(-length/2,-length/2,center).cy;
+                    point.targetX=utils.coordinateTransfer(length/2,length/2,center).cy;
+                    point.targetY=utils.coordinateTransfer(length/2,length/2,center).cy;
 
                     point.x=point.startX;
                     point.y=point.startY;

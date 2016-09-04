@@ -31,6 +31,7 @@ utils.parseColor = function (color, toNumber) {
         return color;
     }
 };
+
 //输入公式计算坐标
 utils.caculateFormula=function(x,y){
   var formula={
@@ -41,3 +42,15 @@ utils.caculateFormula=function(x,y){
   };
     return formula[type]();
 };
+
+//将直角坐标系转换成canvas的坐标
+//600*372
+//(0,0)=>(300,186)
+//(-300,-186)->(114,372)
+//()
+
+utils.coordinateTransfer=function (x,y,center){
+    x=x+center.x;
+    y=y+center.y;
+    return {cx:x,cy:y};
+}
