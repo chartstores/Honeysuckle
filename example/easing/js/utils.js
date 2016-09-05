@@ -51,6 +51,6 @@ utils.caculateFormula=function(x,y){
 
 utils.coordinateTransfer=function (x,y,center){
     x=x+center.x;
-    y=y+center.y;
+    y=Math.abs(y-center.y);
     return {cx:x,cy:y};
 }
