@@ -1,0 +1,267 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="description" content="IScroll5 pull request demo" />
+    <meta charset="utf-8" />
+    <!--
+    Created using JS Bin
+    http://jsbin.com
+
+    Copyright (c) 2016 by maxzhang (http://jsbin.com/AtIGeKe/81/edit)
+
+    Released under the MIT license: http://jsbin.mit-license.org
+    -->
+    <meta name="robots" content="noindex">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <title>Views with iScroll</title>
+    <script src="http://code.jquery.com/jquery-git2.js"></script>
+    <script type="text/javascript" src="http://maxzhang.github.io/dev/libs/iscroll-5.0.6-upgrade.js"></script>
+    <!--<script type="text/javascript" src="http://maxzhang.github.io/dev/practices/vendor.js"></script>-->
+
+    <style id="jsbin-css">
+        html, body, header, div, ul, li {
+            margin: 0;
+            padding: 0;
+            font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+        }
+
+        .view {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #fff;
+        }
+        .current {
+            display: block;
+        }
+        .current.out {
+            -webkit-transition: -webkit-transform 350ms;
+            -webkit-transform: translate3d(-100%,0,0);
+        }
+        .next {
+            display: block;
+            -webkit-transform: translate3d(100%,0,0);
+        }
+        .next.in{
+            -webkit-transition: -webkit-transform 350ms;
+            -webkit-transform: translate3d(0,0,0);
+        }
+
+        .wrapper {
+            position: absolute;
+            top: 45px;
+            left: 0;
+            bottom: 0;
+            z-index: 1;
+            width: 100%;
+            overflow: hidden;
+        }
+        #view1 .wrapper {
+            top: -5px;
+        }
+        #view1 .wrapper.pulldownrefresh {
+            top: 45px;
+        }
+
+        header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 2;
+            width: 100%;
+            height: 44px;
+            line-height: 44px;
+            background-color: #f6f6f7;
+            border-bottom: 1px solid #ccc;
+            font-size: 17px;
+            font-weight: bold;
+            text-align: center;
+        }
+        header span {
+            position: absolute;
+            top: 0;
+            left: 10px;
+            height: 44px;
+            font-weight: normal;
+            font-size: 17px;
+            color: #2087fc;
+        }
+        ul {
+            list-style: none;
+        }
+        li {
+            margin-left: 15px;
+            padding: 0 10px 0 0;
+            height: 43px;
+            line-height: 43px;
+            border-bottom: 1px solid #ccc;
+            font-size: 17px;
+        }
+        li:last-child {
+            border-bottom-width: 0;
+        }
+        p {
+            margin: 15px;
+        }
+
+        .pulldown, .pullup {
+            padding: 5px 10px;
+            height: 40px;
+            line-height: 40px;
+            font-weight: bold;
+            font-size: 14px;
+            color: #888;
+        }
+        .pulldown .icon, .pullup .icon {
+            display: block;
+            float: left;
+            width: 40px;
+            height: 40px;
+            background:  url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAACgCAMAAACsXRuGAAAAt1BMVEX////FxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcU7SVrkAAAAPHRSTlMAAPONxyCMRvCjM2n59gzeD/xssVo52Akwh6sDpeTbckJLZroqfhUnRernVxifG9XDgb2ZzzxjeLThEmBcLCjmAAACDklEQVR4Xu2Y124yQQyFM9sh9BJafgik956/7fs/V4RCwiITbMdjCSGfKy4On7THnuLZ8yGTyRWUr1W54NgNIC4Dbm+VrQ+tbQxoQAMa0IAGnO4vtR44WBquCcBuJadrSslwQucNaBm2qbyHEQ3YqNN4l3fUKpdpMV7Q26ZF4T3S+5AU49OIA8RjvLpxDCAeY/PIcYB4jKf8tTzcxDt2fGBt/D3v19kPgK5fRQLkAt0MCZANdIdIgGxg7WBjgHygO1kTY/NVMla8QeBvJwHCGP84CRDG+PefBAhjrHTlo9n/InDiY9a7XfLazgewd//Jqze8AN15sAiw7Gu87XwAW/7m5ec5b+j8AXsveT6uSYAwxmrf7xNBZ+aYQJPJZDLh+20aRlkWhen8twdgnCyO0SCJfQDjUv6lUuwBmOQFJXJgGhSBQSoGhvmKQnFNo1VgBD3MmmarwAx6WDWFQOhh1RR+MvSwagqLwqw7/ndW3UkfCD2bhJcAephAvJGYn4y3OrMouIfZNriH19i4h7v0cI9ww4ce4ZEEPTt6/uJ+UdS4H28G1C9qV9yPLyjUL1vyuB/dlLh+dNtE/dpA+SdrF0XeNsqNLV96+puDfPvaaukfUvJjVP+gl19F9C9L8uuc/oVTfiXWv7TLxwr9wUc+msmHR/3xVj6A6z8RSBej/jMLp+76T1X6j2m7eP6aTO9STHV4CXebKAAAAABJRU5ErkJggg==") 0 0 no-repeat;
+            -webkit-background-size: 40px 80px;
+            background-size: 40px 80px;
+            -webkit-transition: -webkit-transform 250ms;
+        }
+        .pulldown .icon {
+            -webkit-transform: rotate(0deg) translateZ(0);
+        }
+        .pullup .icon {
+            -webkit-transform: rotate(-180deg) translateZ(0);
+        }
+        .pulldown.flip .icon {
+            -webkit-transform: rotate(-180deg) translateZ(0);
+        }
+        .pullup.flip .icon {
+            -webkit-transform: rotate(0deg) translateZ(0);
+        }
+        .pulldown.loading .icon, .pullup.loading .icon {
+            background-position: 0 100%;
+            -webkit-transform: rotate(0deg) translateZ(0);
+            -webkit-transition-duration: 0ms;
+            -webkit-animation-name: loading;
+            -webkit-animation-duration: 2s;
+            -webkit-animation-iteration-count: infinite;
+            -webkit-animation-timing-function: linear;
+        }
+        @-webkit-keyframes loading {
+            from { -webkit-transform: rotate(0deg) translateZ(0); }
+            to { -webkit-transform: rotate(360deg) translateZ(0); }
+        }
+    </style>
+</head>
+<body>
+<div id="view1" class="view current">
+    <header>First View</header>
+    <div class="wrapper" id="wrapper">
+        <div>
+            <div class="pulldown">
+                <span class="icon"></span><span class="label">Pull down to refresh...</span>
+            </div>
+            <ul>
+                <li>Pretty row 1</li>
+                <li>Pretty row 2</li>
+                <li>Pretty row 3</li>
+                <li>Pretty row 4</li>
+                <li>Pretty row 5</li>
+                <li>Pretty row 6</li>
+                <li>Pretty row 7</li>
+                <li>Pretty row 8</li>
+                <li>Pretty row 9</li>
+                <li>Pretty row 10</li>
+                <li>Pretty row 11</li>
+                <li>Pretty row 12</li>
+                <li>Pretty row 13</li>
+                <li>Pretty row 14</li>
+                <li>Pretty row 15</li>
+                <li>Pretty row 16</li>
+                <li>Pretty row 17</li>
+                <li>Pretty row 18</li>
+                <li>Pretty row 19</li>
+                <li>Pretty row 20</li>
+                <li>Pretty row 21</li>
+                <li>Pretty row 22</li>
+                <li>Pretty row 23</li>
+                <li>Pretty row 24</li>
+                <li>Pretty row 25</li>
+                <li>Pretty row 26</li>
+                <li>Pretty row 27</li>
+                <li>Pretty row 28</li>
+                <li>Pretty row 29</li>
+                <li>Pretty row 30</li>
+            </ul>
+            <div class="pullup">
+                <span class="icon"></span><span class="label">Pull up to load more...</span>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    (function() {
+        var myScroll = new IScroll("wrapper", {
+            scrollX: false,
+            scrollY: true,
+            mouseWheel: true,
+            click: true
+        });
+
+        myScroll.on('scrollMove', function() {
+            var $wrapper = $(this.wrapper);
+            var $pullDown = $wrapper.find('.pulldown');
+            var $pullUp = $wrapper.find('.pullup');
+            if (this.y > 60) {
+                $pullDown.addClass('flip').find('.label').html('Release to refresh...');
+            } else {
+                $pullDown.removeClass('flip').find('.label').html('Pull down to refresh...');
+            }
+            if (this.maxScrollY - this.y > 60) {
+                $pullUp.addClass('flip').find('.label').html('Release to load more...');
+            } else {
+                $pullUp.removeClass('flip').find('.label').html('Pull up to load more...');
+            }
+        });
+        myScroll.on('scrollEnd', function() {
+            var $wrapper = $(this.wrapper);
+            var $pullDown = $wrapper.find('.pulldown');
+            var $pullUp = $wrapper.find('.pullup');
+            if ($pullDown.hasClass('flip')) {
+                $wrapper.addClass('pulldownrefresh');
+                this.refresh();
+                $pullDown.removeClass('flip').addClass('loading').find('.label').html('Loading...');
+                pullDownAction($wrapper);
+            }
+            if ($pullUp.hasClass('flip')) {
+                $pullUp.removeClass('flip').addClass('loading').find('.label').html('Loading...');
+                pullUpAction($wrapper);
+            }
+        });
+
+        function pullDownAction($wrapper) {
+            var $pullDown = $wrapper.find('.pulldown');
+            setTimeout(function() {
+                $wrapper.removeClass('pulldownrefresh');
+                $pullDown.removeClass('flip loading').find('.label').html('Pull down to refresh...');
+                myScroll.refresh();
+            }, 3000);
+        }
+
+        function pullUpAction($wrapper) {
+            var $pullUp = $wrapper.find('.pullup');
+            setTimeout(function() {
+                $pullUp.removeClass('flip loading').find('.label').html('Pull up to load more...');
+                myScroll.refresh();
+            }, 3000);
+        }
+
+    }());
+</script>
+</body>
+</html>
