@@ -21,7 +21,7 @@
     <title>Views with iScroll</title>
     <script src="http://code.jquery.com/jquery-git2.js"></script>
     <script type="text/javascript" src="http://maxzhang.github.io/dev/libs/iscroll-5.0.6-upgrade.js"></script>
-    <!--<script type="text/javascript" src="http://maxzhang.github.io/dev/practices/vendor.js"></script>-->
+    <script type="text/javascript" src="http://maxzhang.github.io/dev/practices/vendor.js"></script>
 
     <style id="jsbin-css">
         html, body, header, div, ul, li {
@@ -206,7 +206,7 @@
 </div>
 <script>
     (function() {
-        var myScroll = new IScroll("wrapper", {
+        var myScroll = new IScroll(document.getElementById("wrapper"), {
             scrollX: false,
             scrollY: true,
             mouseWheel: true,
