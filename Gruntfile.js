@@ -33,18 +33,21 @@ module.exports = function (grunt) {
         'games/**/*.js',
         'test/**/*.json',
         'games/**/*.json',
-        'example/easing/**/*.js'
+        'example/easing/**/*.js',
+        'example/drag/**/*.js'
     ];
     var cssWork=[
         'assets/sources/**/*.sass',
         'assets/sources/**/*.scss',
-        'example/easing/**/*.css'
+        'example/easing/**/*.css',
+        'example/drag/**/*.css'
     ];
     var htmlWork=[
         '**/*.html',
         'games/**/*.html',
         'test/**/*.html',
-        'example/easing/**/*.html'
+        'example/easing/**/*.html',
+        'example/drag/**/*.html'
     ];
 
     grunt.initConfig({
@@ -84,7 +87,7 @@ module.exports = function (grunt) {
                     livereload: lrPort
                 },
                 files: cssWork,
-                tasks: ['sass']
+                tasks: [/*'sass'*/]
             },
             js: {
                 options: {
