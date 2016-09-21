@@ -1,0 +1,27 @@
+.container{
+  padding-top:10px;
+}
+.container .form-group{
+  margin-bottom: 0px;
+}
+.container .form-group:first-child{
+  margin-bottom: 15px;
+}
+.word{
+  font-weight: bold;
+}
+.result{
+  position:relative;
+}
+.result-list{
+  position:absolute;
+  z-index: 1;
+  width:100%;
+  min-height: 100px;
+  border:1px solid #0098dd;
+  background-color: #fff;
+}
+.result-list div{
+  padding:5px 12px;
+  font-weight: bold;
+}

@@ -21,11 +21,16 @@ module.exports = function (grunt) {
         ];
     };
 
+    var dist=[
+        'example/easing/',
+        'example/drag/',
+        'example/autocomplete/'
+    ];
     var sassWork=[{
         expand: true,
-        cwd: 'assets/sources/css/',
+        cwd: dist[dist.length-1]+'scss/',
         src: ['**/*.scss'],
-        dest: 'assets/dist/css/',
+        dest: dist[dist.length-1]+'css/',
         ext: '.css'
     }];
     var jsWork=[
@@ -33,21 +38,19 @@ module.exports = function (grunt) {
         'games/**/*.js',
         'test/**/*.json',
         'games/**/*.json',
-        'example/easing/**/*.js',
-        'example/drag/**/*.js'
+        dist[dist.length-1]+'**/*.js',
+        dist[dist.length-1]+'**/*.json'
     ];
     var cssWork=[
-        'assets/sources/**/*.sass',
-        'assets/sources/**/*.scss',
-        'example/easing/**/*.css',
-        'example/drag/**/*.css'
+        dist[dist.length-1]+'**/*.scss',
+        dist[dist.length-1]+'**/*.sass',
+        dist[dist.length-1]+'**/*.css'
     ];
     var htmlWork=[
         '**/*.html',
         'games/**/*.html',
         'test/**/*.html',
-        'example/easing/**/*.html',
-        'example/drag/**/*.html'
+        dist[dist.length-1]+'**/*.html'
     ];
 
     grunt.initConfig({
@@ -87,7 +90,7 @@ module.exports = function (grunt) {
                     livereload: lrPort
                 },
                 files: cssWork,
-                tasks: [/*'sass'*/]
+                tasks: ['sass']
             },
             js: {
                 options: {
