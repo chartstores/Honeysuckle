@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数学函数优化</title>
+</head>
+<body>
+<script type="text/javascript">
+    /*function fact(x){
+        if(x==1){
+            return 1;
+        }else{
+            return x*fact(x-1);
+        }
+    }*/
+    function fact(n){
+        return fact_iter(n,1);
+    }
+
+    function fact_iter(num,product){
+        if(num==1){
+            return product;
+        }
+        return fact_iter(num-1,num*product);
+    }
+
+    console.info(fact(5));
+    console.info(fact(100));
+
+    function fib(max){
+
+    }
+
+    fib(6);
+</script>
+</body>
+</html>

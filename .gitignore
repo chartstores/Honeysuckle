@@ -2,6 +2,6 @@
 node_modules/
 .sass-cache/
 example/czwx
-libs/jquery/
+demo
 H5-Animation/
 example/chat/node_modules

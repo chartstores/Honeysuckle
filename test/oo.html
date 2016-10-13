@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>面向对象</title>
+</head>
+<body>
+<script type="text/javascript">
+    //定义
+    class Person {
+        constructor(name) {
+            this.name = name
+        }
+        hi(){
+            console.log('hi, my name is ' + this.name);
+        }
+    }
+    //继承
+    class Man extends Person {
+        hi(){
+        }
+    }
+    //使用
+    var a = new Man('peter');
+    a.hi();
+</script>
+</body>
+</html>
