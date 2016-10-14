@@ -2,10 +2,39 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="yes" name="apple-touch-fullscreen" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <meta content="telephone=no,email=no" name="format-detection" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no, email=no">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="MobileOptimized" content="320">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="browsermode" content="application">
+    <meta name="x5-page-mode" content="app">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link type="text/css" rel="stylesheet" href="css/game.css"/>
     <title>抢钱快手</title>
 </head>
 <body>
-<canvas></canvas>
-<script type="text/javascript"></script>
+<canvas id="canvas"></canvas>
+<!--独立的文件 start-->
+<!--<script type="text/javascript" src="libs/viewpoint/viewport.js"></script>-->
+<script type="text/javascript" src="libs/zepto/zepto.min.js"></script>
+<script type="text/javascript" src="js/Util.js"></script>
+<!--独立的文件 end-->
+<script type="text/javascript" src="js/AppConfig.js"></script>
+<script type="text/javascript" src="js/App.js"></script>
 </body>
 </html>
