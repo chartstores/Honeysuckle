@@ -15,7 +15,7 @@ function App(){
         return true;
     })();
 }
-
+//dsdsds
 /*¿ªÊ¼*/
 App.prototype.start=function(){
     var _self = this;
