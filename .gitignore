@@ -1,7 +1,6 @@
 .idea/
 node_modules/
-.sass-cache/
 example/czwx
-demo
+libs/jquery/
 H5-Animation/
 example/chat/node_modules
