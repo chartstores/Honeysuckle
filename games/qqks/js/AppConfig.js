@@ -5,10 +5,10 @@ var appConfig={
     context:null,
     isShowDebugInfo:true,
     passScore:200,
-    secondsBetweenFrames:1000/0.5, //ÆµÂÊ
+    secondsBetweenFrames:1000/0.5, //é¢‘ç‡
     countdown:20*1000,
-    horizonGridCount:5,//Ë®Æ½¸ñ×ÓÊı
-    verticalGridCount:10,//´¹Ö±¸ñ×ÓÊı
-    gridMap:[],//¸ñ×ÓÊı×éË÷Òı,Ö¸Ã÷ÄÇ¸ö¸ñ×ÓÊÇÍ¼Æ¬or´¿É«
-    ratio:null//Éè¼Æ¸åÓëÆÁÄ»µÄËõ·Å±ÈÀı
+    horizonGridCount:5,//æ°´å¹³æ ¼å­æ•°
+    verticalGridCount:10,//å‚ç›´æ ¼å­æ•°
+    gridMap:[],//æ ¼å­æ•°ç»„ç´¢å¼•,æŒ‡æ˜é‚£ä¸ªæ ¼å­æ˜¯å›¾ç‰‡orçº¯è‰²
+    ratio:null//è®¾è®¡ç¨¿ä¸å±å¹•çš„ç¼©æ”¾æ¯”ä¾‹
 };

@@ -1,9 +1,9 @@
-/*按钮*/
+/*鎸夐挳*/
 function Button(){
     
 }
 
-/*绑定点击某个区域,以使某个方法生效*/
+/*缁戝畾鐐瑰嚮鏌愪釜鍖哄煙,浠ヤ娇鏌愪釜鏂规硶鐢熸晥*/
 Button.prototype.touch=function(){
 
 }

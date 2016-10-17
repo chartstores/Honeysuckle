@@ -1,8 +1,8 @@
-/*ת�̵�*/
+/*转盘刀*/
 function TurntableKnife(){
 
 }
-/*ת��*/
+/*转动*/
 TurntableKnife.prototype.turning=function(){
 
 };

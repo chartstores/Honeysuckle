@@ -1,13 +1,13 @@
-/*ÊÖ*/
+/*æ‰‹*/
 function Hand(){
 
 }
-/*Éì*/
+/*ä¼¸*/
 Hand.prototype.stretch=function(){
 
 };
 
-/*Ëõ*/
+/*ç¼©*/
 Hand.prototype.Shrink=function(){
 
 };

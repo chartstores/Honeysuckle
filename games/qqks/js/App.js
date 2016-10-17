@@ -1,6 +1,6 @@
-/*¶ÔÏó¡¢×´Ì¬/ĞĞÎª¡¢ÊôĞÔ*/
+/*å¯¹è±¡ã€çŠ¶æ€/è¡Œä¸ºã€å±æ€§*/
 
-//¿ªÊ¼¡¢ÔİÍ£¡¢ÖØĞÂÆô¶¯¡¢Í£Ö¹¹¦ÄÜ
+//å¼€å§‹ã€æš‚åœã€é‡æ–°å¯åŠ¨ã€åœæ­¢åŠŸèƒ½
 function App(){
     var _self = this;
     _self.isPaper=(function(){
@@ -16,7 +16,7 @@ function App(){
     })();
 }
 
-/*¿ªÊ¼*/
+/*å¼€å§‹*/
 App.prototype.start=function(){
     var _self = this;
     if(!appConfig.isShowDebugInfo){
@@ -32,17 +32,17 @@ App.prototype.start=function(){
     }
 };
 
-/*ÔİÍ£*/
+/*æš‚åœ*/
 App.prototype.pause=function(){
 
 };
 
-/*ÖØĞÂÆô¶¯*/
+/*é‡æ–°å¯åŠ¨*/
 App.prototype.restart=function(){
 
 };
 
-/*Í£Ö¹*/
+/*åœæ­¢*/
 App.prototype.stop=function(){
 
 };

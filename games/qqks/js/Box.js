@@ -1,14 +1,14 @@
-/*盒子*/
+/*鐩掑瓙*/
 function Box(){
 
 }
 
-/*展开*/
+/*灞曞紑*/
 Box.prototype.open=function(){
 
 };
 
-/*闭合*/
+/*闂悎*/
 Box.prototype.close=function(){
 
 };

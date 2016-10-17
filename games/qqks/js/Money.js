@@ -1,13 +1,13 @@
-/*Ç®*/
+/*é’±*/
 function Money(){
 
 }
-/*ÏÂÂä*/
+/*ä¸‹è½*/
 Money.prototype.fall=function(){
 
 };
 
-/*¶Ñµş*/
+/*å †å */
 Money.prototype.stack=function(){
 
 };
