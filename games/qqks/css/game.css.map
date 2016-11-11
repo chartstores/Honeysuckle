@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,WAAW;EACT,QAAQ,EAAE,QAAQ;EAClB,GAAG,EAAC,CAAC;EACL,KAAK,EAAC,IAAI;;AAGZ,MAAM;EACJ,QAAQ,EAAC,QAAQ;EACjB,GAAG,EAAC,CAAC;EACL,KAAK,EAAC,IAAI;EACV,MAAM,EAAC,IAAI",
+"sources": ["../scss/game.scss"],
+"names": [],
+"file": "game.css"
+}

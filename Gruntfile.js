@@ -22,9 +22,8 @@ module.exports = function (grunt) {
     };
 
     var dist=[
-        'example/easing/',
-        'example/drag/',
-        'example/autocomplete/'
+        'example/',
+        'games/'
     ];
     var sassWork=[{
         expand: true,
@@ -34,22 +33,15 @@ module.exports = function (grunt) {
         ext: '.css'
     }];
     var jsWork=[
-        'test/**/*.js',
-        'games/**/*.js',
-        'test/**/*.json',
-        'games/**/*.json',
         dist[dist.length-1]+'**/*.js',
         dist[dist.length-1]+'**/*.json'
     ];
     var cssWork=[
-        dist[dist.length-1]+'**/*.scss',
-        dist[dist.length-1]+'**/*.sass',
-        dist[dist.length-1]+'**/*.css'
+        //dist[dist.length-1]+'**/*.scss', //配置该两项参数，修改scss文件时，将自动刷新浏览器
+        //dist[dist.length-1]+'**/*.sass',
+        dist[dist.length-1]+'**/*.css' //只配置这一项时，只刷新文件
     ];
     var htmlWork=[
-        '**/*.html',
-        'games/**/*.html',
-        'test/**/*.html',
         dist[dist.length-1]+'**/*.html'
     ];
 
@@ -90,7 +82,7 @@ module.exports = function (grunt) {
                     livereload: lrPort
                 },
                 files: cssWork,
-                tasks: ['sass']
+                tasks: []
             },
             js: {
                 options: {
