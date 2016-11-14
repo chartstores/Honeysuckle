@@ -16,17 +16,49 @@ function Button(){
             startY:Math.round(util.getCoordinateRate(276,1491).y*application.canvas.height)
         }
     };
-    this.gateOne={
-        name:''
+    this.gateList={
+        rank:{
+            name:'rank-bg',
+            startX:Math.round(util.getCoordinateRate(511,176).x*application.canvas.width),
+            startY:Math.round(util.getCoordinateRate(511,176).y*application.canvas.height)
+        },
+        back:{
+            name:'btn-back-gate',
+            startX:Math.round(util.getCoordinateRate(34,1202).x*application.canvas.width),
+            startY:Math.round(util.getCoordinateRate(34,1202).y*application.canvas.height)
+        },
+        caculator:{
+            name:'caculator',
+            startX:Math.round(util.getCoordinateRate(40,176).x*application.canvas.width),
+            startY:Math.round(util.getCoordinateRate(40,176).y*application.canvas.height)
+        },
+        gateCoin:{
+            one:{
+                name:'gate-list-show-one',
+                startX:Math.round(util.getCoordinateRate(284,1050).x*application.canvas.width),
+                startY:Math.round(util.getCoordinateRate(284,1050).y*application.canvas.height)
+            },
+            two:{
+                name:'gate-list-show-two',
+                startX:Math.round(util.getCoordinateRate(495,882).x*application.canvas.width),
+                startY:Math.round(util.getCoordinateRate(495,882).y*application.canvas.height)
+            },
+            three:{
+                name:'gate-list-show-three',
+                startX:Math.round(util.getCoordinateRate(128,756).x*application.canvas.width),
+                startY:Math.round(util.getCoordinateRate(128,756).y*application.canvas.height)
+            },
+            four:{
+                name:'gate-list-show-four',
+                startX:Math.round(util.getCoordinateRate(514,465).x*application.canvas.width),
+                startY:Math.round(util.getCoordinateRate(514,465).y*application.canvas.height)
+            }
+        }
     };
-    this.gateTwo={
-        name:''
-    };
-    this.gateThree={
-        name:''
-    };
-    this.gateFour={
-        name:''
+    this.timer={
+        name:'timer',
+        startX:'',
+        startY:''
     };
 }
 
@@ -44,14 +76,41 @@ Button.prototype.paint=function(btn){
 };
 
 /*绑定点击某个区域,以使某个方法生效*/
-Button.prototype.touchAction=function(toucher){
+Button.prototype.touchAction=function(toucher,background){
     var _self=this;
     var btnEventFn={
         "index-btn1":function(){
-            console.info("事件按钮1");
+            console.info("去抢钱按钮");
+            //画背景图，解绑事件，绘制按钮，然后绑定按钮事件
+            toucher.eventHandle('remove',document,'touchstart', btnFun, false);
+            background.paint(background.list.one,application.canvas.width,application.canvas.height);
+            _self.coordinates=[];
+            _self.paint(_self.gateList.gateCoin.one);
+            toucher.eventHandle('add',document,'touchstart', btnFun, false);
         },
         "index-btn2":function(){
-            console.info("事件按钮2");
+            console.info("返回俱乐部按钮");
+        },
+        "rank-bg":function(){
+
+        },
+        "btn-back-gate":function(){
+
+        },
+        "caculator":function(){
+
+        },
+        "gate-list-show-one":function(){
+
+        },
+        "gate-list-show-two":function(){
+
+        },
+        "gate-list-show-three":function(){
+
+        },
+        "gate-list-show-four":function(){
+
         }
     };
     var btnFun = function(event) {
@@ -66,7 +125,6 @@ Button.prototype.touchAction=function(toucher){
 
         for (var i = 0; i < _self.coordinates.length; i += 5) {
             if (x > _self.coordinates[i + 1] && x < _self.coordinates[i + 1] + _self.coordinates[i + 3] && y > _self.coordinates[i + 2] && y < _self.coordinates[i + 2] + _self.coordinates[i + 4]) {
-                console.log(i);
                 btnEventFn[_self.coordinates[i]]();//判断
                 break;
             }

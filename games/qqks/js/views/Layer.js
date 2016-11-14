@@ -13,6 +13,16 @@ Layer.prototype.fail=function(){
 };
 
 //购买金手套
-Layer.prototype.bugHander=function(){
+Layer.prototype.buyHander=function(){
+
+};
+
+/*展开*/
+Layer.prototype.open=function(){
+
+};
+
+/*闭合*/
+Layer.prototype.close=function(){
 
 };
