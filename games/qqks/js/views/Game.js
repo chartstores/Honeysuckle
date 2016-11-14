@@ -1,27 +1,61 @@
-/*¶¯×÷¡¢ÓÎÏ·¿ØÖÆÌ¨*/
-//¿ªÊ¼¡¢ÔİÍ£¡¢ÖØĞÂÆô¶¯¡¢Í£Ö¹¹¦ÄÜ
+/*åŠ¨ä½œã€æ¸¸æˆæ§åˆ¶å°*/
+//å¼€å§‹ã€æš‚åœã€é‡æ–°å¯åŠ¨ã€åœæ­¢åŠŸèƒ½
 function Game(){
+    var _self=this;
+    //é¦–é¡µ
+    _self.index={
+        bg:util.$$('index-bg'),
+        prop:util.$$('index-bg').width>= application.canvas.width ?1:appConfig.prop,
+        width:application.canvas.width,
+        height:application.canvas.height
+    };
+    //å…³å¡
+    _self.gate={
+        one:{
 
+        },
+        two:{
+
+        },
+        three:{
+
+        },
+        four:{
+
+        }
+    }
 }
-/*¿ªÊ¼*/
+/*å¼€å§‹*/
 Game.prototype.start=function(){
+    var _self=this;
+
+    var background=new Background();
+    background.paint(_self.index.bg, 0, 0, _self.index.width, _self.index.height);
+
+    var btn=new Button();
+    _self.btn=btn;
+    btn.paint(btn.index.start);
+    btn.paint(btn.index.back);
+
     var toucher = new Toucher();
-    toucher.eventHandle("add", document, "touchstart", function (e) {
-        console.info("touchstart event");
-    }, false);
+    //åˆ¤æ–­åŒºåŸŸè½ç‚¹ï¼Œè§¦å‘å¯¹åº”çš„äº‹ä»¶å¤„ç†å‡½æ•°
+    btn.touchAction(toucher);
 };
 
-/*ÔİÍ£*/
+Game.prototype.startGate=function(){
+
+};
+/*æš‚åœ*/
 Game.prototype.pause=function(){
 
 };
 
-/*ÖØĞÂÆô¶¯*/
+/*é‡æ–°å¯åŠ¨*/
 Game.prototype.restart=function(){
 
 };
 
-/*Í£Ö¹*/
+/*åœæ­¢*/
 Game.prototype.stop=function(){
 
 };

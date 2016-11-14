@@ -1,17 +1,10 @@
 /*对象、状态/行为、属性*/
 function App(){
     var _self = this;
-    _self.isPaper=(function(){
-        appConfig.canvas=util.$$(appConfig.container);
-        appConfig.canvas.width = window.innerWidth;
-        appConfig.canvas.height = window.innerHeight;
-
-        if (!appConfig.canvas.getContext) {
-            return false;
-        }
-        appConfig.context = appConfig.canvas.getContext('2d');
-        return true;
-    })();
+    _self.canvas=null;
+    _self.context=null;
+    _self.isPaper=false;
+    _self.prop=0;
 }
 //铺好布局，一切就绪，将开始游戏
 App.prototype.init=function(){
@@ -19,10 +12,40 @@ App.prototype.init=function(){
     if(!appConfig.isShowDebugInfo){
         $$("debug-tool").style.display="none";
     }
-    if(_self.isPaper){
-        _self.game= new Game();
-        _self.game.start();
-    }
+    //初始化画布
+    _self.isPaper=(function(){
+        _self.canvas=util.$$(appConfig.container);
+        _self.canvas.width = window.innerWidth;
+        _self.canvas.height = window.innerHeight;
+
+        if (!_self.canvas.getContext) {
+            return false;
+        }
+        _self.context = _self.canvas.getContext('2d');
+        return true;
+    })();
+
+    //加载资源文件
+    var loader=new Loader();
+    loader.loadingImage({
+        url: function () {
+            return loader.getUrl();
+        },
+        oncomplete: function (s) {
+            loader.loadingEffect(s);
+        },
+        complete: function (imgs, s) {
+            if (s.total == s.load + s.error) {
+                var $image = util.$$("index-bg");
+                appConfig.prop = application.canvas.width / $image.width;
+
+                if(_self.isPaper){
+                    _self.game= new Game();
+                    _self.game.start();
+                }
+            }
+        }
+    });
 };
 
 var application=(function () {
