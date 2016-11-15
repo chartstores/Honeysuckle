@@ -79,8 +79,8 @@ var util = {
      * @returns {{x: number, y: number}}
      */
     getCoordinateRate:function(psX,psY){
-        var rateX=psX/1242;
-        var rateY=psY/2016;
+        var rateX=psX/750;
+        var rateY=psY/1334;
         return {x:rateX,y:rateY};
     }
 };

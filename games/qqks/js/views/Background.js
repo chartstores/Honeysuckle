@@ -9,29 +9,37 @@ function Background(){
         startY:0
     };
     _self.list={
+        name:'gate-list-bg',
+        startX:0,
+        startY:0,
         one:{
-            name:'gate-list-show-one',
+            name:'gate-bg-one',
             startX:0,
             startY:0
         },
         two:{
-            name:'gate-list-show-one',
+            name:'gate-bg-two',
             startX:0,
             startY:0
         },
         three:{
-            name:'gate-list-show-one',
+            name:'gate-bg-three',
             startX:0,
             startY:0
         },
         four:{
-            name:'gate-list-show-one',
+            name:'gate-bg-four',
             startX:0,
             startY:0
         }
-
     };
+    _self.rank={
+        name:'rank-bg',
+        startX:0,
+        startY:0
+    }
 }
+
 /*各个关卡、步骤的背景图片*/
 Background.prototype.paint=function(bg,w,h){
     var _self=this;
