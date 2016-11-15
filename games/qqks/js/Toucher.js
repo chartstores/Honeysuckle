@@ -1,16 +1,16 @@
 /**
- * ÆÁÄ»½çÃæÇøÓò°ó¶¨´¦ÀíÊÂ¼ş
+ * å±å¹•ç•Œé¢åŒºåŸŸç»‘å®šå¤„ç†äº‹ä»¶
  */
 function Toucher(){
 
 };
 /**
- * ÊÂ¼ş´¦Àí
- * @param eventType Ö´ĞĞ²Ù×÷
- * @param element °ó¶¨µÄÔªËØ
- * @param eType  ÊÂ¼şÀàĞÍ
- * @param handle ÊÂ¼ş´¦Àíº¯Êı
- * @param bol ÊÇ·ñÃ°ÅİÉÏ¸¡
+ * äº‹ä»¶å¤„ç†
+ * @param eventType æ‰§è¡Œæ“ä½œ
+ * @param element ç»‘å®šçš„å…ƒç´ 
+ * @param eType  äº‹ä»¶ç±»å‹
+ * @param handle äº‹ä»¶å¤„ç†å‡½æ•°
+ * @param bol æ˜¯å¦å†’æ³¡ä¸Šæµ®
  */
 Toucher.prototype.eventHandle=function(eventType,element, eType, handle, bol){
     var eventHandle={
