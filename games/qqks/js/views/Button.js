@@ -17,87 +17,86 @@ function Button(){
                 name:'gate-coin-one',
                 enabled:true,
                 enabledName:'gate-coin-one-enabled',
-                startX:Math.round(util.getCoordinateRate(297,1115).x*application.canvas.width),
-                startY:Math.round(util.getCoordinateRate(297,1115).y*application.canvas.height),
-                offset:[0,0],
+                startX:Math.round(util.getCoordinateRate(307,1120).x*application.canvas.width),
+                startY:Math.round(util.getCoordinateRate(307,1120).y*application.canvas.height),
                 shadow:{
                     name:'shadow',
-                    startX:Math.round(util.getCoordinateRate(298,1229).x*application.canvas.width),
-                    startY:Math.round(util.getCoordinateRate(298,1229).y*application.canvas.height)
+                    startX:Math.round(util.getCoordinateRate(312,1229).x*application.canvas.width),
+                    startY:Math.round(util.getCoordinateRate(312,1229).y*application.canvas.height)
                 },
                 starshine:{
                     name:'starshine',
-                    startX:Math.round(util.getCoordinateRate(332,1012).x*application.canvas.width),
-                    startY:Math.round(util.getCoordinateRate(332,1012).y*application.canvas.height)
+                    startX:Math.round(util.getCoordinateRate(312,1062).x*application.canvas.width),
+                    startY:Math.round(util.getCoordinateRate(312,1062).y*application.canvas.height)
                 }
             },
             two:{
                 name:'gate-coin-two',
                 enabled:false,
                 enabledName:'gate-coin-two-enabled',
-                startX:Math.round(util.getCoordinateRate(495,882).x*application.canvas.width),
-                startY:Math.round(util.getCoordinateRate(495,882).y*application.canvas.height),
+                startX:Math.round(util.getCoordinateRate(515,902).x*application.canvas.width),
+                startY:Math.round(util.getCoordinateRate(515,902).y*application.canvas.height),
                 shadow:{
                     name:'shadow',
-                    startX:Math.round(util.getCoordinateRate(511,1039).x*application.canvas.width),
-                    startY:Math.round(util.getCoordinateRate(511,1039).y*application.canvas.height)
+                    startX:Math.round(util.getCoordinateRate(521,1005).x*application.canvas.width),
+                    startY:Math.round(util.getCoordinateRate(521,1005).y*application.canvas.height)
                 },
                 starshine:{
                     name:'starshine',
-                    startX:Math.round(util.getCoordinateRate(561,850).x*application.canvas.width),
-                    startY:Math.round(util.getCoordinateRate(561,850).y*application.canvas.height)
+                    startX:Math.round(util.getCoordinateRate(521,850).x*application.canvas.width),
+                    startY:Math.round(util.getCoordinateRate(521,850).y*application.canvas.height)
                 }
             },
             three:{
                 name:'gate-coin-three',
                 enabled:false,
                 enabledName:'gate-coin-three-enabled',
-                startX:Math.round(util.getCoordinateRate(128,756).x*application.canvas.width),
-                startY:Math.round(util.getCoordinateRate(128,756).y*application.canvas.height),
+                startX:Math.round(util.getCoordinateRate(148,756).x*application.canvas.width),
+                startY:Math.round(util.getCoordinateRate(148,756).y*application.canvas.height),
                 shadow:{
                     name:'shadow',
-                    startX:Math.round(util.getCoordinateRate(128,912).x*application.canvas.width),
-                    startY:Math.round(util.getCoordinateRate(128,912).y*application.canvas.height)
+                    startX:Math.round(util.getCoordinateRate(148,862).x*application.canvas.width),
+                    startY:Math.round(util.getCoordinateRate(148,862).y*application.canvas.height)
                 },
                 starshine:{
                     name:'starshine',
-                    startX:Math.round(util.getCoordinateRate(168,706).x*application.canvas.width),
-                    startY:Math.round(util.getCoordinateRate(168,706).y*application.canvas.height)
+                    startX:Math.round(util.getCoordinateRate(158,706).x*application.canvas.width),
+                    startY:Math.round(util.getCoordinateRate(158,706).y*application.canvas.height)
                 }
             },
             four:{
                 name:'gate-coin-four',
                 enabled:false,
                 enabledName:'gate-coin-four-enabled',
-                startX:Math.round(util.getCoordinateRate(524,465).x*application.canvas.width),
-                startY:Math.round(util.getCoordinateRate(524,465).y*application.canvas.height),
+                startX:Math.round(util.getCoordinateRate(548,435).x*application.canvas.width),
+                startY:Math.round(util.getCoordinateRate(548,435).y*application.canvas.height),
                 shadow:{
                     name:'shadow',
-                    startX:Math.round(util.getCoordinateRate(532,619).x*application.canvas.width),
-                    startY:Math.round(util.getCoordinateRate(532,619).y*application.canvas.height)
+                    startX:Math.round(util.getCoordinateRate(545,539).x*application.canvas.width),
+                    startY:Math.round(util.getCoordinateRate(545,539).y*application.canvas.height)
                 },
                 starshine:{
                     name:'starshine',
-                    startX:Math.round(util.getCoordinateRate(561,416).x*application.canvas.width),
-                    startY:Math.round(util.getCoordinateRate(561,416).y*application.canvas.height)
+                    startX:Math.round(util.getCoordinateRate(550,386).x*application.canvas.width),
+                    startY:Math.round(util.getCoordinateRate(550,386).y*application.canvas.height)
                 }
             },
             what:{
                 name:'gate-coin-what',
-                startX:Math.round(util.getCoordinateRate(137,259).x*application.canvas.width),
-                startY:Math.round(util.getCoordinateRate(137,259).y*application.canvas.height),
+                startX:Math.round(util.getCoordinateRate(157,199).x*application.canvas.width),
+                startY:Math.round(util.getCoordinateRate(157,199).y*application.canvas.height),
                 shadow:{
                     name:'shadow',
-                    startX:Math.round(util.getCoordinateRate(137,416).x*application.canvas.width),
-                    startY:Math.round(util.getCoordinateRate(137,416).y*application.canvas.height)
+                    startX:Math.round(util.getCoordinateRate(157,300).x*application.canvas.width),
+                    startY:Math.round(util.getCoordinateRate(157,300).y*application.canvas.height)
                 }
             }
         }
     };
     this.rank={
         name:'label-rank',
-        startX:Math.round(util.getCoordinateRate(511,176).x*application.canvas.width),
-        startY:Math.round(util.getCoordinateRate(511,176).y*application.canvas.height)
+        startX:Math.round(util.getCoordinateRate(511,22).x*application.canvas.width),
+        startY:Math.round(util.getCoordinateRate(511,22).y*application.canvas.height)
     };
     this.back={
         index:{
@@ -107,8 +106,8 @@ function Button(){
         },
         gateList:{
             name:'btn-back-gate',
-            startX:Math.round(util.getCoordinateRate(34,1202).x*application.canvas.width),
-            startY:Math.round(util.getCoordinateRate(34,1202).y*application.canvas.height)
+            startX:Math.round(util.getCoordinateRate(34,1236).x*application.canvas.width),
+            startY:Math.round(util.getCoordinateRate(34,1236).y*application.canvas.height)
         },
         rankPage:{
             name:'btn-rank-back',

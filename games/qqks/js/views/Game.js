@@ -33,16 +33,16 @@ Game.prototype.start=function(){
     _self.btn=btn;
 
     var toucher = new Toucher();
-    _self.toucher=toucher;
-
     //判断区域落点，触发对应的事件处理函数
     var btnFun=btn.touchAction(toucher);
+    _self.toucher=toucher;
     _self.btn.btnFun=btnFun;
+
     var counter=new Counter();
     _self.counter=counter;
 
     //test
-    _self.showGateList('start');
+    _self.showGateList(1,'start');
 };
 /**
  *
@@ -73,7 +73,8 @@ Game.prototype.showGateList=function(number,action){
             if(_self.btn.gateList.gateCoin.one.enabled){
                 offset.push(Math.round(util.$$(_self.btn.gateList.gateCoin.one.enabledName).width-util.$$(_self.btn.gateList.gateCoin.one.name).width)/2);
                 offset.push(Math.round(util.$$(_self.btn.gateList.gateCoin.one.enabledName).height-util.$$(_self.btn.gateList.gateCoin.one.name).height)/2);
-
+                _self.btn.gateList.gateCoin.one.startX = _self.btn.gateList.gateCoin.one.startX-offset[0];
+                _self.btn.gateList.gateCoin.one.startY = _self.btn.gateList.gateCoin.one.startY-offset[1];
                 _self.btn.gateList.gateCoin.one.name = _self.btn.gateList.gateCoin.one.enabledName;
             }
             console.info("偏移量是");
@@ -85,7 +86,7 @@ Game.prototype.showGateList=function(number,action){
             //绘制非绑定事件区域的按钮
             _self.btn.paintOther([
                 _self.btn.gateList.gateCoin.one.shadow, _self.btn.gateList.gateCoin.one.starshine,
-                _self.btn.gateList.gateCoin.two, _self.btn.gateList.gateCoin.two.shadow, _self.btn.gateList.gateCoin.two.starshine,
+                //_self.btn.gateList.gateCoin.two, _self.btn.gateList.gateCoin.two.shadow, _self.btn.gateList.gateCoin.two.starshine,
                 _self.btn.gateList.gateCoin.three, _self.btn.gateList.gateCoin.three.shadow, _self.btn.gateList.gateCoin.three.starshine,
                 _self.btn.gateList.gateCoin.four, _self.btn.gateList.gateCoin.four.shadow, _self.btn.gateList.gateCoin.four.starshine,
                 _self.btn.gateList.gateCoin.what, _self.btn.gateList.gateCoin.what.shadow
@@ -138,8 +139,9 @@ Game.prototype.gate=function(){
 Game.prototype.startCounter=function(){
     var _self=this;
 
-    _self.counter.initTimer();
-    _self.counter.initCaculator();
+    _self.counter.initCaculator(_self.counter.caculatorA);
+    //_self.counter.initTimer(_self.counter.timerA);
+    //_self.counter.initTimer(_self.counter.timerB);
 };
 
 /*显示排行榜功能*/

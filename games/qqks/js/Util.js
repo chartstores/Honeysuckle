@@ -72,13 +72,14 @@ var util = {
             $$("imgbox").appendChild(imgObj);
         }
     },
+
     /**
      * 获取设计稿上的开始坐标定位比例
      * @param psX
-     * @param pxY
+     * @param psY
      * @returns {{x: number, y: number}}
      */
-    getCoordinateRate:function(psX,psY){
+    getCoordinateRate:function(psX, psY){
         var rateX=psX/750;
         var rateY=psY/1334;
         return {x:rateX,y:rateY};
