@@ -15,19 +15,19 @@ function Button(){
         gateCoin:{
             one:{
                 name:'gate-coin-one',
-                enabled:true,
+                enabled:false,
                 enabledName:'gate-coin-one-enabled',
-                startX:Math.round(util.getCoordinateRate(307,1120).x*application.canvas.width),
-                startY:Math.round(util.getCoordinateRate(307,1120).y*application.canvas.height),
+                startX:Math.round(util.getCoordinateRate(330, 1120).x*application.canvas.width),
+                startY:Math.round(util.getCoordinateRate(330, 1120).y*application.canvas.height),
                 shadow:{
                     name:'shadow',
-                    startX:Math.round(util.getCoordinateRate(312,1229).x*application.canvas.width),
-                    startY:Math.round(util.getCoordinateRate(312,1229).y*application.canvas.height)
+                    startX:Math.round(util.getCoordinateRate(320, 1229).x*application.canvas.width),
+                    startY:Math.round(util.getCoordinateRate(320, 1229).y*application.canvas.height)
                 },
                 starshine:{
                     name:'starshine',
-                    startX:Math.round(util.getCoordinateRate(312,1062).x*application.canvas.width),
-                    startY:Math.round(util.getCoordinateRate(312,1062).y*application.canvas.height)
+                    startX:Math.round(util.getCoordinateRate(335, 1060).x*application.canvas.width),
+                    startY:Math.round(util.getCoordinateRate(335, 1060).y*application.canvas.height)
                 }
             },
             two:{

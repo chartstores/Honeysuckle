@@ -43,6 +43,9 @@ Game.prototype.start=function(){
 
     //test
     _self.showGateList(1,'start');
+    //_self.showGateList(2,'start');
+    //_self.showGateList(3,'start');
+    //_self.showGateList(4,'start');
 };
 /**
  *
@@ -52,21 +55,22 @@ Game.prototype.start=function(){
 Game.prototype.showGateList=function(number,action){
     var _self=this;
     console.info("去抢钱按钮");
+
+    //画背景图，解绑事件，绘制按钮，然后绑定按钮事件
+    _self.toucher.eventHandle('remove',document,'touchstart', function(){}, false);
+    application.context.clearRect(0, 0, application.canvas.width, application.canvas.height);
+
+    _self.background.paint(_self.background.list,application.canvas.width,application.canvas.height);
+
+    //初始化排行榜、计数功能
+    _self.btn.paint(_self.btn.rank);
+    _self.startCounter();
+
     switch(number){
         case -1:
             alert("回退操作");
             break;
         case 1:
-            //画背景图，解绑事件，绘制按钮，然后绑定按钮事件
-            _self.toucher.eventHandle('remove',document,'touchstart', function(){}, false);
-            application.context.clearRect(0, 0, application.canvas.width, application.canvas.height);
-
-            _self.background.paint(_self.background.list,application.canvas.width,application.canvas.height);
-
-            //初始化排行榜、计数功能
-            _self.btn.paint(_self.btn.rank);
-            _self.startCounter();
-
             //对相应的通关按钮绑定事件
             _self.btn.coordinates=[];
             var offset=[];//由于激活状态和未激活状态的图片尺寸大小有差异，需要重新计算绘图开始位置
@@ -76,23 +80,23 @@ Game.prototype.showGateList=function(number,action){
                 _self.btn.gateList.gateCoin.one.startX = _self.btn.gateList.gateCoin.one.startX-offset[0];
                 _self.btn.gateList.gateCoin.one.startY = _self.btn.gateList.gateCoin.one.startY-offset[1];
                 _self.btn.gateList.gateCoin.one.name = _self.btn.gateList.gateCoin.one.enabledName;
+                _self.btn.paintOther([_self.btn.gateList.gateCoin.one.starshine]);
             }
-            console.info("偏移量是");
-            console.info(offset);
+            //console.info("偏移量是");
+            //console.info(offset);
 
             _self.btn.paint(_self.btn.gateList.gateCoin.one);
             _self.btn.paint(_self.btn.back.gateList);
 
             //绘制非绑定事件区域的按钮
             _self.btn.paintOther([
-                _self.btn.gateList.gateCoin.one.shadow, _self.btn.gateList.gateCoin.one.starshine,
-                //_self.btn.gateList.gateCoin.two, _self.btn.gateList.gateCoin.two.shadow, _self.btn.gateList.gateCoin.two.starshine,
+                _self.btn.gateList.gateCoin.one.shadow,
+                _self.btn.gateList.gateCoin.two, _self.btn.gateList.gateCoin.two.shadow, _self.btn.gateList.gateCoin.two.starshine,
                 _self.btn.gateList.gateCoin.three, _self.btn.gateList.gateCoin.three.shadow, _self.btn.gateList.gateCoin.three.starshine,
                 _self.btn.gateList.gateCoin.four, _self.btn.gateList.gateCoin.four.shadow, _self.btn.gateList.gateCoin.four.starshine,
                 _self.btn.gateList.gateCoin.what, _self.btn.gateList.gateCoin.what.shadow
             ]);
 
-            _self.toucher.eventHandle('add',document,'touchstart', _self.btn.btnFun, false);
 
             break;
         case 2:
@@ -105,6 +109,7 @@ Game.prototype.showGateList=function(number,action){
             alert("what");
             break;
     }
+    _self.toucher.eventHandle('add',document,'touchstart', _self.btn.btnFun, false);
 };
 
 /**
