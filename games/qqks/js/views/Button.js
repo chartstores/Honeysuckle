@@ -15,7 +15,7 @@ function Button(){
         gateCoin:{
             one:{
                 name:'gate-coin-one',
-                enabled:false,
+                enabled:true,
                 enabledName:'gate-coin-one-enabled',
                 startX:Math.round(util.getCoordinateRate(330, 1120).x*application.canvas.width),
                 startY:Math.round(util.getCoordinateRate(330, 1120).y*application.canvas.height),
@@ -160,10 +160,11 @@ Button.prototype.touchAction=function(toucher){
         "gate-coin-three-enabled" : function(){ return application.game.startGate(3,true); },   //通关按钮3
         "gate-coin-four" : function(){ return application.game.startGate(4,false); },           //通关按钮4
         "gate-coin-four-enabled" :function(){ return application.game.startGate(4,true); },     //通关按钮4
+
         "label-rank" : function(){ return application.game.rank();},                            //排行榜
         "btn-back-gate" : function(){ return application.game.startGate(-1,false);},            //通关列表，回退按钮
     };
-    var btnFun = function(event) {
+    var btnFn = function(event) {
         if (Date.parse(new Date()) - _self.firTime < 10 && _self.firTime != 0) {
             return;
         } else {
@@ -181,9 +182,9 @@ Button.prototype.touchAction=function(toucher){
         }
     };
     if(_self.btnEventCount==0){
-        toucher.eventHandle('add',document,'touchstart', btnFun, false);
+        toucher.eventHandle('add',document,'touchstart', btnFn, false);
     }
     _self.btnEventCount++;
 
-    return btnFun;
+    return btnFn;
 };

@@ -23,6 +23,7 @@ module.exports = function (grunt) {
 
     var dist=[
         'example/',
+        'demo/',
         'games/'
     ];
     var sassWork=[{

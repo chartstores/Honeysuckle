@@ -34,19 +34,20 @@ Game.prototype.start=function(){
 
     var toucher = new Toucher();
     //判断区域落点，触发对应的事件处理函数
-    var btnFun=btn.touchAction(toucher);
+    var btnFn=btn.touchAction(toucher);
     _self.toucher=toucher;
-    _self.btn.btnFun=btnFun;
+    _self.btn.btnFn=btnFn;
 
     var counter=new Counter();
     _self.counter=counter;
 
     //test
-    _self.showGateList(1,'start');
+    // _self.showGateList(1,'start');
     //_self.showGateList(2,'start');
     //_self.showGateList(3,'start');
     //_self.showGateList(4,'start');
 };
+
 /**
  *
  * @param number 需要展示的关数 -1为回退操作
@@ -60,7 +61,7 @@ Game.prototype.showGateList=function(number,action){
     _self.toucher.eventHandle('remove',document,'touchstart', function(){}, false);
     application.context.clearRect(0, 0, application.canvas.width, application.canvas.height);
 
-    _self.background.paint(_self.background.list,application.canvas.width,application.canvas.height);
+    _self.background.paint(_self.background.gate,application.canvas.width,application.canvas.height);
 
     //初始化排行榜、计数功能
     _self.btn.paint(_self.btn.rank);
@@ -97,7 +98,6 @@ Game.prototype.showGateList=function(number,action){
                 _self.btn.gateList.gateCoin.what, _self.btn.gateList.gateCoin.what.shadow
             ]);
 
-
             break;
         case 2:
             break;
@@ -109,7 +109,7 @@ Game.prototype.showGateList=function(number,action){
             alert("what");
             break;
     }
-    _self.toucher.eventHandle('add',document,'touchstart', _self.btn.btnFun, false);
+    _self.toucher.eventHandle('add',document,'touchstart', _self.btn.btnFn, false);
 };
 
 /**
@@ -118,26 +118,29 @@ Game.prototype.showGateList=function(number,action){
  * @param isEnabled
  */
 Game.prototype.startGate=function(number,isEnabled){
+    var _self=this;
     console.info("开始闯第"+number+"关");
+    //解绑事件
     if(!isEnabled){
         alert("sorry,你还没有权限通往第"+number+"关");
     }
+    _self.toucher.eventHandle('remove',document,'touchstart', _self.btn.btnFn, false);
     switch(number){
         case -1:
             break;
         case 1:
+            _self.background.paint(_self.background.gate.one,application.canvas.width,application.canvas.height);
             break;
         case 2:
+            _self.background.paint(_self.background.gate.two,application.canvas.width,application.canvas.height);
             break;
         case 3:
+            _self.background.paint(_self.background.gate.three,application.canvas.width,application.canvas.height);
             break;
         case 4:
+            _self.background.paint(_self.background.gate.four,application.canvas.width,application.canvas.height);
             break;
     }
-};
-
-Game.prototype.gate=function(){
-
 };
 
 /*执行计算器功能*/

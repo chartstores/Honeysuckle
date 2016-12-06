@@ -8,7 +8,7 @@ function Background(){
         startX:0,
         startY:0
     };
-    _self.list={
+    _self.gate={
         name:'gate-list-bg',
         startX:0,
         startY:0,
@@ -31,6 +31,11 @@ function Background(){
             name:'gate-bg-four',
             startX:0,
             startY:0
+        },
+        bedding:{
+            name:'bedding',
+            startX:0,
+            startY:0,
         }
     };
     _self.rank={
