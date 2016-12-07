@@ -74,12 +74,12 @@ var util = {
     },
 
     /**
-     * 获取设计稿上的开始坐标定位比例
+     * 获取设计稿上的坐标定位与canvas画布上的映射匹配
      * @param psX
      * @param psY
      * @returns {{x: number, y: number}}
      */
-    getCoordinateRate:function(psX, psY){
+    getCoordinateMap:function(psX, psY){
         var rateX=psX/750;
         var rateY=psY/1334;
         return {x:rateX,y:rateY};

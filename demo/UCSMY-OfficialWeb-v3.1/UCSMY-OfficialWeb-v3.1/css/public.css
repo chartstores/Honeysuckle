@@ -1,0 +1,366 @@
+﻿@charset "utf-8";
+/* CSS Document */
+html, body, div, span, table, tbody, tr, th, td, em, img, strong, h1, h2, h3, h4, h5, h6, p, a, dl, dt, dd, ol, ul, li, form, label, input { margin: 0; padding: 0; list-style: none; outline: none; }
+h1, h2, h3, h4, h5, h6, b { font-weight: 400 }
+a, img { text-decoration: none; border: 0; hide-focus:expression(this.hideFocus=true); /*IE6IE7*/
+}
+
+/*全局默认的链接,body*/
+body { font-family: "Microsoft Yahei","Arial"; color: #666; font-size: 14px;min-width: 1200px;}
+a { color: #666; font-size: 14px }
+a:link { text-decoration: none; }
+/*a:visited { text-decoration: none; color: #666; }*/
+a:hover { text-decoration: none; color: #dca051; }
+/*a:active { text-decoration: none; color: #dca051; }*/
+.f-left { float: left; }
+.f-right { float: right; }
+.clear { clear: both; /*height: 1px; line-height: 1px; font-size: 1px; */}
+.hide { display: none }
+
+/*页面总宽度*/
+.wrap { margin: 0 auto; width: 1200px; clear: both }
+
+/*字体颜色，根据实现项目增减，对于链接的应该要有visited,hover状态，如fcblue*/
+.fcred { color: #ff4426 }
+.fcblue { color: #006cff }
+.fcblue, a.fcblue, a.fcblue:visited { color: #006cff }
+a.fcblue:hover { color: #f00 }
+.fcgray999 { color: #999 }
+.fcgray666{ color: #666;}
+.fcyellow{ color: #bd854f}
+
+/*边框表格样式，尽可能为页面中的边框加上样式border，边框颜色，圆角大小，投影等得到统一*/
+/*.border { border: 1px solid #d2d2d2; border-radius: 0px; background: #fff }*/
+table { border-collapse: collapse; border-spacing: 0 }
+.bg-icon { background: url(../images/icon.png) no-repeat }
+
+/****** 公共头部 ****/
+.header { width: 100%;height:90px;border-top: 3px solid #ce0019;border-bottom: 1px solid #ebdaca;position: relative;z-index: 10;}
+.header .top{position: relative;height: 90px;z-index: 10;}
+.header .logo{height:90px;display: table;*margin-top:20px;}
+.header .logo a{display: table-cell;vertical-align: middle;}
+.header .nav{height:100%;line-height:90px;}
+.header .nav>li{float: left;height: 100%;line-height: 90px;text-align: center;position: relative;}
+.header .nav>li>a{display: block;padding: 0 16px;font-size: 16px;}
+.header .nav>li:hover>a,.header .nav>li.current>a{color: #fff;transition: all 0.2s;-webkit-transition: all 0.2s;}
+.header .nav-bg{ position: absolute;left: 0;right: 0;bottom: 0;top: 90px;z-index: -1;background: #ce0019;}
+.header .nav>li .nav-bg{
+	top: 90px;
+	-webkit-transition: top .3s ease-out 0s;
+	-moz-transition: top .3s ease-out 0s;
+	-ms-transition: top .3s ease-out 0s;
+	-o-transition: top .3s ease-out 0s;
+	transition: top .3s ease-out 0s;
+}
+.header .nav>li.current .nav-bg{
+	top:0;
+	-webkit-transition: top .3s ease-out 0s;
+	-moz-transition: top .3s ease-out 0s;
+	-ms-transition: top .3s ease-out 0s;
+	-o-transition: top .3s ease-out 0s;
+	transition: top .3s ease-out 0s;
+}
+.barwp.bottom{position: relative;height:60px;overflow: hidden;z-index: 1;}
+.header .nav-bar{ position: absolute;top:-44px;background:#ddd8d3;left:0;height: 44px;width: 100%;overflow: hidden;z-index: -1;}
+.header .nav-bar{
+	 top: -44px;
+	-webkit-transition: top .2s ease-out 0s;
+	-moz-transition: top .2s ease-out 0s;
+	-ms-transition: top .2s ease-out 0s;
+	-o-transition: top .2s ease-out 0s;
+	transition: top .2s ease-out 0s;
+}
+.header .nav-bar.cur{
+	top: 0;
+	-webkit-transition: top .2s ease-out .2s;
+	-moz-transition: top .2s ease-out .2s;
+	-ms-transition: top .2s ease-out .2s;
+	-o-transition: top .2s ease-out .2s;
+	transition: top .2s ease-out .2s;
+}
+.header .nav-bar .about{left: 504px;}
+.header .nav-bar .company-layout{left: 600px;}
+.header .nav-bar .relation{left: 696px;}
+.header .nav-bar .news{left: 808px;}
+.header .nav-bar .join{right: 0px;left: auto;}
+.header .nav-bar .wrap{position: relative;overflow: visible;}
+
+.header .subnav{position: absolute;top:0px;left:0;right:0;height: 44px;line-height: 44px;overflow: hidden;}
+.header .subnav.cur{display: block;}
+.header .subnav>li{height: 100%;float: left;}
+.header .subnav>li a{display: inline-block;*display:inline;*zoom:1;height:100%;margin:0 15px;line-height:44px;color: #888582;font-size: 14px;}
+.header .subnav>li:first-child a{margin-left: 10px;}
+.header .subnav>li a:hover{color: #ce0019;}
+.header .height-44{height: 44px;}
+
+.new-header { position: relative; z-index: 2; height: 88px; background: #fff;border-bottom: 1px solid #ebdaca; }
+.new-header .wrap-new-header { max-width: 1200px; min-width: 1000px; height: 100%; margin: 0 auto; }
+.new-header .logo { height: 100%; display: table; *margin-top: 20px; }
+/*.new-header .logo img{width:238px;}*/
+.new-header .logo a { display: table-cell; vertical-align: middle; }
+.new-header .nav { height: 100%; }
+.new-header .nav > li { position: relative; float: left; width: 106px; height: 100%; }
+.new-header .nav > li.current a { color: #bd854b; }
+.new-header .nav > li.current .nav-bg { opacity: 1; filter: alpha(opacity=100); -webkit-transform: translate3D(0, 0, 0); transform: translate3D(0, 0, 0); }
+.new-header .nav a { display: block; height: 100%; padding: 0 18px; font-size: 14px; line-height: 88px; color: #999; text-align: center; }
+.new-header .nav .nav-bg { position: absolute; bottom: 20px; width: 100%; height: 2px; background: #bd854b; opacity: 0; filter: alpha(opacity=0); -webkit-transform: translate3D(0, 10px, 0); transform: translate3D(0, 10px, 0); -webkit-transition: all 0.4s; transition: all 0.4s; }
+
+.new-sub-nav { position: relative; top: 88px; *top: -20px;z-index: 2; max-width: 1200px; min-width: 1000px; margin: 0 auto; }
+.new-sub-nav > li { position: absolute; right: 100px; width: 106px; height: 0; overflow: hidden; color: #fff;background-color: #fff;border:1px solid #ebdaca;border-top:0px solid #fff;}
+.new-sub-nav .sub-item { display: block; height: 50px; line-height: 50px; text-align: center; color: #898888; }
+.new-sub-nav .sub-item:hover { background-color:#bd854b;color: #fff; }
+.new-sub-nav .sub-1 { right: 548px; }
+.new-sub-nav .sub-2 { right: 442px; }
+.new-sub-nav .sub-3 { right: 336px; }
+.new-sub-nav .sub-4 { right: 231px; }
+.new-sub-nav .sub-5 { right: 125px; }
+
+.language{float:right;height: 100%;}
+.language a{display: inline-block;*display: inline;*zoom: 1;height:100%;padding: 0 10px;line-height: 88px;font-size: 14px;color: #bd854b;}
+.language i{display: inline-block;*display: inline;*zoom: 1;width: 1px;height: 12px;margin: 38px 0;vertical-align:top;background: #bd854b;}
+
+.lan-title{width: 100%;height: 147px;line-height: 147px;background: #e4c08a;}
+.lan-title.lan-aboutus{background: url('../images/banner-about.jpg') center top no-repeat;color: #f07635;}
+.lan-title.lan-business{background: url('../images/banner-layout.jpg') center top no-repeat;color: #f2894f;}
+.lan-title.lan-relation{background: url('../images/banner-relation.jpg') center top no-repeat;color: #3466ad;}
+.lan-title.lan-news{background: url('../images/banner-news.jpg') center top no-repeat;color: #e04b5e;}
+.lan-title.lan-join{background: url('../images/banner-join.jpg') center top no-repeat;color: #8d8d99;}
+.lan-title.lan-law{background: url('../images/banner-law.jpg') center top no-repeat;color: #f07635;}
+.lan-title.lan-policy{background: url('../images/banner-policy.jpg') center top no-repeat;color: #3466ad;}
+.lan-title p{ font-family: 'Arial';padding-left: 15px;font-size: 36px;}
+
+/******** 公共尾部 ******/
+.footer { height: 90px;width: 100%;text-align: center; background: #cacaca; }
+/*.footer .footer-inner{width: 100%;padding-top:11px;background: url("../images/bg-bottom.png") center top no-repeat;}*/
+.footer .footer-ul{padding:18px 0 16px;}
+.footer .footer-ul>li {display: inline-block;*display:inline;*zoom:1;padding: 0 19px;border-left: 1px solid #a5a5a5;}
+.footer .footer-ul>li:first-child{border-left:0px solid #a5a5a5; }
+
+/*页面子导航*/
+.sub-nav{height:62px;border-bottom:1px solid #e4e4e4}
+.sub-nav .wrap{height:100%;position: relative;}
+.sub-nav ul li{padding-left:16px;padding-right:16px;height:62px;line-height:62px}
+.sub-nav ul li:first-child{padding-left: 0;}
+.sub-nav ul li a{display:block;text-align:center;font-size:16px;color:#999999;}
+.sub-nav ul li:hover a{cursor:pointer;}
+.sub-nav ul li:hover a{/*border-bottom:2px solid #ce0019;font-weight: 700;*/color:#ce0019;}
+.sub-nav ul li.cur a{/*border-bottom:2px solid #ce0019;font-weight: 700;*/color:#ce0019;cursor: text;}
+.sub-nav .abs{display: none;
+	position: absolute;
+	left: 0;
+	top: 61px;
+	width: 0;
+	height: 2px;background: #ce0019;}
+
+/*新闻中心*/
+.layout-news{padding:20px 30px}
+.layout-news .layout-img{width:208px;padding-bottom:18px;margin-top:60px}
+.layout-news .layout-img img{width:190px;}
+.layout-news .layout-text{width:713px;height:202px;border-left:1px solid #d5b497;padding:16px 0 0 18px}
+.layout-news .layout-text .point{display:inline-block;*display:inline;*zoom:1;width:12px;height:12px;position:relative;left:-12px;*top:-7px;background:url("../images/icon.png") 0 0 no-repeat}
+.layout-news .layout-text .time{line-height:45px;font-size:20px;color:#bd854f;margin-left:-12px}
+.layout-news .layout-text .title{margin-bottom:5px}
+.layout-news .layout-text .title a{line-height:35px;font-size:20px;color:#333;}
+.layout-news .layout-text .title a:hover{color:#bd854f}
+.layout-news .layout-text .context{font-size:16px;font-family:'Microsoft YaHei';line-height:1.8;color:#999;height:90px;overflow:hidden}
+.add-more{margin:27px 0 45px}
+.add-more a{display:block;height:40px;line-height:40px;background:#ce0019;color:#fff;text-align:center;-webkit-border-radius:2px;-moz-border-radius:2px;border-radius:2px}
+.add-more a:hover{background: #da3347;}
+.add-more .eye{display:inline-block;*display:inline;*zoom:1;width:30px;height:17px;vertical-align:middle;background:url("../images/icon.png") 0 -21px no-repeat}
+
+.nodata{text-align: center;padding:78px 0;}
+
+/*业务布局*/
+.wrap-box{margin-top: 30px;}
+.wrap-box h3 {margin-bottom: 26px;padding-left: 10px;border-left: 2px solid #ce0019;font-size: 18px;color: #666;}
+.wrap-box h3 span {font-size: 16px;color: #999;}
+
+/*位置导航*/
+.locationnav { height: 35px; line-height: 35px; }
+.locationnav a { margin: 0px 8px; }
+.locationnav span { margin: 0px 8px; color: #0066ff }
+
+/*分页*/
+.mod-page { text-align: center; clear: both; padding: 10px 0; margin: 20px 0 }
+.mod-page a { padding: 6px 9px; background: #dddddd; border-radius: 2px; margin: 0px 3px; }
+.mod-page a.current, .mod-page a:hover { color: #fff; background: #ff4426 }
+
+/*弹窗公共主体，确认取消按钮layerbutton,layerrest，按钮会继承cell-btn-主样式*/
+#greybackground { background: #000; opacity: 0.3; filter: alpha(opacity=30); z-index: 99; position: fixed; left: 0; top: 0; right: 0; bottom: 0; }
+.alertlayer { position: fixed; background: #fff; border-radius: 3px; box-shadow: 0px 0px 5px 2px #666; z-index: 100; overflow: hidden; display: none }
+.alertlayer h3.layertitle { height: 40px; line-height: 40px; cursor: pointer; overflow: hidden; font-size: 16px; padding-left: 15px; color: #fff; position: relative; background: #009a83 }
+.alertlayer h3.layertitle b { width: 35px; height: 30px; display: none; position: absolute; left: 8px; top: 10px; }
+.alertlayer .layercontent { padding: 20px; line-height: 22px; }
+.alertlayer .layerclose { position: absolute; right: 10px; top: 0px; height: 33px; line-height: 30px; text-align: center; width: 40px; font-size: 16px; color: #fff; z-index: 50; background: #3d7a71; border-radius: 0 0 3px 3px }
+.alertlayer .layerclose:hover { color: #e84f2f; }
+.alertlayer .layertxt { text-align: center; padding: 20px; overflow: hidden; width: auto; margin: 0 auto; text-align: center }/*直接显示文本*/
+.alertlayer .layerinput { text-align: center; margin-bottom: 20px; }/*按钮外层div*/
+.alertlayer .layerinput .layerbutton { background: #e94b24; color: #fff; padding: 0px 15px }
+.alertlayer .layerinput .layerbutton:hover { background: #f00; color: #fff; }
+.alertlayer .layerinput .layerreset { background: #999; padding: 0px 15px }/*取消按钮*/
+.alertlayer .layerclosetime { position: absolute; left: 120px; top: 18px; font-size: 12px; color: #fff }/*显示关闭倒计时*/
+.alerylayer .layerloading { }/*加载外部连接时加载提示*/
+
+/*左则浮动*/
+.advisory { position: fixed; top: 50%; margin-top: -150px; right: 0px; width: 64px; z-index: 50; }
+.advisory .control-close { width: 12px; height: 40px; position: absolute; left: -12px; top: 80px; }
+.advisory .control-close span { overflow: hidden; color: #d20011; font-size: 80px; width: 12px; height: 40px; display: block; text-align: left; text-indent: -22px; line-height: 40px; }
+.advisory .control-close a { display: block; color: #fff; font-size: 16px; line-height: 40px; width: 12px; height: 40px; position: absolute; left: 0; top: 0 }
+.advisory .control-show { display: none; width: 20px; height: 50px; position: absolute; left: 0px; top: 80px; }
+.advisory .control-show span { color: #d20011; font-size: 100px; width: 20px; height: 50px; display: block; text-align: left; text-indent: -28px; line-height: 50px; }
+.advisory .control-show a { display: block; color: #fff; font-size: 22px; line-height: 50px; width: 20px; height: 50px; position: absolute; left: 0; top: 0 }
+.advisory .ui-tools { position: relative; border: 1px solid #d20011; background: #ff4c4c; border-radius: 10px 0 0 10px; color: #fff; text-align: center; padding: 10px 0; z-index: 2; }
+.advisory .ui-tools a { font-size: 13px; display: block; overflow: hidden; width: 100%; height: 60px; color: #fff; }
+.advisory .ui-tools a span { display: block; width: 30px; height: 30px; line-height: 30px; text-align: center; margin: 0 auto 5px; font-size: 30px; color: #fff }
+.advisory a:hover { color: #fceff0 }
+.advisory .ui-tools a:hover span { color: #fceff0 }
+
+/*意见反馈*/
+.feedback.alertlayer .layercontent { padding: 0 }
+.layer-feedback { background: #fff; overflow: hidden; margin: 0 auto; padding: 20px; }
+.layer-feedback div.ui-input { padding: 5px 20px; }
+.layer-feedback .feedback-textarea .cell-input { font-size: 14px; line-height: 20px; padding: 5px; width: 675px; border: 1px solid #e2e2e2; border-radius: 2px; background: #fff; color: #999; height: 140px; }
+.layer-feedback .feedback-textarea textarea{}
+.layer-feedback .feedback-input .cell-input { width: 290px; height: 30px; line-height: 30px; }
+.layer-feedback .feedback-buton { text-align: center; margin-top: 10px }
+.layer-feedback-icon h3 { text-indent: 50px }
+.layer-feedback .btn-feedback { width: 100px }
+
+/*弹出计算器*/
+.computer.alertlayer .layercontent { padding: 0 }
+.layer-computer { background: #fff; border-radius: 3px; padding: 20px; overflow: hidden; margin: 0 auto; }
+.layer-computer h3.layertitle b { background-position: -288px -212px }
+.layer-computer b { float: left; text-align: right; width: 110px }
+.layer-computer p { height: 25px; line-height: 25px; padding: 15px 0; overflow: hidden }
+.layer-computer span { float: left; }
+.layer-computer .cell-input { width: 135px; height: 23px; line-height: 23px; }
+.layer-computer .content { background: #fffcdd; border: 1px solid #d9d6ae; margin: 10px; }
+.layer-computer .content p { margin-left: 10px; padding: 3px 0 }
+.layer-computer .content span { float: none }
+.layer-computer .ui-button { text-align: center; padding-top: 15px }
+.layer-computer .ui-button input.computer-button { width: 100px }
+.layer-computer .ui-button input.computer-reset { background: #c9caca }
+
+/*冒泡尖角提示*/
+/*
+.mousetips { position: absolute; background-color: #fdfae2; border-color: #de9732; box-shadow: 2px 2px 2px #bbb; border: 1px solid #FAB418; padding: 3px 5px; color: #333; z-index: 100; left: 0px; top: 0; border-radius: 2px }
+.mousetips i { background: url(../images/icon.png) -298px -36px no-repeat; position: absolute; left: 10px; bottom: -9px; display: block; width: 15px; height: 9px; overflow: hidden }
+.mousetips.tright i { background-position: -315px -36px; left: auto; right: 10px }
+.mousetips.bleft i { background-position: -298px -45px; top: -9px }
+.mousetips.bright i { background-position: -315px -45px; left: auto; right: 10px; top: -9px }
+*/
+.mousetips { position: absolute; background-color: #fdfae2; border-color: #de9732; box-shadow: 2px 2px 2px #bbb; border: 1px solid #FAB418; padding: 3px 5px; color: #333; z-index: 100; left: 0px; top: 0; border-radius: 2px; display:none }
+.mousetips i,.mousetips em { position: absolute; left: 15px; bottom: -17px; display: block; overflow: hidden; width:0; height:0; border-style: solid dashed dashed dashed;border-width:8px;border-color:#FAB418 transparent transparent transparent;}
+.mousetips em{ border-top-color:#fdfae2; padding:0;bottom:-16px}
+.mousetips.tright i {left: auto; right: 15px }
+.mousetips.tright em{left:auto;right:15px}
+.mousetips.bleft i {top: -17px;border-style:dashed dashed solid dashed;border-color:transparent transparent #FAB418 transparent;}
+.mousetips.bleft em{top:-16px;border-style:dashed dashed solid dashed;border-color:transparent transparent #fdfae2 transparent;}
+.mousetips.bright i {left: auto; right: 15px; top: -17px;border-style:dashed dashed solid dashed;border-color:transparent transparent #FAB418 transparent; }
+.mousetips.bright em{left:auto; right:15px;top:-16px;border-style:dashed dashed solid dashed;border-color:transparent transparent #fdfae2 transparent;}
+
+/*银行logo图标*/  
+.bank-logo { background: url(../images/bank.png) no-repeat; height: 38px; line-height: 38px; width: 140px; display: inline-block; overflow: hidden; }
+.bank-cmb { background-position: 0 0px; }/**招商银行**/
+.bank-icbc { background-position: 0 -880px; }/**工商银行**/
+.bank-ccb { background-position: 0 -40px; }/**建设银行**/
+.bank-abc { background-position: 0 -80px; }/**农业银行**/
+.bank-boc { background-position: 0 -120px; }/**中国银行**/
+.bank-comm { background-position: 0 -160px; }/**交通银行**/
+.bank-pingan { background-position: 0 -200px; }/**平安银行**/
+.bank-psbc { background-position: 0 -240px; }/**邮政银行**/
+.bank-shbc { background-position: 0 -280px; }/**上海银行**/
+.bank-wzbc { background-position: 0 -320px; }/**温州银行**/
+.bank-spdb { background-position: 0 -360px; }/**浦发银行**/
+.bank-ecitic { background-position: 0 -400px; }/**中信银行**/
+.bank-cgbchina { background-position: 0 -440px; }/**广发银行**/
+.bank-cmbc { background-position: 0 -520px; }/**民生银行**/
+.bank-cib { background-position: 0 -560px; }/**兴业银行**/
+.bank-cebbank { background-position: 0 -600px; }/**光大银行**/
+.bank-srcb { background-position: 0 -640px; }/**上海农商银行**/
+.bank-bankofbeijing { background-position: 0 -680px; }/**北京银行**/
+.bank-bjrcb { background-position: 0 -720px; }/**北京农商银行**/
+.bank-szfz { background-position: 0 -760px; }/**深圳发展银行**/
+.bank-nbcb { background-position: 0 -800px; }/**宁波银行**/
+.bank-hzbank { background-position: 0 -840px; }/**杭州银行**/
+.bank-dongguanbank { background-position: 0 -1200px; }/**东莞银行**/
+.bank-hsbc { background-position: 0 -960px; }/**汇丰银行**/
+.bank-hkbea { background-position: 0 -1040px; }/**东亚银行**/
+.bank-961111 { background-position: 0 -1160px; }/**广州农商银行**/
+.bank-hxb { background-position: 0 -480px; }/**华夏银行**/
+.bank-crbank { background-position: 0px -920px; }/*华润银行*/
+.bank-lanzhou { background-position: 0px -1320px; }/*兰州银行*/
+.bank-hebbank { background-position: 0 -1120px; }/*河北银行*/
+.bank-hsbank { background-position: 0 -1360px; }/*微商银行*/
+.bank-qdccb { background-position: 0 -1280px; }/*青岛银行*/
+.bank-ydnsh { background-position: 0px -1240px; }/*尧都农商*/
+.bank-zheshang { background-position: 0px -1400px; }/*浙商银行*/
+.bank-nccbank { background-position: 0px -1444px; }/*南昌银行*/
+.bank-cbhb { background-position: 0px -1078px; }/*渤海银行*/
+.bank-egbank { background-position: 0px -998px; }/*恒丰银行*/
+.bank-yhrcbank { background-position: 0px -1490px; }/*颍淮农村商业*/
+
+/*表单input*/
+.cell-input { background: #fff; border: 1px solid #e2e2e2; height: 38px; line-height: 38px; padding: 0px 10px; width: 260px; overflow: hidden; color: #999; font-size: 14px; font-family: "Microsoft YaHei"; vertical-align: middle }
+.cell-input.on-error { border: 1px solid #fabe00!important; color: #666!important }
+.cell-input.on-focus { border: 1px solid #34b7b0 !important; color: #666 !important }
+.cell-input.highlight { color: #666!important }
+.ui-input { position: relative; height: 40px; line-height: 40px; margin-bottom: 10px }
+.ui-input .ui-tips { position: absolute; left: 200px; top: 0; }
+.ui-input .ui-tips .note { color: #b5b5b6; display: none }
+.ui-input .ui-tips .error { color: #e94b24; display: none }
+.ui-input .ui-tips .correct { color: #009a83; display: none }
+.ui-input .ui-tips i { display: inline-block; width: 15px; height: 15px; text-align: center; line-height: 15px; margin: 0px 5px; color: #e94b24; font-style: normal }
+.ui-input .ui-tips .note i { color: #b5b5b6 }
+.ui-input .ui-tips .correct i { color: #009a83; margin-top: 15px }
+
+/*button、根据项目实际情况增减，主要包括默认和鼠标经过的color,background，部分是a标签，因此需要添加visited和hover状态*/
+[class*="cell-btn"], [class*="cell-btn"]:visited {display: inline-block; height: 40px; line-height: 40px; font-size: 16px; text-align: center; border: 0; cursor: pointer; font-family: "Microsoft YaHei"; vertical-align:middle }
+.cell-btn-disabled, a.cell-btn-disabled:visited, a.cell-btn-disabled:hover { background: #ccc; color: #fff; cursor: not-allowed }
+.cell-btn-red, a.cell-btn-red:visited { background: #e94b24; color: #fff }
+.cell-btn-red:hover { background: #f00!important; color: #fff }
+.cell-btn-yellow, a.cell-btn-yellow:visited { background: #fabe00; color: #f00 }
+.cell-btn-yellow:hover { background: #FF0!important; color: #000 }
+.cell-btn-white, a.cell-btn-white:visited { background: #fff; color: #dca051;border:1px solid #dca051; }
+.cell-btn-white:hover,a.cell-btn-white:hover { background: #dca051; color: #fff }
+
+/*银行卡放大格式化效果*/
+.zoomnum { background-color: #fff; font-size: 18px; color: #333; border: 1px solid #ccc; position: absolute; left: 0; top: 0; z-index: 100; overflow: hidden; text-indent: 10px; }
+.zoomnum span { position: relative; top: 30px }
+.zoomnum span.w { margin-right: 10px }
+
+/*返回顶部*/
+/*.backtop{ position:fixed; right:0px; bottom:60px; width:60px; height:28px; padding-top:40px; display:none; background:url(../images/icon.png) -14px 9px no-repeat #474e5d; text-align:center; font-size:12px; color:#fff; z-index:30}
+.backtop a{ color:#fff}
+.backtop:hover{ text-decoration:underline; color:#fff}*/
+
+/*模拟下拉select*/
+.selectdrapdown { cursor: pointer; float: left; position: relative; z-index: 10; margin-right: 10px }
+.selectdrapdown .txtvalue { overflow: hidden; background: url(../images/selectdrapdown-down.png) right center no-repeat #fff; height: 38px; line-height: 38px; padding: 0px 10px; width: 260px; overflow: hidden; color: #999; font-size: 14px; vertical-align: middle;border: 1px solid #e2e2e2; }
+.selectdrapdown.open .txtvalue { background: url(../images/selectdrapdown-up.png) right center no-repeat #fff }
+.selectdrapdown .txtvalue.on-error { border: 1px solid #fabe00; color: #666}
+.selectdrapdown .txtvalue.on-focus { border: 1px solid #34b7b0; color: #666}
+.selectdrapdown .drapdown { position: absolute; left: 0; top: 0px; width: 100%; background: #fff; border: 1px solid #e2e2e2; border-top: 0; display: none; z-index: 10;}
+.selectdrapdown .drapdown ul { overflow-y: auto; display: block; width: 100% }
+.selectdrapdown ul li { height: 25px; line-height: 25px; overflow: hidden; padding-left: 10px; margin-bottom: 1px;background:#fff }
+.selectdrapdown ul li:hover, .selectdrapdown ul li.hover { background: #3598db; color: #fff }
+/*银行支行下拉*/
+.branchselect .notdata { background: url(../images/empt.png) left center no-repeat; height: 55px; line-height: 55px; padding-left: 60px; margin: 10px; cursor: default }
+.branchselect .search { position: absolute; left: -1px; width: 100%; overflow: hidden; top: 124px; background: #f0f0f0; padding: 7px 0px; border: 1px solid #e2e2e2; border-top: 0; z-index: 15; }
+.branchselect .search .input { margin-left: 10px; width: 247px; height: 23px; line-height: 23px; padding: 0px 5px }
+.branchselect .search .btn-ok { background: url(../images/icon_search.jpg) no-repeat; display: block; width: 22px; height: 23px; position: absolute; right: 14px; top: 8px; border: 0 }
+
+
+/*协议弹出层*/
+.layer-agreement { width: 600px; height: 450px; }
+.layer-agreement .layercontent { height: 390px; padding: 0px 20px; margin: 10px 0; overflow-y: auto }
+
+/* 404 */
+.notfind .wrap{position: relative;height: 575px;background: url(../images/404.png) 160px 115px no-repeat ;}
+.notfind .wrap em{position: absolute; left:385px;top:170px;display: block;font-style: normal;font-size: 22px;color: #666666;}
+.notfind .wrap p{position: absolute; left:385px;top:210px;font-size: 14px;color: #666666;}
+.notfind .wrap p span{color: #ce0019;}
+.notfind .wrap-box{margin-top: 60px;}
+.notfind .cell-btn-white{ position: absolute;top:250px;left:385px;padding: 0 10px;width: 143px;color: #dca051;height: 38px;line-height: 38px;}
+.notfind .cell-btn-white .icon-back{ display: inline-block;width: 20px;height: 20px;vertical-align: middle;background: url("../images/icon.png") 0 -48px;}
+.notfind .cell-btn-white:hover .icon-back{    background-position: 0 -95px;}

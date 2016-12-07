@@ -28,15 +28,18 @@ Game.prototype.start=function(){
     _self.background=background;
 
     var btn=new Button();
-    btn.paint(btn.index.start);
-    btn.paint(btn.back.index);
+    btn.paint(btn.index.start,730,300);
+    btn.paint(btn.back.index,730,300);
     _self.btn=btn;
 
     var toucher = new Toucher();
     //判断区域落点，触发对应的事件处理函数
-    var btnFn=btn.touchAction(toucher);
+    var btnFn=btn.touchAction(toucher,_self);
     _self.toucher=toucher;
     _self.btn.btnFn=btnFn;
+
+    var txt=new Text();
+    _self.txt=txt;
 
     var counter=new Counter();
     _self.counter=counter;
@@ -46,6 +49,7 @@ Game.prototype.start=function(){
     //_self.showGateList(2,'start');
     //_self.showGateList(3,'start');
     //_self.showGateList(4,'start');
+    _self.startGate(1, true);
 };
 
 /**
@@ -130,6 +134,12 @@ Game.prototype.startGate=function(number,isEnabled){
             break;
         case 1:
             _self.background.paint(_self.background.gate.one,application.canvas.width,application.canvas.height);
+            _self.background.paint(_self.background.gate.one.bedding);
+            _self.txt.paint(_self.txt.gate.one);
+            _self.txt.paint(_self.txt.gate.one.moneyCounter.part,1700,'#f44038',"32px Georgia",'right');
+            _self.txt.paint(_self.txt.gate.one.moneyCounter.all,'/2000','#793605',"32px Georgia",'left');
+            _self.counter.paint(true,_self.txt,_self.counter.timerA,'19s','#f44038',"24px Georgia",'center');
+
             break;
         case 2:
             _self.background.paint(_self.background.gate.two,application.canvas.width,application.canvas.height);

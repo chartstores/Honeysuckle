@@ -15,7 +15,12 @@ function Background(){
         one:{
             name:'gate-bg-one',
             startX:0,
-            startY:0
+            startY:0,
+            bedding:{
+                name:'bedding',
+                startX:Math.round(util.getCoordinateMap(0,845).x*application.canvas.width),
+                startY:Math.round(util.getCoordinateMap(0,845).y*application.canvas.height)
+            }
         },
         two:{
             name:'gate-bg-two',

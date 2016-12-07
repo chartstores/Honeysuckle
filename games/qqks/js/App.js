@@ -37,7 +37,7 @@ App.prototype.init=function(){
         complete: function (imgs, s) {
             if (s.total == s.load + s.error) {
                 var $image = util.$$("index-bg");
-                appConfig.prop = application.canvas.width / $image.width;
+                appConfig.prop = (application.canvas.width / $image.width)*1.66;//首页设计稿尺寸是1242×2016，其他页是750×1334
 
                 if(_self.isPaper){
                     _self.game= new Game();
