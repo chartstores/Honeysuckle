@@ -3,6 +3,7 @@
 function Game(){
     var _self=this;
     _self.gameCounter=0;//记录当前第几关
+    this.isCatchMoney=true;//是否抓住钱
 }
 /*暂停*/
 Game.prototype.pause=function(){
@@ -34,15 +35,20 @@ Game.prototype.start=function(){
 
     var toucher = new Toucher();
     //判断区域落点，触发对应的事件处理函数
-    var btnFn=btn.touchAction(toucher,_self);
+    _self.btn.btnFn=btn.touch(toucher,_self);
     _self.toucher=toucher;
-    _self.btn.btnFn=btnFn;
 
     var txt=new Text();
     _self.txt=txt;
 
     var counter=new Counter();
     _self.counter=counter;
+
+    var hand=new Hand();
+    _self.hand=hand;
+
+    var money=new Money();
+    _self.money=money;
 
     //test
     // _self.showGateList(1,'start');
@@ -66,10 +72,10 @@ Game.prototype.showGateList=function(number,action){
     application.context.clearRect(0, 0, application.canvas.width, application.canvas.height);
 
     _self.background.paint(_self.background.gate,application.canvas.width,application.canvas.height);
-
-    //初始化排行榜、计数功能
+    //初始化计数器、排行榜
+    _self.counter.paint(_self.counter.caculatorA,_self.txt,_self.txt.counter.counterA,'123500','#fbe985',"bold 21px Arial",'center');
     _self.btn.paint(_self.btn.rank);
-    _self.startCounter();
+    _self.txt.paint(_self.txt.rank,'排行榜','#fbe985',"20px Microsoft Yahei",'center');
 
     switch(number){
         case -1:
@@ -123,6 +129,10 @@ Game.prototype.showGateList=function(number,action){
  */
 Game.prototype.startGate=function(number,isEnabled){
     var _self=this;
+    var strMap=['one','two','three','four','five','six','seven'];
+    var step=0;
+    var moneyMap=['money-first','money-second','money-second','money-third'];
+    var moneyActionStep=0;
     console.info("开始闯第"+number+"关");
     //解绑事件
     if(!isEnabled){
@@ -133,13 +143,50 @@ Game.prototype.startGate=function(number,isEnabled){
         case -1:
             break;
         case 1:
-            _self.background.paint(_self.background.gate.one,application.canvas.width,application.canvas.height);
-            _self.background.paint(_self.background.gate.one.bedding);
-            _self.txt.paint(_self.txt.gate.one);
-            _self.txt.paint(_self.txt.gate.one.moneyCounter.part,1700,'#f44038',"32px Georgia",'right');
-            _self.txt.paint(_self.txt.gate.one.moneyCounter.all,'/2000','#793605',"32px Georgia",'left');
-            _self.counter.paint(true,_self.txt,_self.counter.timerA,'19s','#f44038',"24px Georgia",'center');
-
+            clearInterval(appConfig.gameInterval);
+            clearInterval(appConfig.timer);
+            appConfig.timerCounter=0;
+            appConfig.timer=setInterval(function(){
+                appConfig.timerCounter++;
+            },1*1000);
+            appConfig.gameInterval=setInterval(function(){
+                console.info("正在进行第一关");
+                step++;
+                moneyActionStep++;
+                if(step>6){
+                    step=0;
+                }
+                if(moneyActionStep>3){
+                    moneyActionStep=0;
+                }
+                if(appConfig.timerCounter<21){
+                    _self.background.paint(_self.background.gate.one,application.canvas.width,application.canvas.height);
+                    _self.background.paint(_self.background.gate.one.bedding);
+                    _self.txt.paint(_self.txt.gate.one);
+                    _self.txt.paint(_self.txt.gate.one.moneyCounter.part,_self.counter.getCounerValue(),'#f44038',"bold 32px Arial",'right');
+                    _self.txt.paint(_self.txt.gate.one.moneyCounter.all,'/'+appConfig.passValue.one.score,'#793605',"bold 32px Arial",'left');
+                    _self.counter.paint(_self.counter.timerTopRight,_self.txt,_self.txt.timer.topRight,appConfig.timerCounter+'s','#f44038',"bold 21px Arial",'center');
+                    _self.money.fall(_self.money.fallMoney,moneyMap[moneyActionStep]);
+                    if(appConfig.hasGoldenHand){
+                        if(step>2&&_self.isCatchMoney){
+                            _self.hand.paint(_self.hand.status[strMap[step]],'goldenCatch',{},{});
+                        }else{
+                            _self.hand.paint(_self.hand.status[strMap[step]],'golden',{},{});
+                        }
+                    }else{
+                        if(step>2&&_self.isCatchMoney) {
+                            _self.hand.paint(_self.hand.status[strMap[step]], 'normalCatch', {}, {});
+                        }else{
+                            _self.hand.paint(_self.hand.status[strMap[step]], 'normal', {}, {});
+                        }
+                    }
+                }else{
+                    //停止游戏
+                    clearInterval(appConfig.gameInterval);
+                    clearInterval(appConfig.timer);
+                    appConfig.timerCounter=0;
+                }
+            },appConfig.secondsBetweenFrames);
             break;
         case 2:
             _self.background.paint(_self.background.gate.two,application.canvas.width,application.canvas.height);
@@ -152,14 +199,9 @@ Game.prototype.startGate=function(number,isEnabled){
             break;
     }
 };
+//触发掉钱动作、动手行为、铁锤出现、捡钱行为(碰撞行为)
+Game.prototype.trigAction=function(){
 
-/*执行计算器功能*/
-Game.prototype.startCounter=function(){
-    var _self=this;
-
-    _self.counter.initCaculator(_self.counter.caculatorA);
-    //_self.counter.initTimer(_self.counter.timerA);
-    //_self.counter.initTimer(_self.counter.timerB);
 };
 
 /*显示排行榜功能*/

@@ -147,7 +147,7 @@ Button.prototype.paintOther = function (objectArr) {
 };
 
 /*绑定点击某个区域,以使某个方法生效*/
-Button.prototype.touchAction = function (toucher,game) {
+Button.prototype.touch = function (toucher,game) {
     var _self = this;
     var fnMap = {
         "index-btn1": function () {

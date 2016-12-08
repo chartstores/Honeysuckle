@@ -51,11 +51,11 @@ function Background(){
 }
 
 /*各个关卡、步骤的背景图片*/
-Background.prototype.paint=function(bg,w,h){
+Background.prototype.paint=function(bgObj,w,h){
     var _self=this;
-    var myImage = util.$$(bg.name);
-    var x = bg.startX;
-    var y = bg.startY;
+    var myImage = util.$$(bgObj.name);
+    var x = bgObj.startX;
+    var y = bgObj.startY;
     var width = w?w:Math.round(myImage.width*appConfig.prop);
     var height = h?h:Math.round(myImage.height*appConfig.prop);
 

@@ -1,16 +1,11 @@
 /*计数器*/
 function Counter() {
     var _self = this;
-    _self.timerA = {
+    _self.counterValue=0;
+    _self.timerTopRight = {
         name: 'timer',
         startX: Math.round(util.getCoordinateMap(602, 22).x * application.canvas.width),
-        startY: Math.round(util.getCoordinateMap(602, 22).y * application.canvas.height),
-        text:{
-            name:'19s',
-            value:'19s',
-            startX: Math.round(util.getCoordinateMap(333, 55).x * application.canvas.width),
-            startY: Math.round(util.getCoordinateMap(333, 55).y * application.canvas.height)
-        }
+        startY: Math.round(util.getCoordinateMap(602, 22).y * application.canvas.height)
     };
     _self.timerB = {
         name: 'timer',
@@ -29,7 +24,7 @@ function Counter() {
     }
 };
 
-Counter.prototype.paint = function (isTimer,txtObj,counterObj,value,color,font,align) {
+Counter.prototype.paint = function (counterObj,txtInstance,textObj,value,color,font,align) {
     var _self = this;
     var myImage = util.$$(counterObj.name);
     var x = counterObj.startX;
@@ -38,9 +33,7 @@ Counter.prototype.paint = function (isTimer,txtObj,counterObj,value,color,font,a
     var height = Math.round(myImage.height * appConfig.prop);
 
     application.context.drawImage(myImage, x, y, width, height);
-    if(isTimer){
-        txtObj.paint(counterObj.text,value,color,font,align);
-    }
+    txtInstance.paint(textObj,value,color,font,align);
 };
 
 Counter.prototype.initTimer = function (obj) {
@@ -60,3 +53,11 @@ Counter.prototype.initCaculator = function (obj) {
 Counter.prototype.updateCaculator = function () {
 
 };
+
+Counter.prototype.setValue=function(value){
+    this.counterValue=value;
+};
+
+Counter.prototype.getCounerValue=function(){
+    return this.counterValue;
+}
