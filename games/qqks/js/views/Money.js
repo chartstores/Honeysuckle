@@ -5,8 +5,11 @@ function Money(){
         first:'money-first',
         second:'money-second',
         third:'money-third',
-        startX:123,
+        startX:130,
         startY:0
+    };
+    this.stackedMoney={
+
     };
 }
 /*下落*/
