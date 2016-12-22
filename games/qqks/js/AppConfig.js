@@ -1,14 +1,36 @@
 var appConfig={
     container:"canvas",
     margin:[0,0,0,0],
-    canvas:null,
-    context:null,
     isShowDebugInfo:true,
-    passScore:200,
-    secondsBetweenFrames:1000/0.5, //ÆµÂÊ
+    gameInterval:0,
+    secondsBetweenFrames:1000/10, //28å¹€
+    timer:0,
+    timerCounter:0,
     countdown:20*1000,
-    horizonGridCount:5,//Ë®Æ½¸ñ×ÓÊı
-    verticalGridCount:10,//´¹Ö±¸ñ×ÓÊı
-    gridMap:[],//¸ñ×ÓÊı×éË÷Òı,Ö¸Ã÷ÄÇ¸ö¸ñ×ÓÊÇÍ¼Æ¬or´¿É«
-    ratio:null//Éè¼Æ¸åÓëÆÁÄ»µÄËõ·Å±ÈÀı
+    horizonGridCount:5,//æ°´å¹³æ ¼å­æ•°
+    verticalGridCount:10,//å‚ç›´æ ¼å­æ•°
+    gridMap:[],//æ ¼å­æ•°ç»„ç´¢å¼•,æŒ‡æ˜é‚£ä¸ªæ ¼å­æ˜¯å›¾ç‰‡orçº¯è‰²
+    prop:null, //è®¡ç®—canvasä¸Šç»˜å›¾æ—¶å›¾ç‰‡ä¸å®é™…å›¾ç‰‡çš„ç¼©æ”¾æ¯”ä¾‹
+    ratio:null, //å›¾ç‰‡é«˜æ¸…åŒ–ç”¨çš„ï¼Œç›¸å½“äºdpr
+    imgSrc:'images/',//å›¾ç‰‡è·¯å¾„
+    hasGoldenHand:false,//æ˜¯å¦æ‹¥æœ‰é‡‘æ‰‹å¥—
+    passValue:{ //é€šå…³æ¡ä»¶
+        one:{
+            time:20*1000,//
+            score:2000
+        },
+        two:{
+            time:20*1000,//
+            score:3000
+        },
+        three:{
+            time:20*1000,//
+            score:4000
+        },
+        four:{
+            time:20*1000,//
+            score:5000
+        }
+    },
+    nowMoney:100//å½“å‰æœ‰å¤šå°‘é’±
 };
