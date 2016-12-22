@@ -1,55 +1,55 @@
-/*¶ÔÏó¡¢×´Ì¬/ĞĞÎª¡¢ÊôĞÔ*/
-
-//¿ªÊ¼¡¢ÔİÍ£¡¢ÖØĞÂÆô¶¯¡¢Í£Ö¹¹¦ÄÜ
+/*å¯¹è±¡ã€çŠ¶æ€/è¡Œä¸ºã€å±æ€§*/
 function App(){
     var _self = this;
-    _self.isPaper=(function(){
-        appConfig.canvas=$$(appConfig.container);
-        appConfig.canvas.width = window.innerWidth;
-        appConfig.canvas.height = window.innerHeight;
-
-        if (!appConfig.canvas.getContext) {
-            return false;
-        }
-        appConfig.context = appConfig.canvas.getContext('2d');
-        return true;
-    })();
+    _self.canvas=null;
+    _self.context=null;
+    _self.isPaper=false;
+    _self.prop=0;
 }
-
-/*¿ªÊ¼*/
-App.prototype.start=function(){
+//é“ºå¥½å¸ƒå±€ï¼Œä¸€åˆ‡å°±ç»ªï¼Œå°†å¼€å§‹æ¸¸æˆ
+App.prototype.init=function(){
     var _self = this;
     if(!appConfig.isShowDebugInfo){
         $$("debug-tool").style.display="none";
     }
-    if(_self.isPaper){
-        _self.game= new game();
-        var touche = new touch();
-        touche.eventHandle("add", document, "touchstart", function (e) {
-            console.info("touchstart event");
-        }, false);
-        _self.game.start();
-    }
+    //åˆå§‹åŒ–ç”»å¸ƒ
+    _self.isPaper=(function(){
+        _self.canvas=util.$$(appConfig.container);
+        _self.canvas.width = window.innerWidth;
+        _self.canvas.height = window.innerHeight;
+
+        if (!_self.canvas.getContext) {
+            return false;
+        }
+        _self.context = _self.canvas.getContext('2d');
+        return true;
+    })();
+
+    //åŠ è½½èµ„æºæ–‡ä»¶
+    var loader=new Loader();
+    loader.loadingImage({
+        url: function () {
+            return loader.getUrl();
+        },
+        oncomplete: function (s) {
+            loader.loadingEffect(s);
+        },
+        complete: function (imgs, s) {
+            if (s.total == s.load + s.error) {
+                var $image = util.$$("index-bg");
+                appConfig.prop = (application.canvas.width / $image.width)*1.66;//é¦–é¡µè®¾è®¡ç¨¿å°ºå¯¸æ˜¯1242Ã—2016ï¼Œå…¶ä»–é¡µæ˜¯750Ã—1334
+
+                if(_self.isPaper){
+                    _self.game= new Game();
+                    _self.game.start();
+                }
+            }
+        }
+    });
 };
-
-/*ÔİÍ£*/
-App.prototype.pause=function(){
-
-};
-
-/*ÖØĞÂÆô¶¯*/
-App.prototype.restart=function(){
-
-};
-
-/*Í£Ö¹*/
-App.prototype.stop=function(){
-
-};
-
 
 var application=(function () {
     var appInstance = new App();
     return appInstance;
 })();
-application.start();
+application.init();

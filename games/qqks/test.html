@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>转换</title>
+    <style type="text/css">
+        #diagonal
+        {
+            border: 1px solid red;
+        }
+    </style>
+    <script type="text/javascript">
+        function drawDiagonal() {
+            //取得canvas元素及其绘图上下文
+            var canvas = document.getElementById("diagonal");
+            var context = canvas.getContext("2d");
+            canvas.width=200;
+            canvas.height=200;
+            //保存当前绘画状态，以便我们画完这副画以后，再恢复到这个状态，画另一副画。
+            context.save();
+            //向右下方移动绘图上下文
+            context.translate(70, 140);
+            //以原点为起点，绘制与前面相同的线段
+            context.beginPath();
+            context.moveTo(0, 0);
+            context.lineTo(70, -70);
+            //将这条线绘制到canvas画布上去。
+            context.stroke();
+            //恢复原有的绘图状态
+            context.restore();
+            //可以开始另外一副绘图。。。。。。
+        }
+        window.addEventListener("load", drawDiagonal, true);
+    </script>
+</head>
+<body>
+<canvas id="diagonal">
+</canvas>
+</body>
+</html>
