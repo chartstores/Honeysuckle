@@ -44,13 +44,58 @@ function Text(){
             }
         },
         two:{
-
+            name:'Level2',
+            value:'level2',
+            startX: Math.round(util.getCoordinateMap(130, 515).x * application.canvas.width),
+            startY: Math.round(util.getCoordinateMap(130, 515).y * application.canvas.height),
+            moneyCounter:{
+                part:{
+                    value:0,
+                    startX: Math.round(util.getCoordinateMap(250, 620).x * application.canvas.width),
+                    startY: Math.round(util.getCoordinateMap(250, 620).y * application.canvas.height),
+                },
+                all:{
+                    value:0,
+                    startX: Math.round(util.getCoordinateMap(250, 620).x * application.canvas.width),
+                    startY: Math.round(util.getCoordinateMap(250, 620).y * application.canvas.height),
+                }
+            }
         },
         three:{
-
+            name:'Level3',
+            value:'level3',
+            startX: Math.round(util.getCoordinateMap(130, 515).x * application.canvas.width),
+            startY: Math.round(util.getCoordinateMap(130, 515).y * application.canvas.height),
+            moneyCounter:{
+                part:{
+                    value:0,
+                    startX: Math.round(util.getCoordinateMap(250, 620).x * application.canvas.width),
+                    startY: Math.round(util.getCoordinateMap(250, 620).y * application.canvas.height),
+                },
+                all:{
+                    value:0,
+                    startX: Math.round(util.getCoordinateMap(250, 620).x * application.canvas.width),
+                    startY: Math.round(util.getCoordinateMap(250, 620).y * application.canvas.height),
+                }
+            }
         },
         four:{
-
+            name:'Level4',
+            value:'level4',
+            startX: Math.round(util.getCoordinateMap(130, 515).x * application.canvas.width),
+            startY: Math.round(util.getCoordinateMap(130, 515).y * application.canvas.height),
+            moneyCounter:{
+                part:{
+                    value:0,
+                    startX: Math.round(util.getCoordinateMap(250, 620).x * application.canvas.width),
+                    startY: Math.round(util.getCoordinateMap(250, 620).y * application.canvas.height),
+                },
+                all:{
+                    value:0,
+                    startX: Math.round(util.getCoordinateMap(250, 620).x * application.canvas.width),
+                    startY: Math.round(util.getCoordinateMap(250, 620).y * application.canvas.height),
+                }
+            }
         }
     };
 }

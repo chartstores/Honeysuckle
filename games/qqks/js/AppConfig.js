@@ -3,7 +3,9 @@ var appConfig={
     margin:[0,0,0,0],
     isShowDebugInfo:true,
     gameInterval:0,
-    secondsBetweenFrames:1000/10, //28幀
+    secondsBetweenFrame:1000/10, //28幀=1000/28
+    hammerFrame:1000/10,//锤子的下落频率
+    moneyFrame:1000/10,
     timer:0,
     timerCounter:0,
     countdown:20*1000,

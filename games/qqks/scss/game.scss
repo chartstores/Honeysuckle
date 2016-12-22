@@ -41,3 +41,15 @@ header,section,footer,aside,nav,article,figure{display:block;margin:0;}
   height:1px;
   visibility:hidden;
 }
+
+/*排行榜*/
+.rank{
+  .container{
+
+  }
+  .footer{
+    .back-btn{
+      background:url('../images/btn-rank-back.png') no-repeat;
+    }
+  }
+}
