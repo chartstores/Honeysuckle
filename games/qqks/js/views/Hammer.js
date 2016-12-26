@@ -1,6 +1,7 @@
 /*锤子*/
 function Hammer(){
     this.step=0;
+    this.speed=256;// 每秒移动的像素
     this.normal={
         name:'hammer',
         startX:23,
@@ -26,5 +27,9 @@ Hammer.prototype.fall=function(hammerObj){
     if(_self.step>4){
         _self.step=0;
     }
+
+};
+
+Hammer.prototype.moving=function(modifier){
 
 };

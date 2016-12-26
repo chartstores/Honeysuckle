@@ -3,9 +3,9 @@ var appConfig={
     margin:[0,0,0,0],
     isShowDebugInfo:true,
     gameInterval:0,
-    secondsBetweenFrame:1000/10, //28幀=1000/28
-    hammerFrame:1000/10,//锤子的下落频率
-    moneyFrame:1000/10,
+    secondsBetweenFrame:1000/60, //28幀(Hz)=1000/28 60幀(Hz)=1000/60
+    hammerSpeed:1000,//锤子的下落速度，即每秒移动的像素点
+    moneySpeed:1000,
     timer:0,
     timerCounter:0,
     countdown:20*1000,

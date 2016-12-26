@@ -2,7 +2,7 @@
  * 屏幕界面区域绑定处理事件
  */
 function Toucher(){
-
+    this.speed=256;
 };
 /**
  * 事件处理
@@ -34,4 +34,9 @@ Toucher.prototype.eventHandle=function(eventType,element, eType, handle, bol){
         }
     };
     eventHandle[eventType](element, eType, handle, bol);
+};
+
+/*点击屏幕，手势移动*/
+Toucher.prototype.moving=function(modifier){
+
 };

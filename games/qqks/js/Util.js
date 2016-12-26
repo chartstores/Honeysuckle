@@ -59,6 +59,17 @@ var util = {
             }
         }
     },
+    requestAnimFrame :(function(){
+        // return window.requestAnimationFrame       ||
+        //     window.webkitRequestAnimationFrame ||
+        //     window.mozRequestAnimationFrame    ||
+        //     window.oRequestAnimationFrame      ||
+        //     window.msRequestAnimationFrame     ||
+            return function(callback){
+                console.log("tdfdf");
+                window.setTimeout(callback, 1000 / 60);
+            };
+    })(),
     /*保存渲染的某帧为图片*/
     saveImage: function () {
         var image = new Image();

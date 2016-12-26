@@ -1,6 +1,7 @@
 /*钱*/
 function Money(){
     this.fallMoney={
+        speed:256,// 每秒移动的像素
         step:0,
         first:'money-first',
         second:'money-second',
@@ -29,6 +30,9 @@ Money.prototype.fall=function(moneyObj,name){
 
 };
 
+Money.prototype.moving=function(modifier){
+
+};
 /*堆叠*/
 Money.prototype.stack=function(){
 
