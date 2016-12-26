@@ -149,7 +149,7 @@ Game.prototype.main=function(number,isEnabled){
     var now = Date.now();
     var delta = (now - _self.lastTime) / 1000.0;
     var timerCounter=parseInt((now-_self.startTime)/1000);
-    var progress={'-1':'back','1':'one','2':'two','3':'three','4':'four'};
+
     var strMap=['one','two','three','four','five','six','seven'];
     var step=0;
     var moneyMap=['money-first','money-second','money-second','money-third'];
@@ -166,20 +166,12 @@ Game.prototype.main=function(number,isEnabled){
     if(step>6){
         step=0;
     }
+    _self.timerCounter=timerCounter;
     if(timerCounter<21){
         /*绘制静态图*/
-        _self.background.paint(_self.background.gate[progress[number]],application.canvas.width,application.canvas.height);
-        _self.background.paint(_self.background.gate[progress[number]].bedding);
-        _self.txt.paint(_self.txt.gate[progress[number]]);
-        _self.txt.paint(_self.txt.gate[progress[number]].moneyCounter.part,_self.counter.getCounerValue(),'#f44038',"bold 32px Arial",'right');
-        _self.txt.paint(_self.txt.gate[progress[number]].moneyCounter.all,'/'+appConfig.passValue.one.score,'#793605',"bold 32px Arial",'left');
-        _self.counter.paint(_self.counter.timerTopRight,_self.txt,_self.txt.timer.topRight,timerCounter+'s','#f44038',"bold 21px Arial",'center');
+        _self.render(number);
         /*绘制动态运动图*/
-        //掉钱
-
-        //掉锤子
-
-        //手的运动轨迹
+        _self.update(delta);
 
         //如何触发掉钱动作、动手行为、铁锤出现、捡钱行为(碰撞行为)？
         // if(appConfig.hasGoldenHand){
@@ -217,6 +209,26 @@ Game.prototype.main=function(number,isEnabled){
     //         clearInterval(appConfig.hammerInterval);
     //     }
     // },appConfig.hammerFrame);
+};
+Game.prototype.render=function(number){
+    var _self=this;
+    var progress={'-1':'back','1':'one','2':'two','3':'three','4':'four'};
+
+    _self.background.paint(_self.background.gate[progress[number]],application.canvas.width,application.canvas.height);
+    _self.background.paint(_self.background.gate[progress[number]].bedding);
+    _self.txt.paint(_self.txt.gate[progress[number]]);
+    _self.txt.paint(_self.txt.gate[progress[number]].moneyCounter.part,_self.counter.getCounerValue(),'#f44038',"bold 32px Arial",'right');
+    _self.txt.paint(_self.txt.gate[progress[number]].moneyCounter.all,'/'+appConfig.passValue.one.score,'#793605',"bold 32px Arial",'left');
+    _self.counter.paint(_self.counter.timerTopRight,_self.txt,_self.txt.timer.topRight,_self.timerCounter+'s','#f44038',"bold 21px Arial",'center');
+};
+
+Game.prototype.update=function(delta){
+    var _self=this;
+    //掉钱
+
+    //掉锤子
+
+    //手的运动轨迹
 };
 
 /*显示排行榜功能*/
