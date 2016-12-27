@@ -1,39 +1,77 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>转换</title>
-    <style type="text/css">
-        #diagonal
-        {
-            border: 1px solid red;
-        }
-    </style>
-    <script type="text/javascript">
-        function drawDiagonal() {
-            //取得canvas元素及其绘图上下文
-            var canvas = document.getElementById("diagonal");
-            var context = canvas.getContext("2d");
-            canvas.width=200;
-            canvas.height=200;
-            //保存当前绘画状态，以便我们画完这副画以后，再恢复到这个状态，画另一副画。
-            context.save();
-            //向右下方移动绘图上下文
-            context.translate(70, 140);
-            //以原点为起点，绘制与前面相同的线段
-            context.beginPath();
-            context.moveTo(0, 0);
-            context.lineTo(70, -70);
-            //将这条线绘制到canvas画布上去。
-            context.stroke();
-            //恢复原有的绘图状态
-            context.restore();
-            //可以开始另外一副绘图。。。。。。
-        }
-        window.addEventListener("load", drawDiagonal, true);
-    </script>
+    <meta charset="UTF-8">
+    <meta content="yes" name="apple-mobile-web-app-capable"/>
+    <meta content="yes" name="apple-touch-fullscreen"/>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <meta content="telephone=no,email=no" name="format-detection"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no, email=no">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="MobileOptimized" content="320">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="browsermode" content="application">
+    <meta name="x5-page-mode" content="app">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <script type="text/javascript" src="libs/hidpi-canvas.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="css/game.css"/>
+    <title>html5 canvas在高倍屏下变模糊的处理办法</title>
 </head>
 <body>
-<canvas id="diagonal">
-</canvas>
+<div id="debug-info"></div>
+<canvas id="test"></canvas>
+<script type="text/javascript" src="libs/zepto/zepto.min.js"></script>
+<script type="text/javascript" src="js/AppConfig.js"></script>
+<script type="text/javascript">
+    function draw(id) {
+        var image = new Image();
+
+        image.src = "images/index-bg.png";
+        var canvas = document.getElementById(id);
+        canvas.width=window.innerWidth;
+        canvas.height=window.innerHeight;
+        if (canvas == null){
+            return false;
+        }
+        var context = canvas.getContext("2d");
+
+        var getPixelRatio = function(context) {
+            var backingStore = context.backingStorePixelRatio ||
+                context.webkitBackingStorePixelRatio ||
+                context.mozBackingStorePixelRatio ||
+                context.msBackingStorePixelRatio ||
+                context.oBackingStorePixelRatio ||
+                context.backingStorePixelRatio || 1;
+
+            return (window.devicePixelRatio || 1) / backingStore;
+        };
+
+        var ratio = getPixelRatio(context);
+
+        context.fillStyle = "#EEEEFF";
+        context.fillRect(20, 20, window.innerWidth-40, window.innerHeight-40);
+
+        image.onload = function () {
+            context.drawImage(image, 0, 0, window.innerWidth*ratio, window.innerHeight*ratio);
+        }
+
+        image.onerror=function(){
+            alert("dfdf");
+        }
+    }
+    draw("test");
+</script>
 </body>
 </html>

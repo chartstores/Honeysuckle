@@ -71,8 +71,5 @@ Background.prototype.paint=function(bgObj,w,h){
     var myImage = util.$$(bgObj.name);
     var x = bgObj.startX;
     var y = bgObj.startY;
-    var width = w?w:Math.round(myImage.width*appConfig.prop);
-    var height = h?h:Math.round(myImage.height*appConfig.prop);
-
-    application.context.drawImage(myImage,x,y,width,height);
+    application.context.drawImage(myImage,x,y,w,h);
 };

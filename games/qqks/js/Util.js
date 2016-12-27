@@ -1,3 +1,13 @@
+var requestAnimFrame=(function(){
+    return window.requestAnimationFrame       ||
+        window.webkitRequestAnimationFrame ||
+        window.mozRequestAnimationFrame    ||
+        window.oRequestAnimationFrame      ||
+        window.msRequestAnimationFrame     ||
+        function(callback){
+            window.setTimeout(callback, 1000 / 60);
+        };
+})();
 var util = {
     $$: function (id) {
         return document.getElementById(id);
@@ -59,17 +69,16 @@ var util = {
             }
         }
     },
-    requestAnimFrame :(function(){
-        // return window.requestAnimationFrame       ||
-        //     window.webkitRequestAnimationFrame ||
-        //     window.mozRequestAnimationFrame    ||
-        //     window.oRequestAnimationFrame      ||
-        //     window.msRequestAnimationFrame     ||
-            return function(callback){
-                console.log("tdfdf");
-                window.setTimeout(callback, 1000 / 60);
-            };
-    })(),
+    getPixelRatio :function(context) {
+        var backingStore = context.backingStorePixelRatio ||
+            context.webkitBackingStorePixelRatio ||
+            context.mozBackingStorePixelRatio ||
+            context.msBackingStorePixelRatio ||
+            context.oBackingStorePixelRatio ||
+            context.backingStorePixelRatio || 1;
+
+        return (window.devicePixelRatio || 1) / backingStore;
+    },
     /*保存渲染的某帧为图片*/
     saveImage: function () {
         var image = new Image();

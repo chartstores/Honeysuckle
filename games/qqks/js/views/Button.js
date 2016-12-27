@@ -126,7 +126,8 @@ Button.prototype.paint = function (btn, w, h) {
     var width = w ? w : Math.round(myImage.width * appConfig.prop);
     var height = h ? h : Math.round(myImage.height * appConfig.prop);
 
-    application.context.drawImage(myImage, x, y, width, height);
+    application.context.drawImage(myImage, x, y, parseInt(width), parseInt(height));
+    $("#debug-info").html(x+","+y+","+parseInt(width)+","+parseInt(height));
     _self.coordinates.push(btn.name, x, y, width, height);
 };
 
@@ -157,34 +158,52 @@ Button.prototype.touch = function (toucher,game) {
             return game.showGateList(-1, "back");
         },
         "gate-coin-one": function () {
-            return game.startGate(1, false);
+            game.gameNumber=1;
+            game.isEnabled=false;
+            return game.main();
         },
         "gate-coin-one-enabled": function () {
-            return game.startGate(1, true);
+            game.gameNumber=1;
+            game.isEnabled=true;
+            return game.main();
         },
         "gate-coin-two": function () {
-            return game.startGate(2, false);
+            game.gameNumber=2;
+            game.isEnabled=false;
+            return game.main();
         },
         "gate-coin-two-enabled": function () {
-            return game.startGate(2, true);
+            game.gameNumber=2;
+            game.isEnabled=true;
+            return game.main();
         },
         "gate-coin-three": function () {
-            return game.startGate(3, false);
+            game.gameNumber=3;
+            game.isEnabled=false;
+            return game.main();
         },
         "gate-coin-three-enabled": function () {
-            return game.startGate(3, true);
+            game.gameNumber=3;
+            game.isEnabled=true;
+            return game.main();
         },
         "gate-coin-four": function () {
-            return game.startGate(4, false);
+            game.gameNumber=4;
+            game.isEnabled=true;
+            return game.main();
         },
         "gate-coin-four-enabled": function () {
-            return game.startGate(4, true);
+            game.gameNumber=4;
+            game.isEnabled=true;
+            return game.main();
         },
         "label-rank": function () {
             return game.rank();
         },
         "btn-back-gate": function () {
-            return game.startGate(-1, false);
+            game.gameNumber=1;
+            game.isEnabled=false;
+            return game.main();
         },
     };
     var btnFn = function (event) {

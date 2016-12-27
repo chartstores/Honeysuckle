@@ -3,7 +3,9 @@
 function Game(){
     var _self=this;
     _self.gameCounter=0;//记录当前第几关
-    _self.last=0;//上一幀的时间位置
+    _self.lastTime =0;//上一幀的时间位置
+    _self.gameNumber=0;
+    _self.isEnabled=false;
     this.isCatchMoney=true;//是否抓住钱
 }
 /*暂停*/
@@ -26,12 +28,12 @@ Game.prototype.start=function(){
     var _self=this;
 
     var background=new Background();
-    background.paint(background.index,application.canvas.width,application.canvas.height);
+    background.paint(background.index,window.innerWidth*appConfig.ratio,window.innerHeight*appConfig.ratio);
     _self.background=background;
 
     var btn=new Button();
-    btn.paint(btn.index.start,730,300);
-    btn.paint(btn.back.index,730,300);
+    btn.paint(btn.index.start,440,181);
+    btn.paint(btn.back.index,440,181);
     _self.btn=btn;
 
     var toucher = new Toucher();
@@ -71,10 +73,11 @@ Game.prototype.start=function(){
     // appConfig.timer=setInterval(function(){
     //     appConfig.timerCounter++;
     // },1*1000);
-    _self.startTime= Date.now();
-    _self.main(4, true);
+    _self.gameNumber=4;
+    _self.isEnabled=true;
+    _self.lastTime =_self.startTime= Date.now();
+    // _self.main();
 };
-
 /**
  *
  * @param number 需要展示的关数 -1为回退操作
@@ -144,34 +147,17 @@ Game.prototype.showGateList=function(number,action){
  * @param number -1为去到上一关
  * @param isEnabled
  */
-Game.prototype.main=function(number,isEnabled){
+Game.prototype.main=function(){
     var _self=this;
     var now = Date.now();
-    var delta = (now - _self.lastTime) / 1000.0;
-    var timerCounter=parseInt((now-_self.startTime)/1000);
-
-    var strMap=['one','two','three','four','five','six','seven'];
-    var step=0;
-    var moneyMap=['money-first','money-second','money-second','money-third'];
-    var moneyActionStep=0;
-    console.info("开始闯第"+number+"关");
-    //解绑事件
-    if(!isEnabled){
-        //中途由于碰到锤子，被迫停止
-        // alert("sorry,你还没有权限通往第"+number+"关");
-        _self.toucher.eventHandle('remove',document,'touchstart', _self.btn.btnFn, false);
-
-    }
-    step++;
-    if(step>6){
-        step=0;
-    }
+    var delta = (now - application.game.lastTime) / 1000.0;
+    var timerCounter=parseInt((now-application.game.startTime)/1000);
     _self.timerCounter=timerCounter;
     if(timerCounter<21){
         /*绘制静态图*/
-        _self.render(number);
+        application.game.render();
         /*绘制动态运动图*/
-        _self.update(delta);
+        // _self.update(delta);
 
         //如何触发掉钱动作、动手行为、铁锤出现、捡钱行为(碰撞行为)？
         // if(appConfig.hasGoldenHand){
@@ -187,8 +173,8 @@ Game.prototype.main=function(number,isEnabled){
         //         _self.hand.paint(_self.hand.status[strMap[step]], 'normal', {}, {});
         //     }
         // }
-        console.log(timerCounter);
-        util.requestAnimFrame(_self.main(number,isEnabled));
+        console.log("第"+timerCounter+"秒");
+        requestAnimFrame(application.game.main);
     }
     _self.lastTime=now;
     // appConfig.moneyInterval=setInterval(function(){
@@ -210,15 +196,19 @@ Game.prototype.main=function(number,isEnabled){
     //     }
     // },appConfig.hammerFrame);
 };
-Game.prototype.render=function(number){
+Game.prototype.render=function(){
+    var strMap=['one','two','three','four','five','six','seven'];
+    var moneyMap=['money-first','money-second','money-second','money-third'];
+    var moneyActionStep=0;
+
     var _self=this;
     var progress={'-1':'back','1':'one','2':'two','3':'three','4':'four'};
 
-    _self.background.paint(_self.background.gate[progress[number]],application.canvas.width,application.canvas.height);
-    _self.background.paint(_self.background.gate[progress[number]].bedding);
-    _self.txt.paint(_self.txt.gate[progress[number]]);
-    _self.txt.paint(_self.txt.gate[progress[number]].moneyCounter.part,_self.counter.getCounerValue(),'#f44038',"bold 32px Arial",'right');
-    _self.txt.paint(_self.txt.gate[progress[number]].moneyCounter.all,'/'+appConfig.passValue.one.score,'#793605',"bold 32px Arial",'left');
+    _self.background.paint(_self.background.gate[progress[_self.gameNumber]],application.canvas.width,application.canvas.height);
+    _self.background.paint(_self.background.gate[progress[_self.gameNumber]].bedding);
+    _self.txt.paint(_self.txt.gate[progress[_self.gameNumber]]);
+    _self.txt.paint(_self.txt.gate[progress[_self.gameNumber]].moneyCounter.part,_self.counter.getCounerValue(),'#f44038',"bold 32px Arial",'right');
+    _self.txt.paint(_self.txt.gate[progress[_self.gameNumber]].moneyCounter.all,'/'+appConfig.passValue.one.score,'#793605',"bold 32px Arial",'left');
     _self.counter.paint(_self.counter.timerTopRight,_self.txt,_self.txt.timer.topRight,_self.timerCounter+'s','#f44038',"bold 21px Arial",'center');
 };
 

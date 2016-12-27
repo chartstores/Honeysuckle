@@ -9,19 +9,17 @@ function App(){
 //铺好布局，一切就绪，将开始游戏
 App.prototype.init=function(){
     var _self = this;
-    if(!appConfig.isShowDebugInfo){
-        $$("debug-tool").style.display="none";
-    }
     //初始化画布
     _self.isPaper=(function(){
         _self.canvas=util.$$(appConfig.container);
         _self.canvas.width = window.innerWidth;
         _self.canvas.height = window.innerHeight;
-
         if (!_self.canvas.getContext) {
             return false;
         }
         _self.context = _self.canvas.getContext('2d');
+
+        appConfig.ratio= util.getPixelRatio(_self.context);
         return true;
     })();
 
@@ -36,8 +34,11 @@ App.prototype.init=function(){
         },
         complete: function (imgs, s) {
             if (s.total == s.load + s.error) {
-                var $image = util.$$("index-bg");
-                appConfig.prop = (application.canvas.width / $image.width)*1.66;//首页设计稿尺寸是1242×2016，其他页是750×1334
+                var $imageIndex = util.$$("index-bg");
+                var $imageGateList=util.$$("gate-list-bg");
+                //首页设计稿尺寸是1242×2016，其他页是750×1334
+                appConfig.propIndex = (application.canvas.width / $imageIndex.width);
+                appConfig.prop=(application.canvas.width / $imageGateList.width);
 
                 if(_self.isPaper){
                     _self.game= new Game();
