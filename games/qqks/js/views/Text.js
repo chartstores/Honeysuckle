@@ -28,15 +28,15 @@ function Text(){
         one:{
             name:'Level1',
             value:'level1',
-            startX: Math.round(util.getCoordinateMap(130, 515).x * application.canvas.width),
-            startY: Math.round(util.getCoordinateMap(130, 515).y * application.canvas.height),
+            startX: Math.round(util.getCoordinateMap(138, 515).x * application.canvas.width),
+            startY: Math.round(util.getCoordinateMap(138, 515).y * application.canvas.height),
             moneyCounter:{
-                part:{
+                now:{
                     value:0,
                     startX: Math.round(util.getCoordinateMap(250, 620).x * application.canvas.width),
                     startY: Math.round(util.getCoordinateMap(250, 620).y * application.canvas.height),
                 },
-                all:{
+                total:{
                     value:0,
                     startX: Math.round(util.getCoordinateMap(250, 620).x * application.canvas.width),
                     startY: Math.round(util.getCoordinateMap(250, 620).y * application.canvas.height),
@@ -46,15 +46,15 @@ function Text(){
         two:{
             name:'Level2',
             value:'level2',
-            startX: Math.round(util.getCoordinateMap(130, 515).x * application.canvas.width),
-            startY: Math.round(util.getCoordinateMap(130, 515).y * application.canvas.height),
+            startX: Math.round(util.getCoordinateMap(138, 515).x * application.canvas.width),
+            startY: Math.round(util.getCoordinateMap(138, 515).y * application.canvas.height),
             moneyCounter:{
-                part:{
+                now:{
                     value:0,
                     startX: Math.round(util.getCoordinateMap(250, 620).x * application.canvas.width),
                     startY: Math.round(util.getCoordinateMap(250, 620).y * application.canvas.height),
                 },
-                all:{
+                total:{
                     value:0,
                     startX: Math.round(util.getCoordinateMap(250, 620).x * application.canvas.width),
                     startY: Math.round(util.getCoordinateMap(250, 620).y * application.canvas.height),
@@ -64,15 +64,15 @@ function Text(){
         three:{
             name:'Level3',
             value:'level3',
-            startX: Math.round(util.getCoordinateMap(130, 515).x * application.canvas.width),
-            startY: Math.round(util.getCoordinateMap(130, 515).y * application.canvas.height),
+            startX: Math.round(util.getCoordinateMap(138, 515).x * application.canvas.width),
+            startY: Math.round(util.getCoordinateMap(138, 515).y * application.canvas.height),
             moneyCounter:{
-                part:{
+                now:{
                     value:0,
                     startX: Math.round(util.getCoordinateMap(250, 620).x * application.canvas.width),
                     startY: Math.round(util.getCoordinateMap(250, 620).y * application.canvas.height),
                 },
-                all:{
+                total:{
                     value:0,
                     startX: Math.round(util.getCoordinateMap(250, 620).x * application.canvas.width),
                     startY: Math.round(util.getCoordinateMap(250, 620).y * application.canvas.height),
@@ -82,15 +82,15 @@ function Text(){
         four:{
             name:'Level4',
             value:'level4',
-            startX: Math.round(util.getCoordinateMap(130, 515).x * application.canvas.width),
-            startY: Math.round(util.getCoordinateMap(130, 515).y * application.canvas.height),
+            startX: Math.round(util.getCoordinateMap(138, 515).x * application.canvas.width),
+            startY: Math.round(util.getCoordinateMap(138, 515).y * application.canvas.height),
             moneyCounter:{
-                part:{
+                now:{
                     value:0,
                     startX: Math.round(util.getCoordinateMap(250, 620).x * application.canvas.width),
                     startY: Math.round(util.getCoordinateMap(250, 620).y * application.canvas.height),
                 },
-                all:{
+                total:{
                     value:0,
                     startX: Math.round(util.getCoordinateMap(250, 620).x * application.canvas.width),
                     startY: Math.round(util.getCoordinateMap(250, 620).y * application.canvas.height),
@@ -109,7 +109,7 @@ Text.prototype.paint=function(obj,value,color,font,textAlign){
     var w=app.context.measureText(value).width;
 
     app.context.textAlign=textAlign;
-    app.context.font=font?font:"25px Arial";
+    app.context.font=font?font:32*appConfig.ratio+"px Arial";
     app.context.fillStyle=color?color:'#fff';
     app.context.fillText(value,x,y);
 };

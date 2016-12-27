@@ -57,23 +57,16 @@ Game.prototype.start=function(){
     _self.hammer=hammer;
 
     //test
-    _self.showGateList("one",'start');
+    // _self.showGateList("one",'start');
     // _self.showGateList("two",'start');
     // _self.showGateList("three",'start');
     // _self.showGateList("four",'start');
     // _self.showGateList("what",'');
 
-
-    // clearInterval(appConfig.gameInterval);
-    // clearInterval(appConfig.timer);
-    // appConfig.timerCounter=0;
-    // appConfig.timer=setInterval(function(){
-    //     appConfig.timerCounter++;
-    // },1*1000);
     _self.gameNumber=4;
     _self.isEnabled=true;
     _self.lastTime =_self.startTime= Date.now();
-    // _self.main();
+    _self.main();
 };
 /**
  *
@@ -173,10 +166,9 @@ Game.prototype.main=function(){
     var now = Date.now();
     var delta = (now - application.game.lastTime) / 1000.0;
     var timerCounter=parseInt((now-application.game.startTime)/1000);
-    _self.timerCounter=timerCounter;
     if(timerCounter<21){
         /*绘制静态图*/
-        application.game.render();
+        application.game.render(timerCounter);
         /*绘制动态运动图*/
         // _self.update(delta);
 
@@ -194,7 +186,6 @@ Game.prototype.main=function(){
         //         _self.hand.paint(_self.hand.status[strMap[step]], 'normal', {}, {});
         //     }
         // }
-        console.log("第"+timerCounter+"秒");
         requestAnimFrame(application.game.main);
     }
     _self.lastTime=now;
@@ -217,7 +208,8 @@ Game.prototype.main=function(){
     //     }
     // },appConfig.hammerFrame);
 };
-Game.prototype.render=function(){
+Game.prototype.render=function(timerCounter){
+    console.log("第"+timerCounter+"秒");
     var strMap=['one','two','three','four','five','six','seven'];
     var moneyMap=['money-first','money-second','money-second','money-third'];
     var moneyActionStep=0;
@@ -226,11 +218,11 @@ Game.prototype.render=function(){
     var progress={'-1':'back','1':'one','2':'two','3':'three','4':'four'};
 
     _self.background.paint(_self.background.gate[progress[_self.gameNumber]],application.canvas.width,application.canvas.height);
-    _self.background.paint(_self.background.gate[progress[_self.gameNumber]].bedding);
-    _self.txt.paint(_self.txt.gate[progress[_self.gameNumber]]);
-    _self.txt.paint(_self.txt.gate[progress[_self.gameNumber]].moneyCounter.part,_self.counter.getCounerValue(),'#f44038',"bold 32px Arial",'right');
-    _self.txt.paint(_self.txt.gate[progress[_self.gameNumber]].moneyCounter.all,'/'+appConfig.passValue.one.score,'#793605',"bold 32px Arial",'left');
-    _self.counter.paint(_self.counter.timerTopRight,_self.txt,_self.txt.timer.topRight,_self.timerCounter+'s','#f44038',"bold 21px Arial",'center');
+    _self.background.paint(_self.background.gate[progress[_self.gameNumber]].bedding,750*appConfig.prop,484*appConfig.prop);//绘制女巫&罐子
+    _self.txt.paint(_self.txt.gate[progress[_self.gameNumber]]);//绘制level n文字
+    _self.txt.paint(_self.txt.gate[progress[_self.gameNumber]].moneyCounter.now,_self.counter.getCounerValue(),'#f44038',"bold "+32*appConfig.ratio+"px Arial",'right');//当前金额值
+    _self.txt.paint(_self.txt.gate[progress[_self.gameNumber]].moneyCounter.total,'/'+appConfig.passValue.one.score,'#793605',"bold "+32*appConfig.ratio+"px Arial",'left');//当前关数值
+    _self.counter.paint(_self.counter.timerTopRight,_self.txt,_self.txt.timer.topRight,timerCounter+'s','#f44038',"bold "+25*appConfig.ratio+"px Arial",'center');//计算时间值
 };
 
 Game.prototype.update=function(delta){
