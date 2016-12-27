@@ -32,8 +32,8 @@ Game.prototype.start=function(){
     _self.background=background;
 
     var btn=new Button();
-    btn.paint(btn.index.start,440,181);
-    btn.paint(btn.back.index,440,181);
+    btn.paint(btn.index.start,440*appConfig.prop,181*appConfig.prop);
+    btn.paint(btn.back.index,440*appConfig.prop,181*appConfig.prop);
     _self.btn=btn;
 
     var toucher = new Toucher();
@@ -57,14 +57,11 @@ Game.prototype.start=function(){
     _self.hammer=hammer;
 
     //test
-    // _self.showGateList(1,'start');
-    //_self.showGateList(2,'start');
-    //_self.showGateList(3,'start');
-    //_self.showGateList(4,'start');
-    // _self.startGate(1, true);
-    // _self.startGate(1, true);
-    // _self.startGate(2, true);
-    // _self.startGate(3, true);
+    _self.showGateList("one",'start');
+    // _self.showGateList("two",'start');
+    // _self.showGateList("three",'start');
+    // _self.showGateList("four",'start');
+    // _self.showGateList("what",'');
 
 
     // clearInterval(appConfig.gameInterval);
@@ -80,10 +77,10 @@ Game.prototype.start=function(){
 };
 /**
  *
- * @param number 需要展示的关数 -1为回退操作
+ * @param gateName 需要展示的关数 -1为回退操作
  * @param action 动作
  */
-Game.prototype.showGateList=function(number,action){
+Game.prototype.showGateList=function(gateName,action){
     var _self=this;
     console.info("去抢钱按钮");
 
@@ -97,29 +94,26 @@ Game.prototype.showGateList=function(number,action){
     _self.btn.paint(_self.btn.rank);
     _self.txt.paint(_self.txt.rank,'排行榜','#fbe985',"20px Microsoft Yahei",'center');
 
-    switch(number){
+    //对相应的通关按钮绑定事件
+    _self.btn.coordinates=[];
+    var offset=[];//由于激活状态和未激活状态的图片尺寸大小有差异，需要重新计算绘图开始位置
+    if(_self.btn.gateList.gateCoin[gateName].enabled){
+        offset.push(Math.round(util.$$(_self.btn.gateList.gateCoin[gateName].enabledName).width-util.$$(_self.btn.gateList.gateCoin[gateName].name).width)/2);
+        offset.push(Math.round(util.$$(_self.btn.gateList.gateCoin[gateName].enabledName).height-util.$$(_self.btn.gateList.gateCoin[gateName].name).height)/2);
+        _self.btn.gateList.gateCoin[gateName].startX = _self.btn.gateList.gateCoin[gateName].startX-offset[0];
+        _self.btn.gateList.gateCoin[gateName].startY = _self.btn.gateList.gateCoin[gateName].startY-offset[1];
+        _self.btn.gateList.gateCoin[gateName].name = _self.btn.gateList.gateCoin[gateName].enabledName;
+        _self.btn.paintOther([_self.btn.gateList.gateCoin[gateName].starshine]);
+    }
+
+    _self.btn.paint(_self.btn.gateList.gateCoin[gateName]);
+    _self.btn.paint(_self.btn.back.gateList);
+    switch(gateName){
         case -1:
             alert("回退操作");
             break;
-        case 1:
-            //对相应的通关按钮绑定事件
-            _self.btn.coordinates=[];
-            var offset=[];//由于激活状态和未激活状态的图片尺寸大小有差异，需要重新计算绘图开始位置
-            if(_self.btn.gateList.gateCoin.one.enabled){
-                offset.push(Math.round(util.$$(_self.btn.gateList.gateCoin.one.enabledName).width-util.$$(_self.btn.gateList.gateCoin.one.name).width)/2);
-                offset.push(Math.round(util.$$(_self.btn.gateList.gateCoin.one.enabledName).height-util.$$(_self.btn.gateList.gateCoin.one.name).height)/2);
-                _self.btn.gateList.gateCoin.one.startX = _self.btn.gateList.gateCoin.one.startX-offset[0];
-                _self.btn.gateList.gateCoin.one.startY = _self.btn.gateList.gateCoin.one.startY-offset[1];
-                _self.btn.gateList.gateCoin.one.name = _self.btn.gateList.gateCoin.one.enabledName;
-                _self.btn.paintOther([_self.btn.gateList.gateCoin.one.starshine]);
-            }
-            //console.info("偏移量是");
-            //console.info(offset);
-
-            _self.btn.paint(_self.btn.gateList.gateCoin.one);
-            _self.btn.paint(_self.btn.back.gateList);
-
-            //绘制非绑定事件区域的按钮
+        case "one":
+            //绘制非当前关数按钮/非当前按钮绑定事件区域的按钮
             _self.btn.paintOther([
                 _self.btn.gateList.gateCoin.one.shadow,
                 _self.btn.gateList.gateCoin.two, _self.btn.gateList.gateCoin.two.shadow, _self.btn.gateList.gateCoin.two.starshine,
@@ -129,14 +123,41 @@ Game.prototype.showGateList=function(number,action){
             ]);
 
             break;
-        case 2:
+        case "two":
+            _self.btn.paintOther([
+                _self.btn.gateList.gateCoin.one, _self.btn.gateList.gateCoin.one.shadow, _self.btn.gateList.gateCoin.one.starshine,
+                _self.btn.gateList.gateCoin.one.shadow,
+                _self.btn.gateList.gateCoin.three, _self.btn.gateList.gateCoin.three.shadow, _self.btn.gateList.gateCoin.three.starshine,
+                _self.btn.gateList.gateCoin.four, _self.btn.gateList.gateCoin.four.shadow, _self.btn.gateList.gateCoin.four.starshine,
+                _self.btn.gateList.gateCoin.what, _self.btn.gateList.gateCoin.what.shadow
+            ]);
             break;
-        case 3:
+        case "three":
+            _self.btn.paintOther([
+                _self.btn.gateList.gateCoin.one, _self.btn.gateList.gateCoin.one.shadow, _self.btn.gateList.gateCoin.one.starshine,
+                _self.btn.gateList.gateCoin.two, _self.btn.gateList.gateCoin.two.shadow, _self.btn.gateList.gateCoin.two.starshine,
+                _self.btn.gateList.gateCoin.three.shadow,
+                _self.btn.gateList.gateCoin.four, _self.btn.gateList.gateCoin.four.shadow, _self.btn.gateList.gateCoin.four.starshine,
+                _self.btn.gateList.gateCoin.what, _self.btn.gateList.gateCoin.what.shadow
+            ]);
             break;
-        case 4:
+        case "four":
+            _self.btn.paintOther([
+                _self.btn.gateList.gateCoin.one, _self.btn.gateList.gateCoin.one.shadow, _self.btn.gateList.gateCoin.one.starshine,
+                _self.btn.gateList.gateCoin.two, _self.btn.gateList.gateCoin.two.shadow, _self.btn.gateList.gateCoin.two.starshine,
+                _self.btn.gateList.gateCoin.three, _self.btn.gateList.gateCoin.three.shadow, _self.btn.gateList.gateCoin.three.starshine,
+                _self.btn.gateList.gateCoin.four.shadow,
+                _self.btn.gateList.gateCoin.what, _self.btn.gateList.gateCoin.what.shadow
+            ]);
             break;
-        case 5:
-            alert("what");
+        case "what":
+            _self.btn.paintOther([
+                _self.btn.gateList.gateCoin.one, _self.btn.gateList.gateCoin.one.shadow, _self.btn.gateList.gateCoin.one.starshine,
+                _self.btn.gateList.gateCoin.two, _self.btn.gateList.gateCoin.two.shadow, _self.btn.gateList.gateCoin.two.starshine,
+                _self.btn.gateList.gateCoin.three, _self.btn.gateList.gateCoin.three.shadow, _self.btn.gateList.gateCoin.three.starshine,
+                _self.btn.gateList.gateCoin.four, _self.btn.gateList.gateCoin.four.shadow, _self.btn.gateList.gateCoin.four.starshine,
+                _self.btn.gateList.gateCoin.what, _self.btn.gateList.gateCoin.what.shadow
+            ]);
             break;
     }
     _self.toucher.eventHandle('add',document,'touchstart', _self.btn.btnFn, false);

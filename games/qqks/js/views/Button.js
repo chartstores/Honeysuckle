@@ -17,8 +17,8 @@ function Button() {
                 name: 'gate-coin-one',
                 enabled: true,
                 enabledName: 'gate-coin-one-enabled',
-                startX: Math.round(util.getCoordinateMap(300, 1020).x * application.canvas.width),
-                startY: Math.round(util.getCoordinateMap(300, 1020).y * application.canvas.height),
+                startX: Math.round(util.getCoordinateMap(310, 1070).x * application.canvas.width),
+                startY: Math.round(util.getCoordinateMap(310, 1070).y * application.canvas.height),
                 shadow: {
                     name: 'shadow',
                     startX: Math.round(util.getCoordinateMap(320, 1229).x * application.canvas.width),
@@ -26,13 +26,13 @@ function Button() {
                 },
                 starshine: {
                     name: 'starshine',
-                    startX: Math.round(util.getCoordinateMap(335, 1060).x * application.canvas.width),
-                    startY: Math.round(util.getCoordinateMap(335, 1060).y * application.canvas.height)
+                    startX: Math.round(util.getCoordinateMap(335, 1000).x * application.canvas.width),
+                    startY: Math.round(util.getCoordinateMap(335, 1000).y * application.canvas.height)
                 }
             },
             two: {
                 name: 'gate-coin-two',
-                enabled: false,
+                enabled: true,
                 enabledName: 'gate-coin-two-enabled',
                 startX: Math.round(util.getCoordinateMap(515, 852).x * application.canvas.width),
                 startY: Math.round(util.getCoordinateMap(515, 852).y * application.canvas.height),
@@ -49,7 +49,7 @@ function Button() {
             },
             three: {
                 name: 'gate-coin-three',
-                enabled: false,
+                enabled: true,
                 enabledName: 'gate-coin-three-enabled',
                 startX: Math.round(util.getCoordinateMap(138, 706).x * application.canvas.width),
                 startY: Math.round(util.getCoordinateMap(138, 706).y * application.canvas.height),
@@ -66,7 +66,7 @@ function Button() {
             },
             four: {
                 name: 'gate-coin-four',
-                enabled: false,
+                enabled: true,
                 enabledName: 'gate-coin-four-enabled',
                 startX: Math.round(util.getCoordinateMap(540, 375).x * application.canvas.width),
                 startY: Math.round(util.getCoordinateMap(540, 375).y * application.canvas.height),
@@ -77,8 +77,8 @@ function Button() {
                 },
                 starshine: {
                     name: 'starshine',
-                    startX: Math.round(util.getCoordinateMap(550, 306).x * application.canvas.width),
-                    startY: Math.round(util.getCoordinateMap(550, 306).y * application.canvas.height)
+                    startX: Math.round(util.getCoordinateMap(550, 286).x * application.canvas.width),
+                    startY: Math.round(util.getCoordinateMap(550, 286).y * application.canvas.height)
                 }
             },
             what: {
@@ -127,7 +127,6 @@ Button.prototype.paint = function (btn, w, h) {
     var height = h ? h : Math.round(myImage.height * appConfig.prop);
 
     application.context.drawImage(myImage, x, y, parseInt(width), parseInt(height));
-    $("#debug-info").html(x+","+y+","+parseInt(width)+","+parseInt(height));
     _self.coordinates.push(btn.name, x, y, width, height);
 };
 
