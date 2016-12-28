@@ -1,6 +1,6 @@
 *,*:before,*:after{box-sizing:border-box;vertical-align:top;}
 html,body,div,span,h1,h2,h3,h4,h5,h6,p,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead{margin:0;padding:0;background:none repeat scroll 0 0 transparent;outline:0 none;border:0;}
-html{height:100%;font-size:62.5%;}
+html{height:100%;font-size:14px;}
 html, body{height:100%;overflow:hidden;}
 body{background-color:#fff;font-size:12px;font-size:1.2rem;font-family:'STHeiti','Microsoft YaHei',Helvetica,Arial,sans-serif;text-align:left;-webkit-user-select:none;position:relative;}
 h1,h2,h3,h4,h5,h6,b{font-weight:400;}
@@ -24,6 +24,9 @@ header,section,footer,aside,nav,article,figure{display:block;margin:0;}
   position: absolute;
   top:0;
   width:100%;
+}
+#debug-info div{
+  font-size:4rem;
 }
 
 #layer{

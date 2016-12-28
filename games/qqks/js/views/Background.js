@@ -18,8 +18,8 @@ function Background(){
             startY:0,
             bedding:{
                 name:'bedding',
-                startX:Math.round(util.getCoordinateMap(0,845).x*application.canvas.width),
-                startY:Math.round(util.getCoordinateMap(0,845).y*application.canvas.height)
+                startX:Math.round(util.getCoordinateMap(0,820).x*application.canvas.width),
+                startY:Math.round(util.getCoordinateMap(0,820).y*application.canvas.height)
             }
         },
         two:{
@@ -28,8 +28,8 @@ function Background(){
             startY:0,
             bedding:{
                 name:'bedding',
-                startX:Math.round(util.getCoordinateMap(0,845).x*application.canvas.width),
-                startY:Math.round(util.getCoordinateMap(0,845).y*application.canvas.height)
+                startX:Math.round(util.getCoordinateMap(0,820).x*application.canvas.width),
+                startY:Math.round(util.getCoordinateMap(0,820).y*application.canvas.height)
             }
         },
         three:{
@@ -38,8 +38,8 @@ function Background(){
             startY:0,
             bedding:{
                 name:'bedding',
-                startX:Math.round(util.getCoordinateMap(0,845).x*application.canvas.width),
-                startY:Math.round(util.getCoordinateMap(0,845).y*application.canvas.height)
+                startX:Math.round(util.getCoordinateMap(0,820).x*application.canvas.width),
+                startY:Math.round(util.getCoordinateMap(0,820).y*application.canvas.height)
             }
         },
         four:{
@@ -48,15 +48,10 @@ function Background(){
             startY:0,
             bedding:{
                 name:'bedding',
-                startX:Math.round(util.getCoordinateMap(0,845).x*application.canvas.width),
-                startY:Math.round(util.getCoordinateMap(0,845).y*application.canvas.height)
+                startX:Math.round(util.getCoordinateMap(0,820).x*application.canvas.width),
+                startY:Math.round(util.getCoordinateMap(0,820).y*application.canvas.height)
             }
         },
-        bedding:{
-            name:'bedding',
-            startX:0,
-            startY:0,
-        }
     };
     _self.rank={
         name:'rank-bg',
@@ -66,10 +61,12 @@ function Background(){
 }
 
 /*各个关卡、步骤的背景图片*/
-Background.prototype.paint=function(bgObj,w,h){
+Background.prototype.paint=function(bgObj,width,height){
     var _self=this;
     var myImage = util.$$(bgObj.name);
     var x = bgObj.startX;
     var y = bgObj.startY;
+    var w = width?width:Math.round(myImage.width * appConfig.prop);
+    var h = height?height:Math.round(myImage.height * appConfig.propH);
     application.context.drawImage(myImage,x,y,w,h);
 };

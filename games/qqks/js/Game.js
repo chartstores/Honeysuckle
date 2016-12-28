@@ -65,7 +65,8 @@ Game.prototype.start=function(){
 
     _self.gameNumber=4;
     _self.isEnabled=true;
-    _self.lastTime =_self.startTime= Date.now();
+    _self.startTime= Date.now();
+    _self.lastTime = Date.now();
     _self.main();
 };
 /**
@@ -166,29 +167,38 @@ Game.prototype.main=function(){
     var now = Date.now();
     var delta = (now - application.game.lastTime) / 1000.0;
     var timerCounter=parseInt((now-application.game.startTime)/1000);
-    if(timerCounter<21){
+    if(timerCounter<appConfig.timerCounter){
         /*绘制静态图*/
         application.game.render(timerCounter);
         /*绘制动态运动图*/
-        // _self.update(delta);
-
-        //如何触发掉钱动作、动手行为、铁锤出现、捡钱行为(碰撞行为)？
-        // if(appConfig.hasGoldenHand){
-        //     if(step>2&&_self.isCatchMoney){
-        //         _self.hand.paint(_self.hand.status[strMap[step]],'goldenCatch',{},{});
-        //     }else{
-        //         _self.hand.paint(_self.hand.status[strMap[step]],'golden',{},{});
-        //     }
-        // }else{
-        //     if(step>2&&_self.isCatchMoney) {
-        //         _self.hand.paint(_self.hand.status[strMap[step]], 'normalCatch', {}, {});
-        //     }else{
-        //         _self.hand.paint(_self.hand.status[strMap[step]], 'normal', {}, {});
-        //     }
-        // }
+        application.game.update(delta);
         requestAnimFrame(application.game.main);
     }
-    _self.lastTime=now;
+    application.game.lastTime=now;
+};
+Game.prototype.render=function(timerCounter){
+    console.log("第"+timerCounter+"秒");
+    var _self=this;
+    var progress={'-1':'back','1':'one','2':'two','3':'three','4':'four'};
+
+    _self.background.paint(_self.background.gate[progress[_self.gameNumber]],application.canvas.width,application.canvas.height);
+    _self.background.paint(_self.background.gate[progress[_self.gameNumber]].bedding);//绘制女巫&罐子
+    _self.txt.paint(_self.txt.gate[progress[_self.gameNumber]]);//绘制level n文字
+    _self.txt.paint(_self.txt.gate[progress[_self.gameNumber]].moneyCounter.now,_self.counter.getCounerValue(),'#f44038',"bold "+32*appConfig.ratio+"px Arial",'right');//当前金额值
+    _self.txt.paint(_self.txt.gate[progress[_self.gameNumber]].moneyCounter.total,'/'+appConfig.passValue.one.score,'#793605',"bold "+32*appConfig.ratio+"px Arial",'left');//当前关数值
+    //计算时间值
+    _self.counter.paint(_self.counter.timerTopRight);
+    _self.txt.paint(_self.txt.timer.topRight,timerCounter+'s','#f44038',"bold "+18*appConfig.ratio+"px Arial",'center');
+};
+
+Game.prototype.update=function(modifier){
+    var _self=this;
+    //掉钱
+    //下落的money形状不变的话，但下落的位置已经变化，需要做好判断
+    _self.money.fall(_self.money.fallMoney, modifier);
+
+    //掉锤子
+
     // appConfig.moneyInterval=setInterval(function(){
     //     if(moneyActionStep>3){
     //         moneyActionStep=0;
@@ -207,31 +217,23 @@ Game.prototype.main=function(){
     //         clearInterval(appConfig.hammerInterval);
     //     }
     // },appConfig.hammerFrame);
-};
-Game.prototype.render=function(timerCounter){
-    console.log("第"+timerCounter+"秒");
-    var strMap=['one','two','three','four','five','six','seven'];
-    var moneyMap=['money-first','money-second','money-second','money-third'];
-    var moneyActionStep=0;
 
-    var _self=this;
-    var progress={'-1':'back','1':'one','2':'two','3':'three','4':'four'};
-
-    _self.background.paint(_self.background.gate[progress[_self.gameNumber]],application.canvas.width,application.canvas.height);
-    _self.background.paint(_self.background.gate[progress[_self.gameNumber]].bedding,750*appConfig.prop,484*appConfig.prop);//绘制女巫&罐子
-    _self.txt.paint(_self.txt.gate[progress[_self.gameNumber]]);//绘制level n文字
-    _self.txt.paint(_self.txt.gate[progress[_self.gameNumber]].moneyCounter.now,_self.counter.getCounerValue(),'#f44038',"bold "+32*appConfig.ratio+"px Arial",'right');//当前金额值
-    _self.txt.paint(_self.txt.gate[progress[_self.gameNumber]].moneyCounter.total,'/'+appConfig.passValue.one.score,'#793605',"bold "+32*appConfig.ratio+"px Arial",'left');//当前关数值
-    _self.counter.paint(_self.counter.timerTopRight,_self.txt,_self.txt.timer.topRight,timerCounter+'s','#f44038',"bold "+25*appConfig.ratio+"px Arial",'center');//计算时间值
-};
-
-Game.prototype.update=function(delta){
-    var _self=this;
-    //掉钱
-
-    //掉锤子
 
     //手的运动轨迹
+    //如何触发掉钱动作、动手行为、铁锤出现、捡钱行为(碰撞行为)？
+    // if(appConfig.hasGoldenHand){
+    //     if(step>2&&_self.isCatchMoney){
+    //         _self.hand.paint(_self.hand.status[strMap[step]],'goldenCatch',{},{});
+    //     }else{
+    //         _self.hand.paint(_self.hand.status[strMap[step]],'golden',{},{});
+    //     }
+    // }else{
+    //     if(step>2&&_self.isCatchMoney) {
+    //         _self.hand.paint(_self.hand.status[strMap[step]], 'normalCatch', {}, {});
+    //     }else{
+    //         _self.hand.paint(_self.hand.status[strMap[step]], 'normal', {}, {});
+    //     }
+    // }
 };
 
 /*显示排行榜功能*/

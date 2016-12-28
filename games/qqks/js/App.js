@@ -20,8 +20,6 @@ App.prototype.init=function(){
         _self.context = _self.canvas.getContext('2d');
 
         appConfig.ratio= util.getPixelRatio(_self.context);
-        _self.canvas.width=window.innerWidth*appConfig.ratio;
-        _self.canvas.height=window.innerHeight*appConfig.ratio;
         return true;
     })();
 
@@ -39,6 +37,7 @@ App.prototype.init=function(){
                 var $image = util.$$("index-bg");
                 //首页设计稿尺寸是1242×2016，其他页是750×1334
                 appConfig.prop=((_self.canvas.width) / $image.width);
+                appConfig.propH=((_self.canvas.height) / $image.height);
                 // var html="<div>ratio="+appConfig.ratio+",prop="+appConfig.prop+"</div><div>window.innerWidth="+window.innerWidth+",canvasWidth="+_self.canvas.width+"</div><div>imageWidth="+$image.width+"</div>";
                 // $("#debug-info").append(html);
                 if(_self.isPaper){

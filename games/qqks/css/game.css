@@ -12,7 +12,7 @@ html, body, div, span, h1, h2, h3, h4, h5, h6, p, address, big, cite, code, del,
 
 html {
   height: 100%;
-  font-size: 62.5%; }
+  font-size: 14px; }
 
 html, body {
   height: 100%;
@@ -103,6 +103,9 @@ header, section, footer, aside, nav, article, figure {
   top: 0;
   width: 100%; }
 
+#debug-info div {
+  font-size: 4rem; }
+
 #layer {
   display: none;
   position: absolute;
@@ -117,5 +120,9 @@ header, section, footer, aside, nav, article, figure {
   width: 1px;
   height: 1px;
   visibility: hidden; }
+
+/*排行榜*/
+.rank .footer .back-btn {
+  background: url("../images/btn-rank-back.png") no-repeat; }
 
 /*# sourceMappingURL=game.css.map */

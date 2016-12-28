@@ -24,7 +24,7 @@ function Counter() {
     }
 };
 
-Counter.prototype.paint = function (counterObj,txtInstance,textObj,value,color,font,align) {
+Counter.prototype.paint = function (counterObj) {
     var _self = this;
     var myImage = util.$$(counterObj.name);
     var x = counterObj.startX;
@@ -33,7 +33,6 @@ Counter.prototype.paint = function (counterObj,txtInstance,textObj,value,color,f
     var height = Math.round(myImage.height * appConfig.prop);
 
     application.context.drawImage(myImage, x, y, width, height);
-    txtInstance.paint(textObj,value,color,font,align);
 };
 
 Counter.prototype.initTimer = function (obj) {

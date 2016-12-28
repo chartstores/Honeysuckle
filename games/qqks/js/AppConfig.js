@@ -7,7 +7,7 @@ var appConfig={
     hammerSpeed:1000,//锤子的下落速度，即每秒移动的像素点
     moneySpeed:1000,
     timer:0,
-    timerCounter:0,
+    timerCounter:20,
     countdown:20*1000,
     horizonGridCount:5,//水平格子数
     verticalGridCount:10,//垂直格子数
