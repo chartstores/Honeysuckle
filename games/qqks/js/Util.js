@@ -103,5 +103,8 @@ var util = {
         var rateX=psX/750;
         var rateY=psY/1334;
         return {x:rateX,y:rateY};
+    },
+    getRandom:function(min,max){
+        return Math.floor(Math.random() * (max - min) + min);
     }
 };

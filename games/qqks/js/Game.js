@@ -167,7 +167,7 @@ Game.prototype.main=function(){
     var now = Date.now();
     var delta = (now - application.game.lastTime) / 1000.0;
     var timerCounter=parseInt((now-application.game.startTime)/1000);
-    if(timerCounter<appConfig.timerCounter){
+    if(timerCounter<(appConfig.timerCounter+1)){
         /*绘制静态图*/
         application.game.render(timerCounter);
         /*绘制动态运动图*/
@@ -196,31 +196,17 @@ Game.prototype.update=function(modifier){
     //掉钱
     //下落的money形状不变的话，但下落的位置已经变化，需要做好判断
     _self.money.fall(_self.money.fallMoney, modifier);
-
+    //何时会掉锤子
+    var randomNumber=util.getRandom(0,100);
+    if(randomNumber%30==0){
+        //锤子需要完整的下落
+        _self.hammer.fall(modifier);
+    }
     //掉锤子
-
-    // appConfig.moneyInterval=setInterval(function(){
-    //     if(moneyActionStep>3){
-    //         moneyActionStep=0;
-    //     }
-    //     if(appConfig.timerCounter<21) {
-    //         _self.money.fall(_self.money.fallMoney, moneyMap[moneyActionStep]);
-    //     }else{
-    //         clearInterval(appConfig.moneyInterval);
-    //     }
-    // },appConfig.moneyFrame);
-    //
-    // appConfig.hammerInterval=setInterval(function(){
-    //     if(appConfig.timerCounter<21) {
-    //         _self.hammer.fall(_self.hammer.normal);//该什么时候出现锤子呢？
-    //     }else{
-    //         clearInterval(appConfig.hammerInterval);
-    //     }
-    // },appConfig.hammerFrame);
-
 
     //手的运动轨迹
     //如何触发掉钱动作、动手行为、铁锤出现、捡钱行为(碰撞行为)？
+    //将产生堆叠钱的行为
     // if(appConfig.hasGoldenHand){
     //     if(step>2&&_self.isCatchMoney){
     //         _self.hand.paint(_self.hand.status[strMap[step]],'goldenCatch',{},{});
