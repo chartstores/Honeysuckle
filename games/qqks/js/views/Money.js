@@ -6,10 +6,10 @@ function Money() {
         first: 'money-first',
         second: 'money-second',
         third: 'money-third',
-        startX: Math.round(util.getCoordinateMap(100, 0).x * application.canvas.width),
+        startX: Math.round(util.getCoordinateMap(115, 0).x * application.canvas.width),
         startY: 0,
-        stopX: Math.round(util.getCoordinateMap(100, 0).x * application.canvas.width),
-        stopY: Math.round(util.getCoordinateMap(0, 780).y * application.canvas.height),
+        stopX: Math.round(util.getCoordinateMap(115, 780).x * application.canvas.width),
+        stopY: Math.round(util.getCoordinateMap(115, 780).y * application.canvas.height),
         x: 0,
         y: 0
     };
@@ -23,15 +23,8 @@ Money.prototype.fall = function (moneyObj, modifier) {
     var x = moneyObj.x = moneyObj.startX;
     var y;
 
-    if (moneyObj.moneyActionStep > 3) {
-        y = 0;
-        moneyObj.moneyActionStep = 0;
-    } else {
-        moneyObj.y = moneyObj.y + moneyObj.speed * modifier;
-        y = moneyObj.y;
-        moneyObj.moneyActionStep++;
-    }
-
+    moneyObj.y = moneyObj.y + moneyObj.speed * modifier;
+    y = moneyObj.y;
     if (y <= moneyObj.stopY) {
         if (0 < y && y <= gap) {
             moneyObj.moneyActionStep = 0;
@@ -45,15 +38,14 @@ Money.prototype.fall = function (moneyObj, modifier) {
     } else if (y > moneyObj.stopY) {
         moneyObj.y = 0;
     }
-    if (moneyObj.moneyActionStep > 3) {
-        moneyObj.moneyActionStep = 0;
-    }
 
-    var myImage = util.$$(moneyStatu[moneyObj.moneyActionStep]);//各个阶段show各个阶段的money形状
-    var width = Math.round(myImage.width * appConfig.prop);
-    var height = Math.round(myImage.height * appConfig.prop);
-    application.context.drawImage(myImage, x, y, width, height);
-    _self.moving();
+    if (moneyObj.moneyActionStep <4) {
+        var myImage = util.$$(moneyStatu[moneyObj.moneyActionStep]);//各个阶段show各个阶段的money形状
+        var width = Math.round(myImage.width * appConfig.prop);
+        var height = Math.round(myImage.height * appConfig.prop);
+        application.context.drawImage(myImage, x, y, width, height);
+        moneyObj.moneyActionStep++;
+    }
 
 };
 
