@@ -6,9 +6,9 @@ function Money() {
         first: 'money-first',
         second: 'money-second',
         third: 'money-third',
-        startX: Math.round(util.getCoordinateMap(50, 0).x * application.canvas.width),
+        startX: Math.round(util.getCoordinateMap(100, 0).x * application.canvas.width),
         startY: 0,
-        stopX: Math.round(util.getCoordinateMap(50, 0).x * application.canvas.width),
+        stopX: Math.round(util.getCoordinateMap(100, 0).x * application.canvas.width),
         stopY: Math.round(util.getCoordinateMap(0, 780).y * application.canvas.height),
         x: 0,
         y: 0
@@ -20,7 +20,7 @@ Money.prototype.fall = function (moneyObj, modifier) {
     var _self = this;
     var moneyStatu = ['money-first', 'money-second', 'money-second', 'money-third'];//下落的钱的状态
     var gap = Math.round((moneyObj.stopY - moneyObj.startY) / moneyStatu.length);
-    var x = moneyObj.x = moneyObj.startX * appConfig.prop;
+    var x = moneyObj.x = moneyObj.startX;
     var y;
 
     if (moneyObj.moneyActionStep > 3) {
