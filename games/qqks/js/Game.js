@@ -62,21 +62,14 @@ Game.prototype.start=function(){
     // _self.showGateList("three",'start');
     // _self.showGateList("four",'start');
     // _self.showGateList("what",'');
-
-    _self.gameNumber=4;
-    _self.isEnabled=true;
-    _self.startTime= Date.now();
-    _self.lastTime = Date.now();
-    _self.main();
 };
 /**
  *
- * @param gateName 需要展示的关数 -1为回退操作
+ * @param gateName {string}||{int} -1 "one"、"two"、"three"、"four"、"what" 需要展示的关数 -1为回退操作
  * @param action 动作
  */
 Game.prototype.showGateList=function(gateName,action){
     var _self=this;
-    console.info("去抢钱按钮");
 
     //画背景图，解绑事件，绘制按钮，然后绑定按钮事件
     _self.toucher.eventHandle('remove',document,'touchstart', function(){}, false);
@@ -104,7 +97,7 @@ Game.prototype.showGateList=function(gateName,action){
     _self.btn.paint(_self.btn.back.gateList);
     switch(gateName){
         case -1:
-            alert("回退操作");
+            alert(action);
             break;
         case "one":
             //绘制非当前关数按钮/非当前按钮绑定事件区域的按钮
@@ -196,30 +189,19 @@ Game.prototype.update=function(modifier){
     //掉钱
     //下落的money形状不变的话，但下落的位置已经变化，需要做好判断
     _self.money.fall(_self.money.fallMoney, modifier);
+
+    //掉锤子
     //何时会掉锤子
     var randomNumber=util.getRandom(0,100);
     if(randomNumber%30==0){
         //锤子需要完整的下落
         _self.hammer.fall(modifier);
     }
-    //掉锤子
 
     //手的运动轨迹
+    _self.hand.moving(modifier);
     //如何触发掉钱动作、动手行为、铁锤出现、捡钱行为(碰撞行为)？
     //将产生堆叠钱的行为
-    // if(appConfig.hasGoldenHand){
-    //     if(step>2&&_self.isCatchMoney){
-    //         _self.hand.paint(_self.hand.status[strMap[step]],'goldenCatch',{},{});
-    //     }else{
-    //         _self.hand.paint(_self.hand.status[strMap[step]],'golden',{},{});
-    //     }
-    // }else{
-    //     if(step>2&&_self.isCatchMoney) {
-    //         _self.hand.paint(_self.hand.status[strMap[step]], 'normalCatch', {}, {});
-    //     }else{
-    //         _self.hand.paint(_self.hand.status[strMap[step]], 'normal', {}, {});
-    //     }
-    // }
 };
 
 /*显示排行榜功能*/

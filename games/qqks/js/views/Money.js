@@ -40,10 +40,7 @@ Money.prototype.fall = function (moneyObj, modifier) {
     }
 
     if (moneyObj.moneyActionStep <4) {
-        var myImage = util.$$(moneyStatu[moneyObj.moneyActionStep]);//各个阶段show各个阶段的money形状
-        var width = Math.round(myImage.width * appConfig.prop);
-        var height = Math.round(myImage.height * appConfig.prop);
-        application.context.drawImage(myImage, x, y, width, height);
+        _self.paint(moneyStatu[moneyObj.moneyActionStep],x,y);
         moneyObj.moneyActionStep++;
     }
 
@@ -51,11 +48,17 @@ Money.prototype.fall = function (moneyObj, modifier) {
 
 /*堆叠*/
 Money.prototype.stack = function () {
-    var strMap = ['one', 'two', 'three', 'four', 'five', 'six', 'seven'];//堆叠的钱的状态
 };
 
 Money.prototype.moving = function (modifier) {
 
+};
+
+Money.prototype.paint=function(name,x,y){
+    var myImage = util.$$(name);//各个阶段show各个阶段的money形状
+    var width = Math.round(myImage.width * appConfig.prop);
+    var height = Math.round(myImage.height * appConfig.prop);
+    application.context.drawImage(myImage, x, y, width, height);
 };
 
 

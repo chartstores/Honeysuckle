@@ -151,40 +151,48 @@ Button.prototype.touch = function (toucher,game) {
     var _self = this;
     var fnMap = {
         "index-btn1": function () {
-            return game.showGateList(1, "start");
+            toucher.eventHandle('remove',document,'touchstart', function(){}, false);
+            game.showGateList("one", "start");
         },
         "index-btn2": function () {
-            return game.showGateList(-1, "back");
+            toucher.eventHandle('remove',document,'touchstart', function(){}, false);
+            game.showGateList(-1, "back");
         },
         "gate-coin-one": function () {
             game.gameNumber=1;
             game.isEnabled=false;
-            return game.main();
         },
         "gate-coin-one-enabled": function () {
+            toucher.eventHandle('remove',document,'touchstart', function(){}, false);
             game.gameNumber=1;
             game.isEnabled=true;
-            return game.main();
+            game.startTime= Date.now();
+            game.lastTime = Date.now();
+            game.main();
         },
         "gate-coin-two": function () {
             game.gameNumber=2;
             game.isEnabled=false;
-            return game.main();
         },
         "gate-coin-two-enabled": function () {
+            toucher.eventHandle('remove',document,'touchstart', function(){}, false);
             game.gameNumber=2;
             game.isEnabled=true;
-            return game.main();
+            game.startTime= Date.now();
+            game.lastTime = Date.now();
+            game.main();
         },
         "gate-coin-three": function () {
             game.gameNumber=3;
             game.isEnabled=false;
-            return game.main();
         },
         "gate-coin-three-enabled": function () {
+            toucher.eventHandle('remove',document,'touchstart', function(){}, false);
             game.gameNumber=3;
             game.isEnabled=true;
-            return game.main();
+            game.startTime= Date.now();
+            game.lastTime = Date.now();
+            game.main();
         },
         "gate-coin-four": function () {
             game.gameNumber=4;
@@ -192,9 +200,12 @@ Button.prototype.touch = function (toucher,game) {
             return game.main();
         },
         "gate-coin-four-enabled": function () {
+            toucher.eventHandle('remove',document,'touchstart', function(){}, false);
             game.gameNumber=4;
             game.isEnabled=true;
-            return game.main();
+            game.startTime= Date.now();
+            game.lastTime = Date.now();
+            game.main();
         },
         "label-rank": function () {
             return game.rank();
@@ -202,7 +213,7 @@ Button.prototype.touch = function (toucher,game) {
         "btn-back-gate": function () {
             game.gameNumber=1;
             game.isEnabled=false;
-            return game.main();
+            game.showGateList(-1,"back");
         },
     };
     var btnFn = function (event) {

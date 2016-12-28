@@ -44,6 +44,10 @@ Toucher.prototype.moving=function(modifier){
     // if(!_self.isEnabled){
     //     //中途由于碰到锤子，被迫停止
     //     // alert("sorry,你还没有权限通往第"+number+"关");
-    //     _self.toucher.eventHandle('remove',document,'touchstart', _self.btn.btnFn, false);
+    //
     // }
+};
+
+Toucher.prototype.checkCollisions=function(){
+
 };
