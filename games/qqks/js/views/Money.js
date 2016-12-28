@@ -21,10 +21,8 @@ Money.prototype.fall = function (moneyObj, modifier) {
     var moneyStatu = ['money-first', 'money-second', 'money-second', 'money-third'];//下落的钱的状态
     var gap = Math.round((moneyObj.stopY - moneyObj.startY) / moneyStatu.length);
     var x = moneyObj.x = moneyObj.startX;
-    var y;
+    var y = moneyObj.y = moneyObj.y + moneyObj.speed * modifier;
 
-    moneyObj.y = moneyObj.y + moneyObj.speed * modifier;
-    y = moneyObj.y;
     if (y <= moneyObj.stopY) {
         if (0 < y && y <= gap) {
             moneyObj.moneyActionStep = 0;

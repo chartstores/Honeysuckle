@@ -3,6 +3,8 @@
  */
 function Toucher(){
     this.speed=256;
+    this.isHandMoving=false;
+    this.touchTimer=null;
 };
 /**
  * 事件处理
@@ -36,6 +38,15 @@ Toucher.prototype.eventHandle=function(eventType,element, eType, handle, bol){
     eventHandle[eventType](element, eType, handle, bol);
 };
 
+//点击一次屏幕，添加一个定时器，在限定时间内可以执行一次抓钱操作
+Toucher.prototype.addTriger=function(){
+    var _self=this;
+    _self.isHandMoving=true;
+    clearTimeout(_self.touchTimer);
+    _self.touchTimer=setTimeout(function(){
+        _self.isHandMoving=false;
+    },1000)
+};
 /*点击屏幕，手势移动*/
 Toucher.prototype.moving=function(modifier){
     //检测碰撞

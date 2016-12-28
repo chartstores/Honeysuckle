@@ -169,6 +169,7 @@ Button.prototype.touch = function (toucher,game) {
             game.startTime= Date.now();
             game.lastTime = Date.now();
             game.main();
+            toucher.eventHandle('add',document,'touchstart', function(){toucher.addTriger();}, false);
         },
         "gate-coin-two": function () {
             game.gameNumber=2;
@@ -181,6 +182,7 @@ Button.prototype.touch = function (toucher,game) {
             game.startTime= Date.now();
             game.lastTime = Date.now();
             game.main();
+            toucher.eventHandle('add',document,'touchstart', function(){toucher.addTriger();}, false);
         },
         "gate-coin-three": function () {
             game.gameNumber=3;
@@ -193,11 +195,12 @@ Button.prototype.touch = function (toucher,game) {
             game.startTime= Date.now();
             game.lastTime = Date.now();
             game.main();
+            toucher.eventHandle('add',document,'touchstart', function(){toucher.addTriger();}, false);
         },
         "gate-coin-four": function () {
             game.gameNumber=4;
             game.isEnabled=true;
-            return game.main();
+            game.main();
         },
         "gate-coin-four-enabled": function () {
             toucher.eventHandle('remove',document,'touchstart', function(){}, false);
@@ -206,9 +209,10 @@ Button.prototype.touch = function (toucher,game) {
             game.startTime= Date.now();
             game.lastTime = Date.now();
             game.main();
+            toucher.eventHandle('add',document,'touchstart', function(){toucher.addTriger();}, false);
         },
         "label-rank": function () {
-            return game.rank();
+           game.rank();
         },
         "btn-back-gate": function () {
             game.gameNumber=1;

@@ -3,11 +3,12 @@ function Hand() {
     this.hasGoldenHand=false;
     this.handActionStep=0;
     this.handAction="stretch";//stretch伸 shrink-缩
-    this.speed=2000;
-    this.startX=Math.round(util.getCoordinateMap(750, 780).x * application.canvas.width);//手的初始坐标
-    this.startY=Math.round(util.getCoordinateMap(750, 780).x * application.canvas.width);//手的初始坐标
-    this.stopX=Math.round(util.getCoordinateMap(225, 780).x * application.canvas.width);//手的目标坐标，由手触摸后控制
-    this.stopY=Math.round(util.getCoordinateMap(225, 780).x * application.canvas.width);//手的目标坐标，由手触摸后控制
+    this.speedX=2500;
+    this.speedY=2500;
+    this.defaultX=Math.round(util.getCoordinateMap(590, 1080).x * application.canvas.width);//手的初始坐标
+    this.defaultY=Math.round(util.getCoordinateMap(590, 1080).y * application.canvas.width);//手的初始坐标
+    this.targetX=Math.round(util.getCoordinateMap(115, 400).x * application.canvas.width);//手的目标坐标，由手触摸后控制
+    this.targetY=Math.round(util.getCoordinateMap(115, 400).y * application.canvas.width);//手的目标坐标，由手触摸后控制
     this.x=0;
     this.y=0;
     this.status = {
@@ -85,65 +86,52 @@ Hand.prototype.moving = function (modifier) {
     var _self=this;
     var gloveStyle=_self.hasGoldenHand?'golden':'normal';
     var handStatu = ['one', 'two', 'three', 'four', 'five', 'six', 'seven','eight'];//手的步骤状态
-    var gap = Math.round((_self.startX - _self.stopX) / handStatu.length);
-    var x= _self.x = _self.startX-gap;
-    var y= _self.y = _self.startY;
-
+    var gap = Math.round((application.canvas.width - _self.targetX) / handStatu.length)*2;
+    var x;
+    var y= _self.defaultY;
     if(_self.handActionStep >7){
         _self.handActionStep=0;
     }else{
+        _self.x+=_self.speedX * modifier;
+        _self.y+=_self.speedY * modifier;
         if(_self.handAction=='stretch'){//伸
-            if (x > _self.stopX) {
-                if ((_self.stopX+3*gap) < x && x <= (_self.stopX+4*gap)) {
+            x=application.canvas.width-_self.x;
+            if (x > _self.targetX) {
+                if ((_self.targetX+3*gap) < x && x <= (_self.targetX+4*gap)) {
                     _self.handActionStep = 0;
-                    console.info("状态1");
-                    console.log(x,y);
-                } else if ((_self.stopX+2*gap )< x && x <= (_self.stopX+3*gap)) {
+                } else if ((_self.targetX+2*gap )< x && x <= (_self.targetX+3*gap)) {
                     _self.handActionStep = 1;
-                    console.info("状态2");
-                    console.log(x,y);
-                } else if ((_self.stopX+gap )< x && x <= (_self.stopX+2*gap)) {
+                } else if ((_self.targetX+gap )< x && x <= (_self.targetX+2*gap)) {
                     _self.handActionStep = 2;
-                    console.info("状态3");
-                    console.log(x,y);
-                } else if (_self.stopX < x && x <= (_self.stopX+gap)) {
+                } else if (_self.targetX < x && x <= (_self.targetX+gap)) {
                     _self.handActionStep = 3;
-                    console.info("状态4");
-                    console.log(x,y);
                 }
-                x=_self.x = _self.x - _self.speed * modifier;
-            } else if (x <= _self.stopX) {
-                x=_self.x = _self.stopX;
+            }
+            _self.paint(_self.status[handStatu[_self.handActionStep]][gloveStyle],x,y);
+            if (x <= _self.targetX) {
+                _self.x=0;
                 _self.handAction='shrink';
             }
-
         }else if(_self.handAction=='shrink'){//缩
-            if (x > _self.stopX) {
-                if (_self.stopX < x && x <= gap) {
+            x=_self.targetX+_self.x;
+            if (x > _self.targetX&&x<application.canvas.width) {
+                if (_self.targetX < x && x <= gap) {
                     _self.handActionStep = 4;
-                    console.info("状态5");
-                    console.log(x,y);
-                } else if ((_self.stopX+gap) < x && x <= (_self.stopX+2*gap)) {
+                } else if ((_self.targetX+gap) < x && x <= (_self.targetX+2*gap)) {
                     _self.handActionStep = 5;
-                    console.info("状态6");
-                    console.log(x,y);
-                } else if ((_self.stopX+2*gap) < x && x <= (_self.stopX+3*gap)) {
+                } else if ((_self.targetX+2*gap) < x && x <= (_self.targetX+3*gap)) {
                     _self.handActionStep = 6;
-                    console.info("状态7");
-                    console.log(x,y);
-                }else if ((_self.stopX+3*gap) < x && x <= (_self.stopX+4*gap)) {
+                }else if ((_self.targetX+3*gap) < x && x <= (_self.targetX+4*gap)) {
                     _self.handActionStep = 7;
-                    console.info("状态8");
-                    console.log(x,y);
+                    application.game.toucher.isHandMoving=false;
                 }
-                x=_self.x = _self.x + _self.speed * modifier;
-            } else if (x <= _self.stopX) {
-                x=_self.x = _self.stopX;
+            }
+            _self.paint(_self.status[handStatu[_self.handActionStep]][gloveStyle],x,y);
+            if (x > _self.targetX&&x>=application.canvas.width) {
+                _self.x = 0;
                 _self.handAction='stretch';
             }
         }
-        _self.paint(_self.status[handStatu[_self.handActionStep]][gloveStyle],x,y);
-        _self.handActionStep++;
     }
 
     // if(_self.hasGoldenHand){

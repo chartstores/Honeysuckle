@@ -199,7 +199,9 @@ Game.prototype.update=function(modifier){
     }
 
     //手的运动轨迹
-    _self.hand.moving(modifier);
+    if(_self.toucher.isHandMoving){
+        _self.hand.moving(modifier);
+    }
     //如何触发掉钱动作、动手行为、铁锤出现、捡钱行为(碰撞行为)？
     //将产生堆叠钱的行为
 };
