@@ -168,8 +168,8 @@ Button.prototype.touch = function (toucher,game) {
             game.isEnabled=true;
             game.startTime= Date.now();
             game.lastTime = Date.now();
-            game.main();
             toucher.eventHandle('add',document,'touchstart', function(){toucher.addTriger();}, false);
+            game.main();
         },
         "gate-coin-two": function () {
             game.gameNumber=2;
@@ -181,8 +181,8 @@ Button.prototype.touch = function (toucher,game) {
             game.isEnabled=true;
             game.startTime= Date.now();
             game.lastTime = Date.now();
-            game.main();
             toucher.eventHandle('add',document,'touchstart', function(){toucher.addTriger();}, false);
+            game.main();
         },
         "gate-coin-three": function () {
             game.gameNumber=3;
@@ -194,8 +194,8 @@ Button.prototype.touch = function (toucher,game) {
             game.isEnabled=true;
             game.startTime= Date.now();
             game.lastTime = Date.now();
-            game.main();
             toucher.eventHandle('add',document,'touchstart', function(){toucher.addTriger();}, false);
+            game.main();
         },
         "gate-coin-four": function () {
             game.gameNumber=4;
@@ -208,8 +208,8 @@ Button.prototype.touch = function (toucher,game) {
             game.isEnabled=true;
             game.startTime= Date.now();
             game.lastTime = Date.now();
-            game.main();
             toucher.eventHandle('add',document,'touchstart', function(){toucher.addTriger();}, false);
+            game.main();
         },
         "label-rank": function () {
            game.rank();

@@ -8,8 +8,8 @@ function Money() {
         third: 'money-third',
         startX: Math.round(util.getCoordinateMap(115, 0).x * application.canvas.width),
         startY: 0,
-        stopX: Math.round(util.getCoordinateMap(115, 780).x * application.canvas.width),
-        stopY: Math.round(util.getCoordinateMap(115, 780).y * application.canvas.height),
+        stopX: Math.round(util.getCoordinateMap(115, 760).x * application.canvas.width),
+        stopY: Math.round(util.getCoordinateMap(115, 760).y * application.canvas.height),
         x: 0,
         y: 0
     };

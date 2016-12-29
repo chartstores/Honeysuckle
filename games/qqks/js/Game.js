@@ -161,16 +161,18 @@ Game.prototype.main=function(){
     var delta = (now - application.game.lastTime) / 1000.0;
     var timerCounter=parseInt((now-application.game.startTime)/1000);
     if(timerCounter<(appConfig.timerCounter+1)){
-        /*绘制静态图*/
         application.game.render(timerCounter);
-        /*绘制动态运动图*/
         application.game.update(delta);
         requestAnimFrame(application.game.main);
+        application.game.toucher.checkCollisions();
+        application.game.lastTime=now;
+    }else if(timerCounter==(appConfig.timerCounter+1)){
+        console.log("当前游戏停止，切换到下一关");
+        application.game.toucher.eventHandle('remove',document,'touchstart', function(){}, false);
     }
-    application.game.lastTime=now;
 };
 Game.prototype.render=function(timerCounter){
-    console.log("第"+timerCounter+"秒");
+    // console.log("第"+timerCounter+"秒");
     var _self=this;
     var progress={'-1':'back','1':'one','2':'two','3':'three','4':'four'};
 
@@ -202,6 +204,7 @@ Game.prototype.update=function(modifier){
     if(_self.toucher.isHandMoving){
         _self.hand.moving(modifier);
     }
+
     //如何触发掉钱动作、动手行为、铁锤出现、捡钱行为(碰撞行为)？
     //将产生堆叠钱的行为
 };

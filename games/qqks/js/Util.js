@@ -83,13 +83,13 @@ var util = {
     saveImage: function () {
         var image = new Image();
 
-        if ($$("canvasImg")) {
+        if (this.$$("canvasImg")) {
             $$("canvasImg").src = appConfig.canvas.toDataURL("image/png");
         } else {
             var imgObj = document.createElement("img");
-            imgObj.src = appConfig.canvas.toDataURL("image/png");
+            imgObj.src = application.canvas.toDataURL("image/png");
             imgObj.id = "canvasImg";
-            $$("imgbox").appendChild(imgObj);
+            this.$$("imgbox").appendChild(imgObj);
         }
     },
 

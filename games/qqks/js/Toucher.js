@@ -47,18 +47,29 @@ Toucher.prototype.addTriger=function(){
         _self.isHandMoving=false;
     },1000)
 };
-/*点击屏幕，手势移动*/
-Toucher.prototype.moving=function(modifier){
-    //检测碰撞
 
-    //解绑事件
-    // if(!_self.isEnabled){
-    //     //中途由于碰到锤子，被迫停止
-    //     // alert("sorry,你还没有权限通往第"+number+"关");
-    //
-    // }
+//解绑事件
+// if(!_self.isEnabled){
+//     //中途由于碰到锤子，被迫停止
+//     // alert("sorry,你还没有权限通往第"+number+"关");
+//
+// }
+
+//检测碰撞
+Toucher.prototype.checkCollisions=function(){
+    // console.info("检测碰撞");
 };
 
-Toucher.prototype.checkCollisions=function(){
+//判断是否碰撞
+Toucher.prototype.collides=function(x, y, r, b, x2, y2, r2, b2) {
+    return !(r <= x2 || x > r2 ||
+    b <= y2 || y > b2);
+};
 
+//返回两个物体的边界
+Toucher.prototype.boxCollides=function(pos, size, pos2, size2) {
+    return collides(pos[0], pos[1],
+        pos[0] + size[0], pos[1] + size[1],
+        pos2[0], pos2[1],
+        pos2[0] + size2[0], pos2[1] + size2[1]);
 };
