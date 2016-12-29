@@ -58,16 +58,20 @@ Toucher.prototype.addTriger=function(){
 //检测碰撞
 Toucher.prototype.checkCollisions=function(){
     // console.info("检测碰撞");
+    var hammer=application.game.hammer;
+    var money=application.game.money;
+    var hand=application.game.hand;
+    console.log("--------------");
+    console.log("锤子");
+    console.info(hammer.position);
+    console.log("钱");
+    console.info(money.position);
+    console.log("手");
+    console.info(hand.position);
     //撞到钱继续+加分、撞到锤子结束+不加不减
     //判断显示何种弹窗
     // application.game.showStatic('success');
     // util.saveImage();
-};
-
-//判断是否碰撞
-Toucher.prototype.collides=function(x, y, r, b, x2, y2, r2, b2) {
-    return !(r <= x2 || x > r2 ||
-    b <= y2 || y > b2);
 };
 
 //返回两个物体的边界
@@ -76,4 +80,10 @@ Toucher.prototype.boxCollides=function(pos, size, pos2, size2) {
         pos[0] + size[0], pos[1] + size[1],
         pos2[0], pos2[1],
         pos2[0] + size2[0], pos2[1] + size2[1]);
+};
+
+//判断是否碰撞
+Toucher.prototype.collides=function(x, y, r, b, x2, y2, r2, b2) {
+    return !(r <= x2 || x > r2 ||
+    b <= y2 || y > b2);
 };

@@ -11,6 +11,12 @@ function Hammer() {
     this.stopY = Math.round(util.getCoordinateMap(30, 750).y * application.canvas.height);
     this.x = 0;
     this.y = 0;
+    this.position={
+        x:0,
+        y:0,
+        width:0,
+        height:0
+    }
 }
 //设置一次，掉一次锤子
 Hammer.prototype.isFailing = function () {
@@ -27,11 +33,7 @@ Hammer.prototype.fall = function (modifier) {
     var x = _self.x = _self.startX;
     var y=_self.y = _self.y + _self.speed * modifier;
 
-    var myImage = util.$$('hammer-' + _self.style);
-    var width = Math.round(myImage.width * appConfig.prop);
-    var height = Math.round(myImage.height * appConfig.prop);
-    application.context.drawImage(myImage, x, y, width, height);
-
+    _self.paint('hammer-' + _self.style,x,y);
     //判断该锤子状态是否应该结束
     if (y >= _self.stopY) {
         _self.y = 0;
@@ -41,4 +43,17 @@ Hammer.prototype.fall = function (modifier) {
 
 Hammer.prototype.moving = function (modifier) {
 
+};
+
+Hammer.prototype.paint=function(name,x,y){
+    var myImage = util.$$(name);
+    var width = Math.round(myImage.width * appConfig.prop);
+    var height = Math.round(myImage.height * appConfig.prop);
+    application.context.drawImage(myImage, x, y, width, height);
+    this.position={
+        x:x,
+        y:y,
+        width:width,
+        height:height
+    };
 };

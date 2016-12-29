@@ -11,7 +11,13 @@ function Money() {
         stopX: Math.round(util.getCoordinateMap(115, 760).x * application.canvas.width),
         stopY: Math.round(util.getCoordinateMap(115, 760).y * application.canvas.height),
         x: 0,
-        y: 0
+        y: 0,
+        position:{
+            x:0,
+            y:0,
+            width:0,
+            height:0
+        }
     };
     this.stackedMoney = {};
 }
@@ -57,6 +63,12 @@ Money.prototype.paint=function(name,x,y){
     var width = Math.round(myImage.width * appConfig.prop);
     var height = Math.round(myImage.height * appConfig.prop);
     application.context.drawImage(myImage, x, y, width, height);
+    this.position={
+        x:x,
+        y:y,
+        width:width,
+        height:height
+    };
 };
 
 

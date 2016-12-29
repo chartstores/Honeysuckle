@@ -12,6 +12,12 @@ function Hand() {
     this.targetY=Math.round(util.getCoordinateMap(115, 400).y * application.canvas.width);//手的目标坐标，由手触摸后控制
     this.x=0;
     this.y=0;
+    this.position={
+        x:0,
+        y:0,
+        width:0,
+        height:0
+    };
     this.count={
         name:"手套计数",
         value:0,
@@ -102,12 +108,18 @@ Hand.prototype.checkHandStatu=function(step){
         return name;
     }
 };
-//工具方法
+
 Hand.prototype.paint=function(name,x,y){
     var myImage = util.$$(name);//各个阶段show各个阶段的money形状
     var width = Math.round(myImage.width * appConfig.prop);
     var height = Math.round(myImage.height * appConfig.prop);
     application.context.drawImage(myImage, x, y, width, height);
+    this.position={
+        x:x,
+        y:y,
+        width:width,
+        height:height
+    };
 };
 
 
