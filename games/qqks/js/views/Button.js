@@ -166,6 +166,7 @@ Button.prototype.touch = function (toucher,game) {
             toucher.eventHandle('remove',document,'touchstart', function(){}, false);
             game.gameNumber=1;
             game.isEnabled=true;
+            game.isRunning=true;
             game.startTime= Date.now();
             game.lastTime = Date.now();
             toucher.eventHandle('add',document,'touchstart', function(){toucher.addTriger();}, false);
@@ -179,6 +180,7 @@ Button.prototype.touch = function (toucher,game) {
             toucher.eventHandle('remove',document,'touchstart', function(){}, false);
             game.gameNumber=2;
             game.isEnabled=true;
+            game.isRunning=true;
             game.startTime= Date.now();
             game.lastTime = Date.now();
             toucher.eventHandle('add',document,'touchstart', function(){toucher.addTriger();}, false);
@@ -192,6 +194,7 @@ Button.prototype.touch = function (toucher,game) {
             toucher.eventHandle('remove',document,'touchstart', function(){}, false);
             game.gameNumber=3;
             game.isEnabled=true;
+            game.isRunning=true;
             game.startTime= Date.now();
             game.lastTime = Date.now();
             toucher.eventHandle('add',document,'touchstart', function(){toucher.addTriger();}, false);
@@ -206,6 +209,7 @@ Button.prototype.touch = function (toucher,game) {
             toucher.eventHandle('remove',document,'touchstart', function(){}, false);
             game.gameNumber=4;
             game.isEnabled=true;
+            game.isRunning=true;
             game.startTime= Date.now();
             game.lastTime = Date.now();
             toucher.eventHandle('add',document,'touchstart', function(){toucher.addTriger();}, false);

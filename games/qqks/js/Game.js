@@ -1,11 +1,11 @@
 /*动作、游戏控制台*/
 //开始、暂停、重新启动、停止功能
 function Game(){
-    var _self=this;
-    _self.gameCounter=0;//记录当前第几关
-    _self.lastTime =0;//上一幀的时间位置
-    _self.gameNumber=0;
-    _self.isEnabled=false;
+    this.gameCounter=0;//记录当前第几关
+    this.lastTime =0;//上一幀的时间位置
+    this.gameNumber=0;
+    this.isEnabled=false;
+    this.isRunnning=false;
     this.isCatchMoney=true;//是否抓住钱
 }
 /*暂停*/
@@ -20,8 +20,10 @@ Game.prototype.restart=function(){
 
 /*停止*/
 Game.prototype.stop=function(){
+    console.log("当前游戏停止，切换到下一关");
     var _self=this;
-    clearInterval(_self.hammer.hammerTimer);
+    _self.isRunnning=false;
+    _self.toucher.eventHandle('remove',document,'touchstart', function(){}, false);
 };
 
 /*开始*/
@@ -40,6 +42,7 @@ Game.prototype.start=function(){
     _self.toucher = new Toucher();
     //判断区域落点，触发对应的事件处理函数
     _self.btn.btnFn=btn.touch(_self.toucher,_self);
+
     _self.txt=new Text();
     _self.counter=new Counter();
     _self.hand=new Hand();
@@ -134,25 +137,19 @@ Game.prototype.showGateList=function(gateName,action){
     _self.toucher.eventHandle('add',document,'touchstart', _self.btn.btnFn, false);
 };
 
-/**
- *
- * @param number -1为去到上一关
- * @param isEnabled
- */
 Game.prototype.main=function(){
-    var _self=this;
+    var _self=application.game;
     var now = Date.now();
-    var delta = (now - application.game.lastTime) / 1000.0;
-    var timerCounter=parseInt((now-application.game.startTime)/1000);
-    if(timerCounter<(appConfig.timerCounter+1)){
-        application.game.render(timerCounter);
-        application.game.update(delta);
+    var delta = (now - _self.lastTime) / 1000.0;
+    var timerCounter=parseInt((now-_self.startTime)/1000);
+    if(timerCounter<(appConfig.timerCounter+1)&&_self.isRunning){
+        _self.render(timerCounter);
+        _self.update(delta);
         requestAnimFrame(application.game.main);
-        application.game.toucher.checkCollisions();
-        application.game.lastTime=now;
+        _self.toucher.checkCollisions();
+        _self.lastTime=now;
     }else if(timerCounter==(appConfig.timerCounter+1)){
-        console.log("当前游戏停止，切换到下一关");
-        application.game.toucher.eventHandle('remove',document,'touchstart', function(){}, false);
+        _self.stop();
     }
 };
 Game.prototype.render=function(timerCounter){
