@@ -20,7 +20,8 @@ Game.prototype.restart=function(){
 
 /*停止*/
 Game.prototype.stop=function(){
-
+    var _self=this;
+    clearInterval(_self.hammer.hammerTimer);
 };
 
 /*开始*/
@@ -177,8 +178,7 @@ Game.prototype.update=function(modifier){
 
     //掉锤子
     //何时会掉锤子
-    var randomNumber=util.getRandom(0,100);
-    if(randomNumber%30==0){
+    if(_self.hammer.isFailing()){
         //锤子需要完整的下落
         _self.hammer.fall(modifier);
     }
