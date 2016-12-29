@@ -244,3 +244,19 @@ Button.prototype.touch = function (toucher,game) {
 
     return btnFn;
 };
+
+Button.prototype.onConfirm=function(){
+    console.log("confirm");
+};
+Button.prototype.onCancel=function(){
+    console.log("cancel");
+};
+Button.prototype.onBack=function(){
+    console.log("back");
+};
+Button.prototype.onShare=function(){
+    console.log("share");
+};
+Button.prototype.onRefresh=function(){
+    console.log("refresh");
+};

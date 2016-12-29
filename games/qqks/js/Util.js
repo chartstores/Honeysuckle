@@ -84,7 +84,7 @@ var util = {
         var image = new Image();
 
         if (this.$$("canvasImg")) {
-            $$("canvasImg").src = appConfig.canvas.toDataURL("image/png");
+            this.$$("canvasImg").src = application.canvas.toDataURL("image/png");
         } else {
             var imgObj = document.createElement("img");
             imgObj.src = application.canvas.toDataURL("image/png");

@@ -45,7 +45,7 @@ Toucher.prototype.addTriger=function(){
     clearTimeout(_self.touchTimer);
     _self.touchTimer=setTimeout(function(){
         _self.isHandMoving=false;
-    },1000)
+    },1000);
 };
 
 //解绑事件
@@ -58,6 +58,10 @@ Toucher.prototype.addTriger=function(){
 //检测碰撞
 Toucher.prototype.checkCollisions=function(){
     // console.info("检测碰撞");
+    //撞到钱继续+加分、撞到锤子结束+不加不减
+    //判断显示何种弹窗
+    // application.game.showStatic('success');
+    // util.saveImage();
 };
 
 //判断是否碰撞

@@ -64,7 +64,6 @@ Hand.prototype.moving = function (modifier) {
                 _self.x = 0;
                 _self.handAction='stretch';
                 application.game.toucher.isHandMoving=false;
-                util.saveImage();
             }
             name=_self.checkHandStatu(_self.handActionStep);
             _self.paint(name,x,y);

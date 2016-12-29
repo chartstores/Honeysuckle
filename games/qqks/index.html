@@ -9,36 +9,20 @@
     <script type="text/javascript" src="libs/hidpi-canvas.min.js"></script>
     <link type="text/css" rel="stylesheet" href="css/game.css"/>
     <title>抢钱快手</title>
-    <style type="text/css">
-        .line{
-            position:absolute;
-            top:0;
-            height:100%;
-            border-left:2px solid green;
-        }
-        .line1 { left:15%;}
-        .line2 { left:36%;}
-        .line3 { left:57%;}
-        .line4 { left:78%;}
-        .line5 { left:99.7%;}
-    </style>
 </head>
 <body>
 <div id="debug-info"></div>
-<div id="layer"></div>
+<div id="layer" class="layer">
+    <div class="layer-bg"></div>
+    <div class="container">
+
+    </div>
+</div>
 <div id="imgbox" class="imgbox"></div>
 <canvas id="canvas"></canvas>
-<div class="line line1"></div>
-<div class="line line2"></div>
-<div class="line line3"></div>
-<div class="line line4"></div>
-<div class="line line5"></div>
-<div class="line line6"></div>
-<div class="line line7"></div>
-<div class="line line8"></div>
-<div class="line line9"></div>
 <!--独立的文件 start-->
 <!--dependence-->
+<script type="text/javascript" src="libs/flex.js"></script>
 <script type="text/javascript" src="libs/zepto/zepto.min.js"></script>
 <script type="text/javascript" src="js/Util.js"></script>
 <script type="text/javascript" src="js/views/Background.js"></script>

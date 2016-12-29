@@ -36,32 +36,15 @@ Game.prototype.start=function(){
     btn.paint(btn.back.index,440*appConfig.prop,181*appConfig.prop);
     _self.btn=btn;
 
-    var toucher = new Toucher();
+    _self.toucher = new Toucher();
     //判断区域落点，触发对应的事件处理函数
-    _self.btn.btnFn=btn.touch(toucher,_self);
-    _self.toucher=toucher;
-
-    var txt=new Text();
-    _self.txt=txt;
-
-    var counter=new Counter();
-    _self.counter=counter;
-
-    var hand=new Hand();
-    _self.hand=hand;
-
-    var money=new Money();
-    _self.money=money;
-
-    var hammer=new Hammer();
-    _self.hammer=hammer;
-
-    //test
-    // _self.showGateList("one",'start');
-    // _self.showGateList("two",'start');
-    // _self.showGateList("three",'start');
-    // _self.showGateList("four",'start');
-    // _self.showGateList("what",'');
+    _self.btn.btnFn=btn.touch(_self.toucher,_self);
+    _self.txt=new Text();
+    _self.counter=new Counter();
+    _self.hand=new Hand();
+    _self.money=new Money();
+    _self.hammer=new Hammer();
+    _self.layer=new Layer();
 };
 /**
  *
@@ -209,7 +192,14 @@ Game.prototype.update=function(modifier){
     //将产生堆叠钱的行为
 };
 
+//显示游戏统计信息
+Game.prototype.showStatic=function(name){
+    //判断显示
+    // this.layer.success();
+    this.layer[name]();
+};
+
 /*显示排行榜功能*/
-Game.prototype.rank=function(){
+Game.prototype.showRanking=function(){
 
 };
