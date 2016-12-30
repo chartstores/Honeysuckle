@@ -122,3 +122,22 @@ Text.prototype.paint=function(obj,value,color,font,textAlign){
     app.context.fillStyle=color?color:'#fff';
     app.context.fillText(value,x,y);
 };
+
+
+Text.prototype.getGloveValue=function(){
+    return this.counterValue;
+};
+
+Text.prototype.setGloveValue=function(value){
+    this.counterValue=value;
+};
+
+Text.prototype.getMoneyValue=function(){
+    var progress={'-1':'back','1':'one','2':'two','3':'three','4':'four'};
+    return application.game.txt.gate[progress[application.game.gameNumber]].moneyCounter.now.value;
+};
+
+Text.prototype.setMoneyValue=function(value){
+    var progress={'-1':'back','1':'one','2':'two','3':'three','4':'four'};
+    application.game.txt.gate[progress[application.game.gameNumber]].moneyCounter.now.value=value;
+};

@@ -59,9 +59,10 @@ Toucher.prototype.addTriger=function(){
 Toucher.prototype.checkCollisions=function(){
     // console.info("检测碰撞");
     var _self=this;
-    var hammerRect=application.game.hammer.rect;
-    var moneyRect=application.game.money.rect;
-    var handRect=application.game.hand.rect;
+    var game=application.game;
+    var hammerRect=game.hammer.rect;
+    var moneyRect=game.money.rect;
+    var handRect=game.hand.rect;
 
     //锤子和手
     var flagA=_self.boxCollides(
@@ -71,10 +72,6 @@ Toucher.prototype.checkCollisions=function(){
         [handRect.width,handRect.height]
     );
     // console.log(flagA);
-    if(flagA){
-        application.game.isRunning=false;
-        application.game.layer.fail();
-    }
 
     //手和钱
     var flagB=_self.boxCollides(
@@ -84,13 +81,34 @@ Toucher.prototype.checkCollisions=function(){
         [moneyRect.width,moneyRect.height]
     );
     // console.log(flagB);
-    if(flagA&&flagB){
-        console.log("抢到钱咯");
+    var progress={'-1':'back','1':'one','2':'two','3':'three','4':'four'};
+    //如果有金手套
+    if(game.hand.hasGoldenHand){
+        if(flagB){
+            game.txt.setMoneyValue(game.txt.getMoneyValue()+100);
+            application.game.hand.handAction='shrink';
+            console.log(game.txt.getMoneyValue());
+        }
+    }else if(!game.hand.hasGoldenHand&&!application.game.toucher.isHandMoving){
+        //没金手套&&无论有没有碰到钱&&碰到锤子
+        if(flagA){
+            game.isRunning=false;
+        }
+
+        //没金手套&&碰到钱&&没碰到锤子
+        if(flagA&&flagB){
+            console.log("抢到钱咯");
+            application.game.hand.handAction='shrink'
+        }
     }
-    //撞到钱继续+加分、撞到锤子结束+不加不减
-    //判断显示何种弹窗
-    // application.game.showStatic('success');
-    // util.saveImage();
+
+    var progress={'-1':'back','1':'one','2':'two','3':'three','4':'four'};
+    var nowValue=game.txt.getMoneyValue();
+    var totalValue=game.txt.gate[progress[game.gameNumber]].moneyCounter.total.value;
+    //如果抢到的金额大于通关值，那么显示成功弹层
+    if(nowValue>totalValue||nowValue==totalValue){
+        game.isRunning=false;
+    }
 };
 
 //返回两个物体的边界

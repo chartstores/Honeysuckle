@@ -64,19 +64,3 @@ Counter.prototype.initCaculator = function (obj) {
 Counter.prototype.updateCaculator = function () {
 
 };
-
-Counter.prototype.getGloveValue=function(){
-    return this.counterValue;
-};
-
-Counter.prototype.setGloveValue=function(value){
-    this.counterValue=value;
-};
-
-Counter.prototype.getCounerValue=function(){
-    return this.counterValue;
-};
-
-Counter.prototype.setCounerValue=function(value){
-    this.counterValue=value;
-};

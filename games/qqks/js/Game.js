@@ -22,8 +22,19 @@ Game.prototype.restart=function(){
 Game.prototype.stop=function(){
     console.log("当前游戏停止，切换到下一关");
     var _self=this;
+    var progress={'-1':'back','1':'one','2':'two','3':'three','4':'four'};
     _self.isRunnning=false;
     _self.toucher.eventHandle('remove',document,'touchstart', function(){}, false);
+
+    _self.txt.paint(_self.txt.gate[progress[_self.gameNumber]].moneyCounter.now,_self.txt.getMoneyValue(),'#f44038',"bold "+32*appConfig.ratio+"px Arial",'right');
+
+    util.saveImage();
+    //如果积分数大于通关数，显示成功弹层；否则显示失败弹层
+    if(_self.txt.gate[progress[_self.gameNumber]].moneyCounter.now.value>=_self.txt.gate[progress[_self.gameNumber]].moneyCounter.total.value){
+        _self.layer.success();
+    }else{
+        _self.layer.fail();
+    }
 };
 
 /*开始*/
@@ -140,21 +151,18 @@ Game.prototype.main=function(){
     var now = Date.now();
     var delta = (now - _self.lastTime) / 1000.0;
     var timerCounter=parseInt((now-_self.startTime)/1000);
-    var progress={'-1':'back','1':'one','2':'two','3':'three','4':'four'};
 
-    if(timerCounter<(appConfig.timerCounter+1)&&_self.isRunning){
-        _self.render(timerCounter);
-        _self.update(delta);
-        requestAnimFrame(application.game.main);
-        _self.lastTime=now;
-    }else if(timerCounter==(appConfig.timerCounter+1)){
-        _self.stop();
-       //如果积分数大于通关数，显示成功弹层；否则显示失败弹层
-        if(_self.txt.gate[progress[_self.gameNumber]].moneyCounter.now.value>=_self.txt.gate[progress[_self.gameNumber]].moneyCounter.total.value){
-            _self.layer.success();
-        }else{
-            _self.layer.fail();
+    if(_self.isRunning){
+        if(timerCounter<(appConfig.timerCounter+1)){
+            _self.render(timerCounter);
+            _self.update(delta);
+            requestAnimFrame(application.game.main);
+            _self.lastTime=now;
+        }else if(timerCounter==(appConfig.timerCounter+1)){
+            _self.stop();
         }
+    }else{
+        _self.stop();
     }
 };
 Game.prototype.render=function(timerCounter){
@@ -168,7 +176,7 @@ Game.prototype.render=function(timerCounter){
     //绘制level n文字
     _self.txt.paint(_self.txt.gate[progress[_self.gameNumber]]);
     //绘制当前金额值/通关值
-    _self.txt.paint(_self.txt.gate[progress[_self.gameNumber]].moneyCounter.now,_self.counter.getCounerValue(),'#f44038',"bold "+32*appConfig.ratio+"px Arial",'right');
+    _self.txt.paint(_self.txt.gate[progress[_self.gameNumber]].moneyCounter.now,_self.txt.getMoneyValue(),'#f44038',"bold "+32*appConfig.ratio+"px Arial",'right');
     _self.txt.paint(_self.txt.gate[progress[_self.gameNumber]].moneyCounter.total,'/'+appConfig.passValue.one.score,'#793605',"bold "+32*appConfig.ratio+"px Arial",'left');
     //计算时间值
     _self.counter.paint(_self.counter.timerTopLeft);
