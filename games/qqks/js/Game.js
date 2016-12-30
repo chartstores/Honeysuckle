@@ -26,7 +26,7 @@ Game.prototype.stop=function(){
     _self.isRunnning=false;
     _self.toucher.eventHandle('remove',document,'touchstart', function(){}, false);
 
-    _self.txt.paint(_self.txt.gate[progress[_self.gameNumber]].moneyCounter.now,_self.txt.getMoneyValue(),'#f44038',"bold "+32*appConfig.ratio+"px Arial",'right');
+    // _self.txt.paint(_self.txt.gate[progress[_self.gameNumber]].moneyCounter.now,_self.txt.getMoneyValue(),'#f44038',"bold "+32*appConfig.ratio+"px Arial",'right');
 
     util.saveImage();
     //如果积分数大于通关数，显示成功弹层；否则显示失败弹层

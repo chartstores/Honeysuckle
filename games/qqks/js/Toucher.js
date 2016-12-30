@@ -91,7 +91,7 @@ Toucher.prototype.checkCollisions=function(){
         }
 
         //没金手套&&碰到钱&&没碰到锤子
-        if(flagA&&flagB){
+        if(!flagA&&flagB){
             // console.log("抢到钱咯");
             game.txt.setMoneyValue(game.txt.getMoneyValue()+100);
             application.game.hand.handAction='shrink';
