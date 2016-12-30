@@ -12,7 +12,7 @@ function Money() {
         stopY: Math.round(util.getCoordinateMap(115, 760).y * application.canvas.height),
         x: 0,
         y: 0,
-        position:{
+        rect:{
             x:0,
             y:0,
             width:0,
@@ -63,7 +63,7 @@ Money.prototype.paint=function(name,x,y){
     var width = Math.round(myImage.width * appConfig.prop);
     var height = Math.round(myImage.height * appConfig.prop);
     application.context.drawImage(myImage, x, y, width, height);
-    this.position={
+    this.rect={
         x:x,
         y:y,
         width:width,

@@ -146,7 +146,6 @@ Game.prototype.main=function(){
         _self.render(timerCounter);
         _self.update(delta);
         requestAnimFrame(application.game.main);
-        _self.toucher.checkCollisions();
         _self.lastTime=now;
     }else if(timerCounter==(appConfig.timerCounter+1)){
         _self.stop();
@@ -187,6 +186,9 @@ Game.prototype.update=function(modifier){
 
     //如何触发掉钱动作、动手行为、铁锤出现、捡钱行为(碰撞行为)？
     //将产生堆叠钱的行为
+
+    //碰撞检测
+    _self.toucher.checkCollisions();
 };
 
 //显示游戏统计信息

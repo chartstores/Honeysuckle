@@ -58,16 +58,35 @@ Toucher.prototype.addTriger=function(){
 //检测碰撞
 Toucher.prototype.checkCollisions=function(){
     // console.info("检测碰撞");
+    var _self=this;
     var hammer=application.game.hammer;
     var money=application.game.money;
     var hand=application.game.hand;
-    console.log("--------------");
-    console.log("锤子");
-    console.info(hammer.position);
-    console.log("钱");
-    console.info(money.position);
-    console.log("手");
-    console.info(hand.position);
+
+    //锤子和手
+    var flagA=_self.boxCollides(
+        [hammer.rect.x,hammer.rect.y],
+        [hammer.rect.width,hammer.rect.height],
+        [hand.rect.x,hand.rect.y],
+        [hand.rect.width,hand.rect.height]
+    );
+    // console.log(flagA);
+    if(flagA){
+        application.game.isRunning=false;
+        application.game.layer.fail();
+    }
+
+    //手和钱
+    var flagB=_self.boxCollides(
+        [hand.rect.x,hand.rect.y],
+        [hand.rect.width,hand.rect.height],
+        [money.rect.x,money.rect.y],
+        [money.rect.width,money.rect.height]
+    );
+    // console.log(flagB);
+    if(flagA&&flagB){
+        console.log("抢到钱咯");
+    }
     //撞到钱继续+加分、撞到锤子结束+不加不减
     //判断显示何种弹窗
     // application.game.showStatic('success');
@@ -76,7 +95,7 @@ Toucher.prototype.checkCollisions=function(){
 
 //返回两个物体的边界
 Toucher.prototype.boxCollides=function(pos, size, pos2, size2) {
-    return collides(pos[0], pos[1],
+    return this.collides(pos[0], pos[1],
         pos[0] + size[0], pos[1] + size[1],
         pos2[0], pos2[1],
         pos2[0] + size2[0], pos2[1] + size2[1]);

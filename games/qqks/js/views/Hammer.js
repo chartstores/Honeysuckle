@@ -11,7 +11,7 @@ function Hammer() {
     this.stopY = Math.round(util.getCoordinateMap(30, 750).y * application.canvas.height);
     this.x = 0;
     this.y = 0;
-    this.position={
+    this.rect={
         x:0,
         y:0,
         width:0,
@@ -22,7 +22,7 @@ function Hammer() {
 Hammer.prototype.isFailing = function () {
     var _self=this;
     var randomNumber=util.getRandom(0,100);
-    if(randomNumber%30==0&&!_self.isFail){//产生的随机数条件符合而且上一次的锤子结束运动
+    if(randomNumber%70==0&&!_self.isFail){//产生的随机数条件符合而且上一次的锤子结束运动
         _self.isFail=true;
     }
     return _self.isFail;
@@ -50,7 +50,7 @@ Hammer.prototype.paint=function(name,x,y){
     var width = Math.round(myImage.width * appConfig.prop);
     var height = Math.round(myImage.height * appConfig.prop);
     application.context.drawImage(myImage, x, y, width, height);
-    this.position={
+    this.rect={
         x:x,
         y:y,
         width:width,

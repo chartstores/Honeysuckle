@@ -12,7 +12,7 @@ function Hand() {
     this.targetY=Math.round(util.getCoordinateMap(115, 400).y * application.canvas.width);//手的目标坐标，由手触摸后控制
     this.x=0;
     this.y=0;
-    this.position={
+    this.rect={
         x:0,
         y:0,
         width:0,
@@ -114,7 +114,7 @@ Hand.prototype.paint=function(name,x,y){
     var width = Math.round(myImage.width * appConfig.prop);
     var height = Math.round(myImage.height * appConfig.prop);
     application.context.drawImage(myImage, x, y, width, height);
-    this.position={
+    this.rect={
         x:x,
         y:y,
         width:width,
