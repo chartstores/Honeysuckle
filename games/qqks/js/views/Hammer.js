@@ -1,14 +1,14 @@
 /*锤子*/
 function Hammer() {
     this.step = 0;
-    this.speed = 2000;// 每秒移动的像素
+    this.speed = 2500;// 每秒移动的像素
     this.isFail = false;
     this.hammerTimer = null;
     this.style = 'normal';//'hammer' 'hammer-beat'
-    this.startX = Math.round(util.getCoordinateMap(30, 0).x * application.canvas.width);
-    this.startY = 0;
-    this.stopX = Math.round(util.getCoordinateMap(30, 750).x * application.canvas.width);
-    this.stopY = Math.round(util.getCoordinateMap(30, 750).y * application.canvas.height);
+    this.startX = Math.round(util.getCoordinateMap(30, 200).x * application.canvas.width);
+    this.startY = Math.round(util.getCoordinateMap(30, 200).x * application.canvas.width);
+    this.stopX = Math.round(util.getCoordinateMap(30, 300).x * application.canvas.width);
+    this.stopY = Math.round(util.getCoordinateMap(30, 300).y * application.canvas.height);
     this.x = 0;
     this.y = 0;
     this.rect={
@@ -21,8 +21,7 @@ function Hammer() {
 //设置一次，掉一次锤子
 Hammer.prototype.isFailing = function () {
     var _self=this;
-    var randomNumber=util.getRandom(0,100);
-    if(randomNumber%70==0&&!_self.isFail){//产生的随机数条件符合而且上一次的锤子结束运动
+    if(!_self.isFail){//产生的随机数条件符合而且上一次的锤子结束运动
         _self.isFail=true;
     }
     return _self.isFail;

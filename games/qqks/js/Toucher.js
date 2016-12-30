@@ -59,16 +59,16 @@ Toucher.prototype.addTriger=function(){
 Toucher.prototype.checkCollisions=function(){
     // console.info("检测碰撞");
     var _self=this;
-    var hammer=application.game.hammer;
-    var money=application.game.money;
-    var hand=application.game.hand;
+    var hammerRect=application.game.hammer.rect;
+    var moneyRect=application.game.money.rect;
+    var handRect=application.game.hand.rect;
 
     //锤子和手
     var flagA=_self.boxCollides(
-        [hammer.rect.x,hammer.rect.y],
-        [hammer.rect.width,hammer.rect.height],
-        [hand.rect.x,hand.rect.y],
-        [hand.rect.width,hand.rect.height]
+        [hammerRect.x,hammerRect.y],
+        [hammerRect.width,hammerRect.height],
+        [handRect.x,handRect.y],
+        [handRect.width,handRect.height]
     );
     // console.log(flagA);
     if(flagA){
@@ -78,10 +78,10 @@ Toucher.prototype.checkCollisions=function(){
 
     //手和钱
     var flagB=_self.boxCollides(
-        [hand.rect.x,hand.rect.y],
-        [hand.rect.width,hand.rect.height],
-        [money.rect.x,money.rect.y],
-        [money.rect.width,money.rect.height]
+        [handRect.x,handRect.y],
+        [handRect.width,handRect.height],
+        [moneyRect.x,moneyRect.y],
+        [moneyRect.width,moneyRect.height]
     );
     // console.log(flagB);
     if(flagA&&flagB){

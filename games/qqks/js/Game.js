@@ -34,14 +34,12 @@ Game.prototype.start=function(){
     background.paint(background.index,window.innerWidth*appConfig.ratio,window.innerHeight*appConfig.ratio);
     _self.background=background;
 
-    var btn=new Button();
-    btn.paint(btn.index.start,440*appConfig.prop,181*appConfig.prop);
-    btn.paint(btn.back.index,440*appConfig.prop,181*appConfig.prop);
-    _self.btn=btn;
-
+    _self.btn=new Button();
+    _self.btn.paint(_self.btn.index.start);
+    _self.btn.paint(_self.btn.back.index);
     _self.toucher = new Toucher();
     //判断区域落点，触发对应的事件处理函数
-    _self.btn.btnFn=btn.touch(_self.toucher,_self);
+    _self.btn.btnFn=_self.btn.touch(_self.toucher,_self);
 
     _self.txt=new Text();
     _self.counter=new Counter();
@@ -142,6 +140,8 @@ Game.prototype.main=function(){
     var now = Date.now();
     var delta = (now - _self.lastTime) / 1000.0;
     var timerCounter=parseInt((now-_self.startTime)/1000);
+    var progress={'-1':'back','1':'one','2':'two','3':'three','4':'four'};
+
     if(timerCounter<(appConfig.timerCounter+1)&&_self.isRunning){
         _self.render(timerCounter);
         _self.update(delta);
@@ -149,6 +149,12 @@ Game.prototype.main=function(){
         _self.lastTime=now;
     }else if(timerCounter==(appConfig.timerCounter+1)){
         _self.stop();
+       //如果积分数大于通关数，显示成功弹层；否则显示失败弹层
+        if(_self.txt.gate[progress[_self.gameNumber]].moneyCounter.now.value>=_self.txt.gate[progress[_self.gameNumber]].moneyCounter.total.value){
+            _self.layer.success();
+        }else{
+            _self.layer.fail();
+        }
     }
 };
 Game.prototype.render=function(timerCounter){
@@ -157,13 +163,19 @@ Game.prototype.render=function(timerCounter){
     var progress={'-1':'back','1':'one','2':'two','3':'three','4':'four'};
 
     _self.background.paint(_self.background.gate[progress[_self.gameNumber]],application.canvas.width,application.canvas.height);
-    _self.background.paint(_self.background.gate[progress[_self.gameNumber]].bedding);//绘制女巫&罐子
-    _self.txt.paint(_self.txt.gate[progress[_self.gameNumber]]);//绘制level n文字
-    _self.txt.paint(_self.txt.gate[progress[_self.gameNumber]].moneyCounter.now,_self.counter.getCounerValue(),'#f44038',"bold "+32*appConfig.ratio+"px Arial",'right');//当前金额值
-    _self.txt.paint(_self.txt.gate[progress[_self.gameNumber]].moneyCounter.total,'/'+appConfig.passValue.one.score,'#793605',"bold "+32*appConfig.ratio+"px Arial",'left');//当前关数值
+    //绘制女巫&罐子
+    _self.background.paint(_self.background.gate[progress[_self.gameNumber]].bedding);
+    //绘制level n文字
+    _self.txt.paint(_self.txt.gate[progress[_self.gameNumber]]);
+    //绘制当前金额值/通关值
+    _self.txt.paint(_self.txt.gate[progress[_self.gameNumber]].moneyCounter.now,_self.counter.getCounerValue(),'#f44038',"bold "+32*appConfig.ratio+"px Arial",'right');
+    _self.txt.paint(_self.txt.gate[progress[_self.gameNumber]].moneyCounter.total,'/'+appConfig.passValue.one.score,'#793605',"bold "+32*appConfig.ratio+"px Arial",'left');
     //计算时间值
-    _self.counter.paint(_self.counter.timerTopRight);
-    _self.txt.paint(_self.txt.timer.topRight,timerCounter+'s','#f44038',"bold "+18*appConfig.ratio+"px Arial",'center');
+    _self.counter.paint(_self.counter.timerTopLeft);
+    _self.txt.paint(_self.txt.timer.topLeft,timerCounter+'s','#f44038',"bold "+18*appConfig.ratio+"px Arial",'center');
+    //绘制金手套
+    _self.counter.paint(_self.counter.gloves);
+    _self.txt.paint(_self.txt.counter.gloves,'x'+_self.counter.gloves.value,'#fde23d',"bold "+28*appConfig.ratio+"px Arial",'center');
 };
 
 Game.prototype.update=function(modifier){

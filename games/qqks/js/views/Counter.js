@@ -4,31 +4,43 @@ function Counter() {
     _self.counterValue=0;
     _self.timerTopRight = {
         name: 'timer',
-        startX: Math.round(util.getCoordinateMap(602, 22).x * application.canvas.width),
-        startY: Math.round(util.getCoordinateMap(602, 22).y * application.canvas.height)
+        startX: Math.round(util.getCoordinateMap(602, 32).x * application.canvas.width),
+        startY: Math.round(util.getCoordinateMap(602, 32).y * application.canvas.height)
+    };
+    _self.timerTopLeft = {
+        name: 'timer',
+        startX: Math.round(util.getCoordinateMap(45, 32).x * application.canvas.width),
+        startY: Math.round(util.getCoordinateMap(45, 32).y * application.canvas.height)
     };
     _self.timerB = {
         name: 'timer',
-        startX: Math.round(util.getCoordinateMap(30, 22).x * application.canvas.width),
-        startY: Math.round(util.getCoordinateMap(30, 22).y * application.canvas.height)
+        startX: Math.round(util.getCoordinateMap(30, 32).x * application.canvas.width),
+        startY: Math.round(util.getCoordinateMap(30, 32).y * application.canvas.height)
     };
     _self.caculatorA = {
         name: 'label-counter',
-        startX: Math.round(util.getCoordinateMap(40, 22).x * application.canvas.width),
-        startY: Math.round(util.getCoordinateMap(40, 22).y * application.canvas.height)
+        startX: Math.round(util.getCoordinateMap(40, 32).x * application.canvas.width),
+        startY: Math.round(util.getCoordinateMap(40, 32).y * application.canvas.height)
     };
     _self.caculatorbB = {
         name: 'label-counter',
         startX: Math.round(util.getCoordinateMap(40, 176).x * application.canvas.width),
         startY: Math.round(util.getCoordinateMap(40, 176).y * application.canvas.height)
     }
+
+    _self.gloves={
+        name:"golden-glove",
+        value:0,
+        startX: Math.round(util.getCoordinateMap(570,40).x * application.canvas.width),
+        startY: Math.round(util.getCoordinateMap(570,40).y * application.canvas.height)
+    };
 };
 
-Counter.prototype.paint = function (counterObj) {
+Counter.prototype.paint = function (counterObj,x,y) {
     var _self = this;
     var myImage = util.$$(counterObj.name);
-    var x = counterObj.startX;
-    var y = counterObj.startY;
+    var x = x?x:counterObj.startX;
+    var y = y?y:counterObj.startY;
     var width = Math.round(myImage.width * appConfig.prop);
     var height = Math.round(myImage.height * appConfig.prop);
 
@@ -53,10 +65,18 @@ Counter.prototype.updateCaculator = function () {
 
 };
 
-Counter.prototype.setValue=function(value){
+Counter.prototype.getGloveValue=function(){
+    return this.counterValue;
+};
+
+Counter.prototype.setGloveValue=function(value){
     this.counterValue=value;
 };
 
 Counter.prototype.getCounerValue=function(){
     return this.counterValue;
-}
+};
+
+Counter.prototype.setCounerValue=function(value){
+    this.counterValue=value;
+};

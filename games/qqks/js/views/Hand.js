@@ -18,12 +18,6 @@ function Hand() {
         width:0,
         height:0
     };
-    this.count={
-        name:"手套计数",
-        value:0,
-        startX: Math.round(util.getCoordinateMap(470,856).x * application.canvas.width),
-        startY: Math.round(util.getCoordinateMap(470,856).y * application.canvas.height)
-    };
 }
 
 //行为-伸、缩

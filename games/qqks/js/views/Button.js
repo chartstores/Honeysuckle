@@ -117,17 +117,15 @@ function Button() {
     };
 }
 
-/*渲染图片按钮*/
-Button.prototype.paint = function (btn, w, h) {
+Button.prototype.paint = function (btnObj, x, y) {
     var _self = this;
-    var myImage = util.$$(btn.name);
-    var x = btn.startX;
-    var y = btn.startY;
-    var width = w ? w : Math.round(myImage.width * appConfig.prop);
-    var height = h ? h : Math.round(myImage.height * appConfig.prop);
-
+    var myImage = util.$$(btnObj.name);
+    var width = Math.round(myImage.width * appConfig.prop);
+    var height =Math.round(myImage.height * appConfig.prop);
+    var x=x?x:btnObj.startX;
+    var y=y?y:btnObj.startY;
     application.context.drawImage(myImage, x, y, parseInt(width), parseInt(height));
-    _self.coordinates.push(btn.name, x, y, width, height);
+    _self.coordinates.push(btnObj.name, x, y, width, height);
 };
 
 /*

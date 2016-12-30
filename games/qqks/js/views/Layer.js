@@ -5,9 +5,10 @@ function Layer(){
 //抢钱成功
 Layer.prototype.success=function(){
     var _self=this;
-    var nowValue=1700;
-    var levelValue=2000;
-    var rate='33%';
+    var nowValue=application.game.counter.getCounerValue();
+    var progress={'-1':'back','1':'one','2':'two','3':'three','4':'four'};
+    var levelValue=application.game.txt.gate[progress[application.game.gameNumber]].moneyCounter.total.value;
+    var rate='xxx';
     var html;
     html='<div class="info-list success">' +
         '<dl>' +
@@ -45,9 +46,10 @@ Layer.prototype.success=function(){
 //抢钱失败
 Layer.prototype.fail=function(){
     var _self=this;
-    var nowValue=1700;
-    var levelValue=2000;
-    var rate='33%';
+    var nowValue=application.game.counter.getCounerValue();
+    var progress={'-1':'back','1':'one','2':'two','3':'three','4':'four'};
+    var levelValue=application.game.txt.gate[progress[application.game.gameNumber]].moneyCounter.total.value;
+    var rate='xxx';
     var html;
     html='<div class="info-list fail">' +
         '<dl>' +

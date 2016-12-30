@@ -1,11 +1,16 @@
 function Text(){
 
     this.counter={
-        counterA:{
+        leftToptmoney:{
             name: 'label-counter',
             value:'123500',
             startX: Math.round(util.getCoordinateMap(90, 34).x * application.canvas.width),
             startY: Math.round(util.getCoordinateMap(90, 34).y * application.canvas.height)
+        },
+        gloves:{
+            value:0,
+            startX: Math.round(util.getCoordinateMap(350,70).x * application.canvas.width),
+            startY: Math.round(util.getCoordinateMap(350,70).y * application.canvas.height)
         }
     };
 
@@ -19,8 +24,14 @@ function Text(){
         topRight:{
             name:'19s',
             value:'19s',
-            startX: Math.round(util.getCoordinateMap(665, 192).x * (application.canvas.width/ appConfig.ratio)),
-            startY: Math.round(util.getCoordinateMap(665, 192).y * (application.canvas.width/ appConfig.ratio))
+            startX: Math.round(util.getCoordinateMap(665, 200).x * (application.canvas.width/ appConfig.ratio)),
+            startY: Math.round(util.getCoordinateMap(665, 200).y * (application.canvas.width/ appConfig.ratio))
+        },
+        topLeft:{
+            name:'19s',
+            value:'19s',
+            startX: Math.round(util.getCoordinateMap(108, 200).x * (application.canvas.width/ appConfig.ratio)),
+            startY: Math.round(util.getCoordinateMap(108, 200).y * (application.canvas.width/ appConfig.ratio))
         }
     };
 
@@ -37,7 +48,7 @@ function Text(){
                     startY: Math.round(util.getCoordinateMap(400, 1270).y * (application.canvas.height/ appConfig.ratio)),
                 },
                 total:{
-                    value:0,
+                    value:appConfig.passValue.one.score,
                     startX: Math.round(util.getCoordinateMap(400, 1270).x * (application.canvas.width/ appConfig.ratio)),
                     startY: Math.round(util.getCoordinateMap(400, 1270).y * (application.canvas.height/ appConfig.ratio)),
                 }
@@ -55,7 +66,7 @@ function Text(){
                     startY: Math.round(util.getCoordinateMap(400, 1270).y * (application.canvas.height/ appConfig.ratio)),
                 },
                 total:{
-                    value:0,
+                    value:appConfig.passValue.two.score,
                     startX: Math.round(util.getCoordinateMap(400, 1270).x * (application.canvas.width/ appConfig.ratio)),
                     startY: Math.round(util.getCoordinateMap(400, 1270).y * (application.canvas.height/ appConfig.ratio)),
                 }
@@ -73,7 +84,7 @@ function Text(){
                     startY: Math.round(util.getCoordinateMap(400, 1270).y * (application.canvas.height/ appConfig.ratio)),
                 },
                 total:{
-                    value:0,
+                    value:appConfig.passValue.three.score,
                     startX: Math.round(util.getCoordinateMap(400, 1270).x * (application.canvas.width/ appConfig.ratio)),
                     startY: Math.round(util.getCoordinateMap(400, 1270).y * (application.canvas.height/ appConfig.ratio)),
                 }
@@ -91,7 +102,7 @@ function Text(){
                     startY: Math.round(util.getCoordinateMap(400, 1270).y * (application.canvas.height/ appConfig.ratio)),
                 },
                 total:{
-                    value:0,
+                    value:appConfig.passValue.four.score,
                     startX: Math.round(util.getCoordinateMap(400, 1270).x * (application.canvas.width/ appConfig.ratio)),
                     startY: Math.round(util.getCoordinateMap(400, 1270).y * (application.canvas.height/ appConfig.ratio)),
                 }
@@ -102,7 +113,6 @@ function Text(){
 
 Text.prototype.paint=function(obj,value,color,font,textAlign){
     var app=application;
-    var name=obj.name;
     var x = obj.startX;
     var y = obj.startY;
     var value=value?value:obj.value;
