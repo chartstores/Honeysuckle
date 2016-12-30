@@ -48,13 +48,6 @@ Toucher.prototype.addTriger=function(){
     },1000);
 };
 
-//解绑事件
-// if(!_self.isEnabled){
-//     //中途由于碰到锤子，被迫停止
-//     // alert("sorry,你还没有权限通往第"+number+"关");
-//
-// }
-
 //检测碰撞
 Toucher.prototype.checkCollisions=function(){
     // console.info("检测碰撞");
@@ -85,20 +78,23 @@ Toucher.prototype.checkCollisions=function(){
     //如果有金手套
     if(game.hand.hasGoldenHand){
         if(flagB){
+            //console.log("抢到钱咯");
             game.txt.setMoneyValue(game.txt.getMoneyValue()+100);
             application.game.hand.handAction='shrink';
-            console.log(game.txt.getMoneyValue());
         }
-    }else if(!game.hand.hasGoldenHand&&!application.game.toucher.isHandMoving){
-        //没金手套&&无论有没有碰到钱&&碰到锤子
+    }else{
+        //没金手套&&无论有没有碰到钱&&碰到锤子->锤子状态改变、手被砸肿
         if(flagA){
+            game.hammer.style='hammer-beat';
+            game.hand.isBeated=true;
             game.isRunning=false;
         }
 
         //没金手套&&碰到钱&&没碰到锤子
         if(flagA&&flagB){
-            console.log("抢到钱咯");
-            application.game.hand.handAction='shrink'
+            // console.log("抢到钱咯");
+            game.txt.setMoneyValue(game.txt.getMoneyValue()+100);
+            application.game.hand.handAction='shrink';
         }
     }
 
