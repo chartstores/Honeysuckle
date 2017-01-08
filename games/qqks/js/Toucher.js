@@ -74,7 +74,10 @@ Toucher.prototype.checkCollisions=function(){
         [moneyRect.width,moneyRect.height]
     );
     // console.log(flagB);
-    var progress={'-1':'back','1':'one','2':'two','3':'three','4':'four'};
+    //如果上次触手完成
+    if(!application.game.toucher.isHandMoving){
+
+    }
     //如果有金手套
     if(game.hand.hasGoldenHand){
         if(flagB){
@@ -85,9 +88,11 @@ Toucher.prototype.checkCollisions=function(){
     }else{
         //没金手套&&无论有没有碰到钱&&碰到锤子->锤子状态改变、手被砸肿
         if(flagA){
+            if(game.hand.isBeated){
+                game.isRunning=false;
+            }
             game.hammer.style='hammer-beat';
             game.hand.isBeated=true;
-            game.isRunning=false;
         }
 
         //没金手套&&碰到钱&&没碰到锤子

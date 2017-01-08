@@ -4,7 +4,7 @@ function Hand() {
     this.isBeated=false;
     this.handActionStep=0;
     this.handAction="stretch";//stretch伸 shrink-缩
-    this.speedX=3500;
+    this.speedX=4500;
     this.speedY=3500;
     this.defaultX=Math.round(util.getCoordinateMap(590, 1080).x * application.canvas.width);//手的初始坐标
     this.defaultY=Math.round(util.getCoordinateMap(590, 1080).y * application.canvas.width);//手的初始坐标
