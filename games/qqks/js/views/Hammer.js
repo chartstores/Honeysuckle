@@ -29,8 +29,8 @@ Hammer.prototype.isFailing = function () {
 
 Hammer.prototype.fall = function (modifier) {
     var _self = this;
-    var x = _self.x = _self.startX;
-    var y=_self.y = _self.y + _self.speed * modifier;
+    var x =parseInt( _self.x = _self.startX);
+    var y=_self.y = parseInt(_self.y + _self.speed * modifier);
 
     _self.paint('hammer-' + _self.style,x,y);
     //判断该锤子状态是否应该结束

@@ -31,7 +31,7 @@ Hand.prototype.moving = function (modifier) {
         _self.x+=_self.speedX * modifier;
         _self.y+=_self.speedY * modifier;
         if(_self.handAction=='stretch'){//伸
-            x=application.canvas.width-_self.x;
+            x=parseInt(application.canvas.width-_self.x);
             if(x >= (_self.targetX+4*gap)){
                 _self.handActionStep = 0;
             }else if ((_self.targetX+3*gap) < x && x <(_self.targetX+4*gap)) {
@@ -50,7 +50,7 @@ Hand.prototype.moving = function (modifier) {
             name=_self.checkHandStatu(_self.handActionStep);
             _self.paint(name,x,y);
         }else if(_self.handAction=='shrink'){//缩
-            x=_self.targetX+_self.x;
+            x=parseInt(_self.targetX+_self.x);
             if (_self.targetX < x && x <= (_self.targetX+gap)) {
                 _self.handActionStep = 4;
             } else if ((_self.targetX+gap) < x && x <= (_self.targetX+2*gap)) {

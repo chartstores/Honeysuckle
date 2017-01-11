@@ -64,7 +64,6 @@ Toucher.prototype.checkCollisions=function(){
         [handRect.x,handRect.y],
         [handRect.width,handRect.height]
     );
-    // console.log(flagA);
 
     //手和钱
     var flagB=_self.boxCollides(
@@ -73,16 +72,12 @@ Toucher.prototype.checkCollisions=function(){
         [moneyRect.x,moneyRect.y],
         [moneyRect.width,moneyRect.height]
     );
-    // console.log(flagB);
-    //如果上次触手完成
-    if(!application.game.toucher.isHandMoving){
-
-    }
+    var newValue;
     //如果有金手套
     if(game.hand.hasGoldenHand){
         if(flagB){
-            //console.log("抢到钱咯");
-            game.txt.setMoneyValue(game.txt.getMoneyValue()+100);
+            newValue=game.txt.getMoneyValue()+100;
+            game.txt.setMoneyValue(newValue);
             application.game.hand.handAction='shrink';
         }
     }else{
@@ -97,9 +92,11 @@ Toucher.prototype.checkCollisions=function(){
 
         //没金手套&&碰到钱&&没碰到锤子
         if(!flagA&&flagB){
-            // console.log("抢到钱咯");
-            game.txt.setMoneyValue(game.txt.getMoneyValue()+100);
+            console.log(game.txt.getMoneyValue());
+            newValue=game.txt.getMoneyValue()+100;
             application.game.hand.handAction='shrink';
+            game.txt.setMoneyValue(newValue);
+            console.info("加分并改变手的方向，方向是:"+application.game.hand.handAction);
         }
     }
 

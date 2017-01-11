@@ -32,6 +32,9 @@ Game.prototype.stop=function(){
     //如果积分数大于通关数，显示成功弹层；否则显示失败弹层
     if(_self.txt.gate[progress[_self.gameNumber]].moneyCounter.now.value>=_self.txt.gate[progress[_self.gameNumber]].moneyCounter.total.value){
         _self.layer.success();
+        if(_self.gameNumber<4){
+            _self.gameNumber++;
+        }
     }else{
         _self.layer.fail();
     }
@@ -202,13 +205,13 @@ Game.prototype.update=function(modifier){
     //手的运动轨迹
     if(_self.toucher.isHandMoving){
         _self.hand.moving(modifier);
+        //碰撞检测
+        _self.toucher.checkCollisions();
     }
 
     //如何触发掉钱动作、动手行为、铁锤出现、捡钱行为(碰撞行为)？
     //将产生堆叠钱的行为
 
-    //碰撞检测
-    _self.toucher.checkCollisions();
 };
 
 //显示游戏统计信息

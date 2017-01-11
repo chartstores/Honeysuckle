@@ -261,4 +261,13 @@ Button.prototype.onShare=function(){
 };
 Button.prototype.onRefresh=function(){
     console.log("refresh");
+    //重置值，并重新开始游戏
+    var game=application.game;
+    game.toucher.eventHandle('remove',document,'touchstart', function(){}, false);
+    game.isEnabled=true;
+    game.isRunning=true;
+    game.startTime= Date.now();
+    game.lastTime = Date.now();
+    game.toucher.eventHandle('add',document,'touchstart', function(){toucher.addTriger();}, false);
+    game.main();
 };
