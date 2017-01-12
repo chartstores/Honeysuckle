@@ -49,11 +49,11 @@ Game.prototype.start=function(){
     _self.background=background;
 
     _self.btn=new Button();
-    _self.btn.paint(_self.btn.index.start);
-    _self.btn.paint(_self.btn.back.index);
     _self.toucher = new Toucher();
     //判断区域落点，触发对应的事件处理函数
-    _self.btn.btnFn=_self.btn.touch(_self.toucher,_self);
+    _self.btn.btnFn=_self.btn.touchGameCoin();
+    _self.btn.paint(_self.btn.index.start);
+    _self.btn.paint(_self.btn.back.index);
 
     _self.txt=new Text();
     _self.counter=new Counter();
@@ -207,7 +207,9 @@ Game.prototype.update=function(modifier){
     if(_self.toucher.isHandMoving){
         _self.hand.moving(modifier);
         //碰撞检测
-        _self.toucher.checkCollisions();
+        if(_self.hand.handAction=='stretch'){
+            _self.toucher.checkCollisions();
+        }
     }
 
     //如何触发掉钱动作、动手行为、铁锤出现、捡钱行为(碰撞行为)？

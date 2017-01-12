@@ -45,8 +45,11 @@ Toucher.prototype.addTriger=function(){
     //重新回到初始值
     if(application.game.hand.handActionStep==0){
         _self.isHandMoving=true;
+        // _self.checkCollisions();
+        // _self.eventHandle('remove',document,'touchstart', function(){}, false);
         _self.touchTimer=setTimeout(function(){
             _self.isHandMoving=false;
+            // _self.eventHandle('add',document,'touchstart', function(){_self.addTriger();}, false);
         },1000);
     }
 };
@@ -75,6 +78,7 @@ Toucher.prototype.checkCollisions=function(){
         [moneyRect.x,moneyRect.y],
         [moneyRect.width,moneyRect.height]
     );
+
     var newValue;
     //如果有金手套
     if(game.hand.hasGoldenHand){
@@ -95,11 +99,9 @@ Toucher.prototype.checkCollisions=function(){
 
         //没金手套&&碰到钱&&没碰到锤子
         if(!flagA&&flagB){
-            console.log(game.txt.getMoneyValue());
             newValue=game.txt.getMoneyValue()+100;
             application.game.hand.handAction='shrink';
             game.txt.setMoneyValue(newValue);
-            console.info("加分并改变手的方向，方向是:"+application.game.hand.handAction);
         }
     }
 

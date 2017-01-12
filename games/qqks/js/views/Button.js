@@ -145,15 +145,16 @@ Button.prototype.paintOther = function (objectArr) {
 };
 
 /*绑定点击某个区域,以使某个方法生效*/
-Button.prototype.touch = function (toucher,game) {
+Button.prototype.touchGameCoin = function () {
     var _self = this;
+    var game=application.game;
     var fnMap = {
         "index-btn1": function () {
-            toucher.eventHandle('remove',document,'touchstart', function(){}, false);
-            game.showGateList(1, "start");
+            game.toucher.eventHandle('remove',document,'touchstart', function(){}, false);
+            game.showGateList(1, "show game list");
         },
         "index-btn2": function () {
-            toucher.eventHandle('remove',document,'touchstart', function(){}, false);
+            game.toucher.eventHandle('remove',document,'touchstart', function(){}, false);
             game.showGateList(-1, "back");
         },
         "gate-coin-one": function () {
@@ -161,13 +162,13 @@ Button.prototype.touch = function (toucher,game) {
             game.isEnabled=false;
         },
         "gate-coin-one-enabled": function () {
-            toucher.eventHandle('remove',document,'touchstart', function(){}, false);
+            game.toucher.eventHandle('remove',document,'touchstart', function(){}, false);
             game.gameNumber=1;
             game.isEnabled=true;
             game.isRunning=true;
             game.startTime= Date.now();
             game.lastTime = Date.now();
-            toucher.eventHandle('add',document,'touchstart', function(){toucher.addTriger();}, false);
+            game.toucher.eventHandle('add',document,'touchstart', function(){game.toucher.addTriger();}, false);
             game.main();
         },
         "gate-coin-two": function () {
@@ -175,13 +176,13 @@ Button.prototype.touch = function (toucher,game) {
             game.isEnabled=false;
         },
         "gate-coin-two-enabled": function () {
-            toucher.eventHandle('remove',document,'touchstart', function(){}, false);
+            game.toucher.eventHandle('remove',document,'touchstart', function(){}, false);
             game.gameNumber=2;
             game.isEnabled=true;
             game.isRunning=true;
             game.startTime= Date.now();
             game.lastTime = Date.now();
-            toucher.eventHandle('add',document,'touchstart', function(){toucher.addTriger();}, false);
+            game.toucher.eventHandle('add',document,'touchstart', function(){game.toucher.addTriger();}, false);
             game.main();
         },
         "gate-coin-three": function () {
@@ -189,13 +190,13 @@ Button.prototype.touch = function (toucher,game) {
             game.isEnabled=false;
         },
         "gate-coin-three-enabled": function () {
-            toucher.eventHandle('remove',document,'touchstart', function(){}, false);
+            game.toucher.eventHandle('remove',document,'touchstart', function(){}, false);
             game.gameNumber=3;
             game.isEnabled=true;
             game.isRunning=true;
             game.startTime= Date.now();
             game.lastTime = Date.now();
-            toucher.eventHandle('add',document,'touchstart', function(){toucher.addTriger();}, false);
+            game.toucher.eventHandle('add',document,'touchstart', function(){game.toucher.addTriger();}, false);
             game.main();
         },
         "gate-coin-four": function () {
@@ -204,13 +205,13 @@ Button.prototype.touch = function (toucher,game) {
             game.main();
         },
         "gate-coin-four-enabled": function () {
-            toucher.eventHandle('remove',document,'touchstart', function(){}, false);
+            game.toucher.eventHandle('remove',document,'touchstart', function(){}, false);
             game.gameNumber=4;
             game.isEnabled=true;
             game.isRunning=true;
             game.startTime= Date.now();
             game.lastTime = Date.now();
-            toucher.eventHandle('add',document,'touchstart', function(){toucher.addTriger();}, false);
+            game.toucher.eventHandle('add',document,'touchstart', function(){game.toucher.addTriger();}, false);
             game.main();
         },
         "label-rank": function () {
@@ -240,7 +241,7 @@ Button.prototype.touch = function (toucher,game) {
         }
     };
     if (_self.btnEventCount == 0) {
-        toucher.eventHandle('add', document, 'touchstart', btnFn, false);
+        game.toucher.eventHandle('add', document, 'touchstart', btnFn, false);
     }
     _self.btnEventCount++;
 
