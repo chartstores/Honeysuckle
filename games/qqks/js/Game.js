@@ -67,9 +67,10 @@ Game.prototype.start=function(){
  * @param gateName {string}||{int} -1 "one"、"two"、"three"、"four"、"what" 需要展示的关数 -1为回退操作
  * @param action 动作
  */
-Game.prototype.showGateList=function(gateName,action){
+Game.prototype.showGateList=function(gateNumber,action){
     var _self=this;
-
+    var progress={'-1':'back','1':'one','2':'two','3':'three','4':'four'};
+    var gateName=progress[gateNumber];
     //画背景图，解绑事件，绘制按钮，然后绑定按钮事件
     _self.toucher.eventHandle('remove',document,'touchstart', function(){}, false);
     application.context.clearRect(0, 0, application.canvas.width, application.canvas.height);

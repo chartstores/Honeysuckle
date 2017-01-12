@@ -41,11 +41,14 @@ Toucher.prototype.eventHandle=function(eventType,element, eType, handle, bol){
 //点击一次屏幕，添加一个定时器，在限定时间内可以执行一次抓钱操作
 Toucher.prototype.addTriger=function(){
     var _self=this;
-    _self.isHandMoving=true;
     clearTimeout(_self.touchTimer);
-    _self.touchTimer=setTimeout(function(){
-        _self.isHandMoving=false;
-    },1000);
+    //重新回到初始值
+    if(application.game.hand.handActionStep==0){
+        _self.isHandMoving=true;
+        _self.touchTimer=setTimeout(function(){
+            _self.isHandMoving=false;
+        },1000);
+    }
 };
 
 //检测碰撞

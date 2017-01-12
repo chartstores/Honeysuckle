@@ -150,7 +150,7 @@ Button.prototype.touch = function (toucher,game) {
     var fnMap = {
         "index-btn1": function () {
             toucher.eventHandle('remove',document,'touchstart', function(){}, false);
-            game.showGateList("one", "start");
+            game.showGateList(1, "start");
         },
         "index-btn2": function () {
             toucher.eventHandle('remove',document,'touchstart', function(){}, false);
@@ -255,6 +255,10 @@ Button.prototype.onCancel=function(){
 };
 Button.prototype.onBack=function(){
     console.log("back");
+    //返回通关游戏列表
+    var game=application.game;
+    var progress={'-1':'back','1':'one','2':'two','3':'three','4':'four'};
+    game.showGateList(progress[game.gameNumber], "start");
 };
 Button.prototype.onShare=function(){
     console.log("share");
@@ -268,6 +272,6 @@ Button.prototype.onRefresh=function(){
     game.isRunning=true;
     game.startTime= Date.now();
     game.lastTime = Date.now();
-    game.toucher.eventHandle('add',document,'touchstart', function(){toucher.addTriger();}, false);
+    game.toucher.eventHandle('add',document,'touchstart', function(){game.toucher.addTriger();}, false);
     game.main();
 };
