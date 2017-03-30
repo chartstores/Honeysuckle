@@ -7,6 +7,7 @@ function Game(){
     this.isEnabled=false;
     this.isRunnning=false;
     this.isCatchMoney=true;//是否抓住钱
+    this.totalMoney=0;
 }
 /*暂停*/
 Game.prototype.pause=function(){
@@ -61,7 +62,9 @@ Game.prototype.start=function(){
     _self.money=new Money();
     _self.hammer=new Hammer();
     _self.layer=new Layer();
+    this.showGateList(1,"diyiguan");
 };
+
 /**
  *
  * @param gateName {string}||{int} -1 "one"、"two"、"three"、"four"、"what" 需要展示的关数 -1为回退操作
@@ -69,20 +72,29 @@ Game.prototype.start=function(){
  */
 Game.prototype.showGateList=function(gateNumber,action){
     var _self=this;
+    if(gateNumber==-1){
+        //返回上一关
+        console.info("返回上一关游戏通关画面，非列表");
+        return false;
+    }
+
     var progress={'-1':'back','1':'one','2':'two','3':'three','4':'four'};
     var gateName=progress[gateNumber];
+
     //画背景图，解绑事件，绘制按钮，然后绑定按钮事件
     _self.toucher.eventHandle('remove',document,'touchstart', function(){}, false);
     application.context.clearRect(0, 0, application.canvas.width, application.canvas.height);
 
-    _self.background.paint(_self.background.gate,application.canvas.width,application.canvas.height);
-    //初始化计数器、排行榜
-    _self.counter.paint(_self.counter.caculatorA,_self.txt,_self.txt.counter.counterA,'123500','#fbe985',"bold 21px Arial",'center');
-    _self.btn.paint(_self.btn.rank);
-    _self.txt.paint(_self.txt.rank,'排行榜','#fbe985',"20px Microsoft Yahei",'center');
-
     //对相应的通关按钮绑定事件
     _self.btn.coordinates=[];
+    _self.background.paint(_self.background.gate,application.canvas.width,application.canvas.height);
+
+    _self.counter.paint(_self.counter.topLeft);
+    _self.txt.paint(_self.txt.counter.topLeft,_self.totalMoney,'#fbe985',20*appConfig.ratio+"px Microsoft Yahei",'left');
+
+    _self.btn.paint(_self.btn.rank);
+    _self.txt.paint(_self.txt.rank,'排行榜','#fbe985',20*appConfig.ratio+"px Microsoft Yahei",'center');
+
     var offset=[];//由于激活状态和未激活状态的图片尺寸大小有差异，需要重新计算绘图开始位置
     if(_self.btn.gateList.gateCoin[gateName].enabled){
         offset.push(Math.round(util.$$(_self.btn.gateList.gateCoin[gateName].enabledName).width-util.$$(_self.btn.gateList.gateCoin[gateName].name).width)/2);
@@ -96,9 +108,6 @@ Game.prototype.showGateList=function(gateNumber,action){
     _self.btn.paint(_self.btn.gateList.gateCoin[gateName]);
     _self.btn.paint(_self.btn.back.gateList);
     switch(gateName){
-        case -1:
-            alert(action);
-            break;
         case "one":
             //绘制非当前关数按钮/非当前按钮绑定事件区域的按钮
             _self.btn.paintOther([
@@ -175,13 +184,20 @@ Game.prototype.render=function(timerCounter){
     var progress={'-1':'back','1':'one','2':'two','3':'three','4':'four'};
 
     _self.background.paint(_self.background.gate[progress[_self.gameNumber]],application.canvas.width,application.canvas.height);
+
+    //累计金额数目
+    _self.totalMoney+=_self.txt.getMoneyValue();
+
     //绘制女巫&罐子
     _self.background.paint(_self.background.gate[progress[_self.gameNumber]].bedding);
+
     //绘制level n文字
     _self.txt.paint(_self.txt.gate[progress[_self.gameNumber]]);
+
     //绘制当前金额值/通关值
     _self.txt.paint(_self.txt.gate[progress[_self.gameNumber]].moneyCounter.now,_self.txt.getMoneyValue(),'#f44038',"bold "+32*appConfig.ratio+"px Arial",'right');
     _self.txt.paint(_self.txt.gate[progress[_self.gameNumber]].moneyCounter.total,'/'+appConfig.passValue.one.score,'#793605',"bold "+32*appConfig.ratio+"px Arial",'left');
+
     //计算时间值
     _self.counter.paint(_self.counter.timerTopLeft);
     _self.txt.paint(_self.txt.timer.topLeft,timerCounter+'s','#f44038',"bold "+18*appConfig.ratio+"px Arial",'center');
@@ -226,5 +242,5 @@ Game.prototype.showStatic=function(name){
 
 /*显示排行榜功能*/
 Game.prototype.showRanking=function(){
-
+    console.info("显示排行榜");
 };

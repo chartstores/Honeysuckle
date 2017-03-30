@@ -12,12 +12,7 @@ function Counter() {
         startX: Math.round(util.getCoordinateMap(45, 32).x * application.canvas.width),
         startY: Math.round(util.getCoordinateMap(45, 32).y * application.canvas.height)
     };
-    _self.timerB = {
-        name: 'timer',
-        startX: Math.round(util.getCoordinateMap(30, 32).x * application.canvas.width),
-        startY: Math.round(util.getCoordinateMap(30, 32).y * application.canvas.height)
-    };
-    _self.caculatorA = {
+    _self.topLeft = {
         name: 'label-counter',
         startX: Math.round(util.getCoordinateMap(40, 32).x * application.canvas.width),
         startY: Math.round(util.getCoordinateMap(40, 32).y * application.canvas.height)

@@ -1,11 +1,10 @@
 function Text(){
-
     this.counter={
-        leftToptmoney:{
+        topLeft:{
             name: 'label-counter',
-            value:'123500',
-            startX: Math.round(util.getCoordinateMap(90, 34).x * application.canvas.width),
-            startY: Math.round(util.getCoordinateMap(90, 34).y * application.canvas.height)
+            value:0,
+            startX: Math.round(util.getCoordinateMap(60, 37).x * application.canvas.width),
+            startY: Math.round(util.getCoordinateMap(60, 37).y * application.canvas.height)
         },
         gloves:{
             value:0,
