@@ -7,16 +7,30 @@
 <body>
 <script type="text/javascript">
     (function(){
-        var ba=18,bb=7.8,bc=17;
+        var ba=18,bb=7.8,bc=17;//1
+//        var ba=14,bb=4.8,bc=9;//2
+//        var ba=18,bb=7.8,bc=17;//3
+//        var ba=18,bb=7.8,bc=17;//4
+//        var ba=18,bb=7.8,bc=17;//5
         var source=10000;
         var minCommon=(ba+bb+bc)/(3*3);//最小公倍数
         var product=source*minCommon;//积
         var unit=source/((product/ba)+(product/bb)+(product/bc));//单位
+        var rate=((ba*(unit*(product/ba)))+(bb*(unit*(product/bb)))+(bc*(unit*(product/bc))))/(3*source);
 
+        var fa=unit*(product/ba);
+        var fb=unit*(product/bb);
+        var fc=unit*(product/bc);
+
+        var ma = ba*(unit*(product/ba));
+        var mb = bb*(unit*(product/bb));
+        var mc = bc*(unit*(product/bc));
+
+        console.info("rate="+rate);
         console.log("unit="+unit);
-        console.info("ba="+ba+",所占份额="+unit*(product/ba)+",积="+(ba*(unit*(product/ba))));
-        console.info("bb="+bb+",所占份额="+unit*(product/bb)+",积="+(bb*(unit*(product/bb))));
-        console.info("bc="+bc+",所占份额="+unit*(product/bc)+",积="+(bc*(unit*(product/bc))));
+        console.info("ba="+ba+",所占份额="+fa+",积="+ma+",ly="+(ma-fa));
+        console.info("bb="+bb+",所占份额="+fb+",积="+mb+",ly="+(ma-fb));
+        console.info("bc="+bc+",所占份额="+fc+",积="+mc+",ly="+(ma-fc));
     })();
 </script>
 
