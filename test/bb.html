@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    (function(){
+        var ba=18,bb=7.8,bc=17;
+        var source=10000;
+        var minCommon=(ba+bb+bc)/(3*3);//最小公倍数
+        var product=source*minCommon;//积
+        var unit=source/((product/ba)+(product/bb)+(product/bc));//单位
+
+        console.log("unit="+unit);
+        console.info("ba="+ba+",所占份额="+unit*(product/ba)+",积="+(ba*(unit*(product/ba))));
+        console.info("bb="+bb+",所占份额="+unit*(product/bb)+",积="+(bb*(unit*(product/bb))));
+        console.info("bc="+bc+",所占份额="+unit*(product/bc)+",积="+(bc*(unit*(product/bc))));
+    })();
+</script>
+
+<script type="text/javascript">
+
+</script>
+</body>
+</html>
