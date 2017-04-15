@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta content="width=device-width,initial-scale=1, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+    <meta name="format-detection" content="telephone=no, email=no"/>
+    <title>test</title>
+    <link rel="stylesheet" type="text/css" href="static/libs/normalize/normalize.css" />
+</head>
+<body>
+<input id="Score" type="number"/>
+<script type="text/javascript" src="static/libs/jquery/jquery-1.8.3.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        //敲击按键时触发
+        $("#Score").bind("keypress", function(event) {
+            var event= event || window.event;
+            var getValue = $(this).val();
+            console.log($(this).val());
+            //控制第一个不能输入小数点"."
+            if (getValue.length == 0 && event.which == 46) {
+//                alert(1)
+                event.preventDefault();
+                return;
+            }
+            //控制只能输入一个小数点"."
+
+            // console.info(getValue.indexOf('.'));
+            console.log(getValue);
+            var dotPatt=/\.+$/g;
+            // if (dotPatt.test(getValue) && event.which == 46) {
+            //     event.preventDefault();
+            //     return;
+            // }
+
+            if (getValue.indexOf('.') != -1 && event.which == 46) {
+                event.preventDefault();
+//                alert(1)
+                return;
+            }
+            //控制只能输入的值
+            if (event.which && (event.which < 48 || event.which > 57) && event.which != 8 && event.which != 46) {
+                event.preventDefault();
+                return;
+            }
+
+            if(getValue.length>3){
+                event.preventDefault();
+                return;
+            }
+        })
+        //失去焦点是触发
+        $("#Score").bind("blur", function(event) {
+            var value = $(this).val(), reg = /\.$/;
+            if (reg.test(value)) {
+                value = value.replace(reg, "");
+                $(this).val(value);
+            }
+        })
+    });
+</script>
+
+</body>
+</html>

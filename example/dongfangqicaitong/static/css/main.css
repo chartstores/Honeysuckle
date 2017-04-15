@@ -1,0 +1,366 @@
+@charset "UTF-8";
+html {
+  height: 100%; }
+
+body {
+  height: 100%;
+  background-color: #f6f4f0;
+  font-family: "Microsoft YaHei"; }
+
+dt, dl, dd {
+  margin: 0;
+  padding: 0; }
+
+/*表单input*/
+.cell-input {
+  border: 1px solid #e2e2e2;
+  height: 38px;
+  line-height: 38px\9;
+  padding: 0px 10px;
+  width: 260px;
+  overflow: hidden;
+  color: #ccc;
+  font-size: 14px;
+  vertical-align: middle; }
+
+.cell-input.disabled {
+  color: #333;
+  -moz-user-select: none;
+  cursor: not-allowed; }
+
+.cell-input.on-error {
+  border: 1px solid #cb2d23;
+  color: #333; }
+
+.cell-input.on-focus {
+  border: 1px solid #f1a650;
+  color: #333; }
+
+.cell-input.highlight {
+  color: #333; }
+
+.ui-input {
+  position: relative; }
+
+.ui-input .ui-tips {
+  position: absolute;
+  left: 200px;
+  top: 0; }
+
+.ui-input .ui-tips .note {
+  color: #b5b5b6;
+  display: none; }
+
+.ui-input .ui-tips .error {
+  color: #e94b24;
+  display: none; }
+
+.ui-input .ui-tips .correct {
+  color: #5bb065;
+  display: none; }
+
+.ui-input .ui-tips i {
+  display: inline-block;
+  margin: 0px 5px;
+  font-size: 18px;
+  color: #e94b24;
+  font-style: normal; }
+
+.ui-input .ui-tips .note i {
+  color: #b5b5b6; }
+
+.ui-input .ui-tips .correct i {
+  color: #5bb065; }
+
+/*button、根据项目实际情况增减，主要包括默认和鼠标经过的color,background，部分是a标签，因此需要添加visited和hover状态*/
+[class^="cell-btn"], [class^="cell-btn"]:visited {
+  display: inline-block;
+  height: 40px;
+  line-height: 40px;
+  font-size: 16px;
+  text-align: center;
+  border: 0;
+  border-radius: 5px;
+  cursor: pointer;
+  vertical-align: middle; }
+
+/*.cell-btn-disabled, a.cell-btn-disabled:visited{background:#e59691;color:#f4dddc;}*/
+.cell-btn-disabled, a.cell-btn-disabled:visited {
+  background: #d9d9d9;
+  color: #ffffff; }
+
+/*.cell-btn-disabled:hover{color:#f4dddc;cursor:not-allowed;}*/
+.cell-btn-disabled:hover {
+  color: #ffffff;
+  cursor: not-allowed; }
+
+.btn-code:hover, .btn-code:visited {
+  color: #cb2d23; }
+
+.cell-btn-gray, a.cell-btn-gray:visited {
+  background: #bbb;
+  color: #fff; }
+
+.cell-btn-gray:hover {
+  background: #d9d9d9 !important;
+  color: #fff; }
+
+.cell-btn-red, a.cell-btn-red:visited {
+  background: #cb2d23;
+  color: #fff; }
+
+.cell-btn-red:hover {
+  background: #b31a10 !important;
+  color: #fff; }
+
+.cell-btn-orange, a.cell-btn-orange:visited {
+  background: #f1a650;
+  color: #fff; }
+
+.cell-btn-orange:hover {
+  background: #fd9825 !important;
+  color: #fff; }
+
+.cell-btn-pink, a.cell-btn-pink:visited {
+  height: 38px;
+  background-color: #fff;
+  font-size: 14px;
+  color: #cb2d23;
+  line-height: 38px;
+  border: 1px solid #ffa29c; }
+
+.cell-btn-pink:hover {
+  background-color: #f8d2d2 !important;
+  border-color: #cb2d23; }
+
+.cell-btn-gray8, a.cell-btn-gray8:visited {
+  background: #8c8c8c;
+  color: #fff; }
+
+.cell-btn-gray8:hover {
+  background: #7b7979 !important;
+  color: #fff; }
+
+/*弹窗公共主体，确认取消按钮layerbutton,layerrest，按钮会继承cell-btn-主样式*/
+#greybackground {
+  background: #000;
+  opacity: 0.5;
+  filter: alpha(opacity=20);
+  z-index: 1011;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0; }
+
+.alertlayer {
+  position: fixed;
+  width: 7.48rem;
+  background: #fff;
+  border-radius: 3px;
+  border: 1px solid #ddd;
+  z-index: 9999;
+  overflow: hidden;
+  display: none; }
+
+.alertlayer .layertitle {
+  height: 50px;
+  line-height: 50px;
+  cursor: move;
+  overflow: hidden;
+  font-size: 16px;
+  padding-left: 22px;
+  color: #b0231a;
+  position: relative;
+  border-bottom: 1px solid #e8e8e8; }
+
+.alertlayer .layertitle b {
+  width: 35px;
+  height: 30px;
+  display: none;
+  position: absolute;
+  left: 8px;
+  top: 10px; }
+
+.alertlayer .layercontent {
+  padding: 20px;
+  line-height: 22px; }
+
+.alertlayer .layerclose {
+  display: none; }
+
+.alertlayer .layertxt {
+  position: relative;
+  text-align: center;
+  padding: 0.26667rem 0.26667rem 0rem;
+  overflow: hidden;
+  width: auto;
+  margin: 0 auto; }
+
+/*直接显示文本*/
+.alertlayer .layertxt .layericon {
+  width: 0.93333rem;
+  height: 0.93333rem;
+  margin: 0 auto;
+  border-radius: 100%;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  -o-border-radius: 100%;
+  border: 2px solid #f2932d;
+  color: #f2932d; }
+
+.alertlayer .layertxt .layericon i {
+  display: inline-block;
+  width: 0.93333rem;
+  height: 0.93333rem;
+  line-height: 0.93333rem;
+  color: #f2932d;
+  font-size: 0.50667rem;
+  font-style: normal; }
+
+.alertlayer .layertxt .computerwarm {
+  padding: 0.4rem 0rem;
+  font-size: 0.4rem; }
+
+.alertlayer .layerinput {
+  width: 100%;
+  border-top: 1px solid #ddd;
+  text-align: center; }
+
+/*按钮外层div*/
+.alertlayer .layerinput [class^="cell-btn"] {
+  border-radius: 0; }
+
+.alertlayer .layerinput .layerreset {
+  float: right;
+  width: 50%;
+  height: 1.2rem;
+  line-height: 1.2rem;
+  background-color: #fff; }
+
+/*取消按钮*/
+.alertlayer .layerinput .layerbutton {
+  float: right;
+  width: 50%;
+  height: 1.2rem;
+  line-height: 1.2rem;
+  border-left: 1px solid #ddd;
+  background-color: #fff;
+  color: #9f8c61; }
+
+.alertlayer .layerclosetime {
+  position: absolute;
+  left: 120px;
+  top: 18px;
+  font-size: 12px;
+  color: #fff; }
+
+/*显示关闭倒计时*/
+/*加载外部连接时加载提示*/
+.alertlayer .layercontent {
+  padding: 0; }
+
+.caculator {
+  overflow: hidden;
+  margin: 0 auto; }
+
+.caculator h3.layertitle b {
+  background-position: -288px -212px; }
+
+.caculator .content {
+  padding: 0.4rem;
+  background: #fff;
+  margin-bottom: 0.26667rem;
+  border-bottom: 1px solid #e8e8e8; }
+
+.caculator .content dt {
+  font-size: 0.4rem; }
+
+.caculator .content dt:nth-child(3) {
+  padding-top: 0.26667rem; }
+
+.caculator .content dd {
+  padding-top: 0.13333rem; }
+
+.caculator .content .title {
+  color: #c7cace; }
+
+.caculator .content .fcred {
+  color: #b39061; }
+
+.caculator .content .return-money {
+  font-size: 0.8rem; }
+
+.caculator .content .computer-allmoney {
+  font-size: 0.66667rem; }
+
+.caculator .ui-input {
+  overflow: hidden;
+  height: 0.8rem;
+  padding: 0.33333rem 0;
+  line-height: 0.8rem;
+  background: #fff;
+  border-bottom: 1px solid #ddd; }
+
+.caculator .ui-input-first {
+  border-top: 1px solid #ddd; }
+
+.caculator .ui-input b,
+.caculator .ui-input span,
+.caculator .ui-input i {
+  float: left;
+  font-size: 0.37333rem;
+  font-weight: normal;
+  font-style: normal; }
+
+.caculator .ui-input b {
+  display: inline-block;
+  width: 3.01333rem;
+  padding: 0 0 0 0.4rem; }
+
+.caculator .ui-input span {
+  display: inline-block;
+  width: 4.48rem;
+  padding: 0 0.2rem; }
+
+.caculator .ui-input i {
+  display: inline-block;
+  width: 1.24rem;
+  padding: 0 0.4rem 0 0; }
+
+.caculator .cell-input {
+  width: 4.21333rem;
+  height: 0.8rem;
+  padding: 0 0.13333rem;
+  border: none;
+  color: #333;
+  font-size: 0.42667rem; }
+
+.caculator .ui-button {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  overflow: hidden;
+  border-top: 1px solid #9f8c61;
+  text-align: center; }
+
+.caculator .ui-button [class^="cell-btn"] {
+  float: left;
+  width: 50%;
+  height: 1.6rem;
+  line-height: 1.06667rem;
+  border-radius: 0;
+  font-size: 0.48rem; }
+
+.caculator .link-btn {
+  padding: 0.26667rem 0.4rem 0 0;
+  text-align: right; }
+
+.caculator .link-btn .computer-reset {
+  color: #9f8c61;
+  font-size: 0.4rem; }
+
+.caculator .link-btn .computer-button {
+  display: none; }
+
+/*# sourceMappingURL=main.css.map */

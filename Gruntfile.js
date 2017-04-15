@@ -57,6 +57,7 @@ module.exports = function (grunt) {
                 // hostname: 'localhost',
                 // hostname: '172.17.2.53',
                  hostname: '0.0.0.0',
+                 // hostname: '192.168.1.101',
                 // 物理路径(默认为. 即根目录) 注：使用'.'或'..'为路径的时，可能会返回403 Forbidden. 此时将该值改为相对路径 如：/grunt/reloard。
                 base: '.'
             },
