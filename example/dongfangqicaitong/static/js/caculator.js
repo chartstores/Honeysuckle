@@ -25,8 +25,7 @@ $(function(){
         //0.0111、0.11111无效
         //控制只能大于0.01
         var patt=/\.\d{2}$/g;
-        var flag=patt.test(getValue);
-        if(flag){
+        if(patt.test(getValue)){
             event.preventDefault();
             return;
         }
@@ -40,13 +39,25 @@ $(function(){
         //只能输入少于1000000
         //100000
         //999999.99
-        if(getValue*1>100000&&event.which != 46){
-            // console.log(event);
-            event.preventDefault();
-            return;
+        //先匹配6位整数
+        var intPatt=/^\d{6}$/g;
+        if(intPatt.test(getValue)){
+            //46->dot、48->0
+            //100000
+            if(getValue*1==100000&&event.which != 46&&event.which != 48){
+                console.log(event);
+                event.preventDefault();
+                return;
+            }
+            //100001、110000、999999、999999.?
+            if(getValue*1>100000&&getValue*1<=999999&&event.which != 46){
+                // console.log(event);
+                event.preventDefault();
+                return;
+            }
         }
-        if(getValue*1==100000&&event.which != 46&&event.which != 48){
-            console.log(event);
+
+        if(getValue*1>=1000000){
             event.preventDefault();
             return;
         }
@@ -91,8 +102,7 @@ $(function(){
         //0.0111、0.11111无效
         //控制只能大于0.01
         var patt=/\.\d{2}$/g;
-        var flag=patt.test(getValue);
-        if(flag){
+        if(patt.test(getValue)){
             event.preventDefault();
             return;
         }
