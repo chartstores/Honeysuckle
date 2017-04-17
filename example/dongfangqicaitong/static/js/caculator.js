@@ -49,24 +49,25 @@ $(function(){
                 event.preventDefault();
                 return;
             }
+
             //100001、110000、999999、999999.?
             if(getValue*1>100000&&getValue*1<=999999&&event.which != 46){
-                // console.log(event);
-                event.preventDefault();
-                return;
+                if((getValue*1+event.key/10)<1000000){
+
+                }else{
+                    event.preventDefault();
+                    return;
+                }
             }
         }
 
-        if(getValue*1>=1000000){
+        if(getValue*1>=1000000||(getValue*1>=1000000&&event.which != 46&&event.which != 48)){
             event.preventDefault();
             return;
         }
 
     }).on("keyup",function(event){
-        if(event.keyCode==8){
-            changeRIABoard();
-        }
-
+        changeRIABoard();
     }).on("blur",function(event){
         var value = $(this).val(), reg = /\.$/;
         if (reg.test(value)) {
@@ -114,15 +115,33 @@ $(function(){
         }
 
         //只能输入小于1000
-        //当已经输入3位整数的时候，禁止输入整数部分
-        if(getValue*1>99.99&&getValue*1<999&&event.which != 46){
+        //100
+        //99.99
+        //先匹配3位整数
+        var intPatt=/^\d{3}$/g;
+        if(intPatt.test(getValue)){
+            //46->dot、48->0
+            if(getValue*1==100&&event.which != 46&&event.which != 48){
+                event.preventDefault();
+                return;
+            }
+
+            if(getValue*1>100&&getValue*1<=999&&event.which != 46){
+                if((getValue*1+event.key/10)<1000){
+
+                }else{
+                    event.preventDefault();
+                    return;
+                }
+            }
+        }
+
+        if(getValue*1>=1000||(getValue*1>=1000&&event.which != 46&&event.which != 48)){
             event.preventDefault();
             return;
         }
     }).on("keyup",function(e){
-        if(e.keyCode==8){
-            changeRIABoard();
-        }
+        changeRIABoard();
     }).on("blur",function(e){
         var value = $(this).val(), reg = /\.$/;
         if (reg.test(value)) {
@@ -140,28 +159,24 @@ $(function(){
         }
     }).on("keyup",function(e){
         var c = $(this).val();//投资期限
-        if(e.keyCode==8){
-            changeRIABoard();
-        }else {
-            if (!chcknullnum(c)) {
-                alertWarmInDialog(this,"投资期限不能为空且只能是数字！", ".opencomputer", function () {
-                });
-                return false;
-            }
-            if (c*1 > 9999) {
-                $(this).val(c.slice(0,4));
-                // alertWarmInDialog(this,"投资期限不能大于9,999天", ".opencomputer", function () {
-                // });
-                return false;
-            }
-            if (c*1 < 1) {
-                $(this).val('');
-                // alertWarmInDialog(this,"投资期限不能少于1天", ".opencomputer", function () {
-                // });
-                return false;
-            }
-            changeRIABoard();
+        if (!chcknullnum(c)) {
+            // alertWarmInDialog(this,"投资期限不能为空且只能是数字！", ".opencomputer", function () {
+            // });
+            return false;
         }
+        if (c*1 > 9999) {
+            $(this).val(c.slice(0,4));
+            // alertWarmInDialog(this,"投资期限不能大于9,999天", ".opencomputer", function () {
+            // });
+            return false;
+        }
+        if (c*1 < 1) {
+            $(this).val('');
+            // alertWarmInDialog(this,"投资期限不能少于1天", ".opencomputer", function () {
+            // });
+            return false;
+        }
+        changeRIABoard();
     }).on("blur",function(){
         var c = $(this).val()*1;
         if(c>0){
