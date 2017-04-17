@@ -1,9 +1,19 @@
+var hasDotA=false;
+var hasDotB=false;
 $(function(){
     $(".ui-input .computer-money").on("keypress", function(event) {
         //对已输入值做判断处理
         var event= event || window.event;
-        var getValue = $(this).val();
+        var getValue = ""+$(this).val()*1+"";
 
+        //11.000000、22.0000无效
+
+        //控制只能输入数字
+        var numberPatt=/\d{0,7}\.\d{2}$/g;
+        if(numberPatt.test((getValue))){
+            event.preventDefault();
+            return;
+        }
         //控制第一个不能输入小数点"."
         if (getValue.length == 0 && event.which == 46) {
             event.preventDefault();
@@ -50,13 +60,23 @@ $(function(){
             }
 
             //100001、110000、999999、999999.?
-            if(getValue*1>100000&&getValue*1<=999999&&event.which != 46){
-                if((getValue*1+event.key/10)<1000000){
-
+            if(getValue*1>100000&&getValue*1<=999999){
+                //当前情况是6位整数，只能输入小数点
+                if(hasDotA){
+                    //已经输入小数点，就只能输入数字，不能再输入小数点
+                    if(event.which == 46||event.keyCode==46){
+                        event.preventDefault();
+                        return;
+                    }
                 }else{
-                    event.preventDefault();
-                    return;
+                    if(event.which != 46||event.keyCode!=46){
+                        event.preventDefault();
+                        return;
+                    }else{
+                        hasDotA=true;
+                    }
                 }
+
             }
         }
 
@@ -66,6 +86,14 @@ $(function(){
         }
 
     }).on("keyup",function(event){
+        var getValue=$(this).val();
+        if(getValue.indexOf('.') == -1){
+            hasDotA=false;
+        }
+        //判断是否已输入逗号
+        if(event.which == 46||event.keyCode==46){
+            hasDotA=true;
+        }
         changeRIABoard();
     }).on("blur",function(event){
         var value = $(this).val(), reg = /\.$/;
@@ -78,7 +106,14 @@ $(function(){
     $(".ui-input .computer-bf").on("keypress",function(e){
         //对已输入值做判断处理
         var event= event || window.event;
-        var getValue = $(this).val();
+        var getValue = ""+$(this).val()*1+"";
+
+        //控制只能输入数字
+        var numberPatt=/\d{0,4}\.\d{2}$/g;
+        if(numberPatt.test((getValue))){
+            event.preventDefault();
+            return;
+        }
 
         //控制第一个不能输入小数点"."
         if (getValue.length == 0 && event.which == 46) {
@@ -114,23 +149,36 @@ $(function(){
         }
 
         //只能输入小于1000
-        //100
-        //99.99
-        //先匹配3位整数
-        var intPatt=/^\d{3}$/g;
+        //先匹配整数
+
+        //输入三位整数后
+        //第一次只能输入.
+        //第二次可以输入数字
+        //第三次可以输入数字
+        //匹配999.9、999.91、999.12
+        var intPatt=/^\d{3,}$/g;
         if(intPatt.test(getValue)){
             //46->dot、48->0
             if(getValue*1==100&&event.which != 46&&event.which != 48){
                 event.preventDefault();
                 return;
             }
-
-            if(getValue*1>100&&getValue*1<=999&&event.which != 46){
-                if((getValue*1+event.key/10)<1000){
-
+            //如果未输入逗号
+            if(getValue*1>100&&getValue*1<=999){
+                //当前情况是3位整数，只能输入小数点
+                if(hasDotB){
+                    //已经输入小数点，就只能输入数字，不能再输入小数点
+                    if(event.which == 46||event.keyCode==46){
+                        event.preventDefault();
+                        return;
+                    }
                 }else{
-                    event.preventDefault();
-                    return;
+                    if(event.which != 46||event.keyCode!=46){
+                        event.preventDefault();
+                        return;
+                    }else{
+                        hasDotB=true;
+                    }
                 }
             }
         }
@@ -139,7 +187,14 @@ $(function(){
             event.preventDefault();
             return;
         }
-    }).on("keyup",function(e){
+    }).on("keyup",function(event){
+        var getValue=$(this).val();
+        if(getValue.indexOf('.') == -1){
+            hasDotB=false;
+        }
+        if(event.which == 46||event.keyCode==46){
+            hasDotB=true;
+        }
         changeRIABoard();
     }).on("blur",function(e){
         var value = $(this).val(), reg = /\.$/;
@@ -157,7 +212,7 @@ $(function(){
             return false;
         }
     }).on("keyup",function(e){
-        var c = $(this).val();//投资期限
+        var c = ""+$(this).val()*1+"";//投资期限
         if (!chcknullnum(c)) {
             // alertWarmInDialog(this,"投资期限不能为空且只能是数字！", ".opencomputer", function () {
             // });
