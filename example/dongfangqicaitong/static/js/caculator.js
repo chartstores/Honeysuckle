@@ -45,7 +45,6 @@ $(function(){
             //46->dot、48->0
             //100000
             if(getValue*1==100000&&event.which != 46&&event.which != 48){
-                console.log(event);
                 event.preventDefault();
                 return;
             }
