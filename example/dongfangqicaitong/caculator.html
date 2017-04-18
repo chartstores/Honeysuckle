@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="static/css/main.css" />
 </head>
 <body>
+<div id="debug-info" style="position:fixed;top:0;z-index:100; width:100%;height:40px;"></div>
 <div class="caculator">
     <div class="content">
         <dl>
@@ -21,14 +22,14 @@
     <div class="ui-input ui-input-first">
         <b>投资本金</b>
         <span>
-            <input type="number" id="benjin" class="cell-input computer-money" placeholder="请输入投资本金"/>
+            <input type="number" id="benjin" step="0.01" class="cell-input computer-money" placeholder="请输入投资本金"/>
         </span>
         <i>万元</i>
     </div>
     <div class="ui-input">
         <b>预期年化收益率</b>
         <span>
-            <input type="number" id="shouyilv" class="cell-input computer-bf" placeholder="请输入收益率"/>
+            <input type="number" id="shouyilv" step="0.01" class="cell-input computer-bf" placeholder="请输入收益率"/>
         </span>
         <i>%</i>
     </div>
