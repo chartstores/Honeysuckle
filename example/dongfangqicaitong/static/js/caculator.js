@@ -638,10 +638,10 @@ function isInterception(event){
 }
 
 //格式化获取真实的输入值和getValue
-// console.info(getRealString(["9", "9", "9","."],"999"));
+console.info(getRealString(["9", "9", "9","."],"999"));
 console.info(getRealString(["9", "9", "9",".","."],"999"));
-// console.info(getRealString(["9", "9", "9", ".",".",".","."],"999"));
-// console.info(getRealString(["9", "9", "9", ".",".","9",".","."],"999"));
+console.info(getRealString(["9", "9", "9", ".",".",".","."],"999"));
+console.info(getRealString(["9", "9", "9", ".",".","9",".","."],"999"));
 function getRealString(realStrArr, getValue){
     var tempStr='';
     var realStr='';
@@ -650,7 +650,8 @@ function getRealString(realStrArr, getValue){
     var flag=true;
 
     //对原始输入值作判断，输入诸如“9999.....、999..”时判断为非法
-    if(/^\.{2,}&/.test(tempStr)){
+    var numberPatt=/^((?!0)\d+\.{2,}(\d{1,2})?)$/g;
+    if(numberPatt.test(tempStr)){
         flag=false;
     }
 
