@@ -2,6 +2,9 @@
 html {
   height: 100%; }
 
+title {
+  text-align: center; }
+
 body {
   height: 100%;
   background-color: #f6f4f0;

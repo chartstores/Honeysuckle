@@ -1,5 +1,10 @@
 var hasDotA=false;
+var dotACounter=0;
 var hasDotB=false;
+var dotBCounter=0;
+var realStrA=[];
+var realStrB=[];
+
 $(function(){
     $(".ui-input .computer-money").on("keypress", function(event) {
         //对已输入值做判断处理
@@ -12,23 +17,24 @@ $(function(){
         var numberPatt=/\d{0,7}\.\d{2}$/g;
         if(numberPatt.test((getValue))){
             event.preventDefault();
-            return;
+            return false;
         }
         //控制第一个不能输入小数点"."
         if (getValue.length == 0 && event.which == 46) {
             event.preventDefault();
-            return;
+            return false;
         }
         //控制只能输入一个小数点"."
         if (getValue.indexOf('.') != -1 && event.which == 46) {
             event.preventDefault();
-            return;
+            return false;
         }
         //控制只能输入的值
         if (event.which && (event.which < 48 || event.which > 57) && event.which != 8 && event.which != 46) {
             event.preventDefault();
-            return;
+            return false;
         }
+
 
         //控制只能输入两位小数点0.23、1.23、55555.23
         //2.3333、555555.233333无效
@@ -37,13 +43,13 @@ $(function(){
         var patt=/\.\d{2}$/g;
         if(patt.test(getValue)){
             event.preventDefault();
-            return;
+            return false;
         }
 
         //0.00无效
         if(getValue*1<1&&getValue.length==3&&getValue*1==0&&event.which==48){
             event.preventDefault();
-            return;
+            return false;
         }
 
         //只能输入少于1000000
@@ -56,7 +62,7 @@ $(function(){
             //100000
             if(getValue*1==100000&&event.which != 46&&event.which != 48){
                 event.preventDefault();
-                return;
+                return false;
             }
 
             //100001、110000、999999、999999.?
@@ -66,12 +72,12 @@ $(function(){
                     //已经输入小数点，就只能输入数字，不能再输入小数点
                     if(event.which == 46||event.keyCode==46){
                         event.preventDefault();
-                        return;
+                        return false;
                     }
                 }else{
                     if(event.which != 46||event.keyCode!=46){
                         event.preventDefault();
-                        return;
+                        return false;
                     }else{
                         hasDotA=true;
                     }
@@ -82,17 +88,66 @@ $(function(){
 
         if(getValue*1>=1000000||(getValue*1>=1000000&&event.which != 46&&event.which != 48)){
             event.preventDefault();
-            return;
+            return false;
         }
 
+    }).on("keydown",function(event){
+        //1....无效
+        if(hasDotA&&(event.which==46||event.keyCode==229||event.keyCode==190)){
+            event.preventDefault();
+            return false;
+        }
     }).on("keyup",function(event){
         var getValue=$(this).val();
-        if(getValue.indexOf('.') == -1){
-            hasDotA=false;
+		
+		//出栈
+        if(event.keyCode==8){
+			realStrA.pop();
         }
-        //判断是否已输入逗号
-        if(event.which == 46||event.keyCode==46){
-            hasDotA=true;
+		
+		//入栈
+        if(event.keyCode!=8){
+			realStrA.push(event.key);
+        }
+
+        if(hasDotA&&(event.which == 46||event.keyCode==46||event.keyCode==229||event.keyCode==190||event.which == 110)){
+            $(this).val("");
+			realStrA=[];
+        }
+		
+        if(realStrA.indexOf('.') == -1){
+            hasDotA=false;
+        }else{
+			hasDotA=true;
+		}
+		
+		console.log(realStrA);
+
+        // $("#debug-info").append("<div>"+realStrA+","+event.keyCode+","+hasDotA+"</div>");
+
+        if(getValue.indexOf('.') != -1){
+            var arr=getValue.split(".");
+            if(arr[0]*1>1000000){
+                alertWarmInDialog(this,"投资本金不能大于1,000,000万元", ".opencomputer",function(){});
+                $(this).val(getValue.slice(0,getValue.length-1));
+                return false;
+            }
+            if(arr[1].length>2){
+                alertWarmInDialog(this,"投资本金最多只能有两位小数！", ".opencomputer",function(){});
+                $(this).val(getValue.slice(0,getValue.length-1));
+                return false;
+            }
+            if(getValue*1>1000000){
+                alertWarmInDialog(this,"投资本金不能大于1,000,000万元", ".opencomputer",function(){});
+                $(this).val(getValue.slice(0,getValue.length-1));
+                return false;
+            }
+        }else{
+            if(getValue*1>1000000){
+                alertWarmInDialog(this,"投资本金不能大于1,000,000万元", ".opencomputer",function(){});
+                $(this).val(getValue.slice(0,getValue.length-1));
+                return false;
+            }
         }
         changeRIABoard();
     }).on("blur",function(event){
@@ -170,12 +225,12 @@ $(function(){
                     //已经输入小数点，就只能输入数字，不能再输入小数点
                     if(event.which == 46||event.keyCode==46){
                         event.preventDefault();
-                        return;
+                        return false;
                     }
                 }else{
                     if(event.which != 46||event.keyCode!=46){
                         event.preventDefault();
-                        return;
+                        return false;
                     }else{
                         hasDotB=true;
                     }
@@ -185,16 +240,63 @@ $(function(){
 
         if(getValue*1>=1000||(getValue*1>=1000&&event.which != 46&&event.which != 48)){
             event.preventDefault();
-            return;
+            return false;
+        }
+    }).on("keydown",function(){
+        //1....无效
+        if(hasDotB&&(event.which==46||event.keyCode==229||event.keyCode==190)){
+            event.preventDefault();
+            return false;
         }
     }).on("keyup",function(event){
         var getValue=$(this).val();
-        if(getValue.indexOf('.') == -1){
+
+        //出栈
+        if(event.keyCode==8){
+			realStrB.pop();
+        }
+		
+		//入栈
+        if(event.keyCode!=8){
+			realStrB.push(event.key);
+        }
+
+        if(hasDotB&&(event.which == 46||event.keyCode==46||event.keyCode==229||event.keyCode==190||event.which == 110)){
+            $(this).val("");
+			realStrB=[];
+        }
+		
+        if(realStrB.indexOf('.') == -1){
             hasDotB=false;
+        }else{
+			hasDotB=true;
+		}
+
+        if(getValue.indexOf('.') != -1){
+            var arr=getValue.split(".");
+            if(arr[0]*1>1000){
+                alertWarmInDialog(this,"预期年化收益率不能大于1,000.00%", ".opencomputer",function(){});
+                $(this).val(getValue.slice(0,getValue.length-1));
+                return false;
+            }
+            if(arr[1].length>2){
+                alertWarmInDialog(this,"预期年化收益率最多只能是两位小数！", ".opencomputer",function(){});
+                $(this).val(getValue.slice(0,getValue.length-1));
+                return false;
+            }
+            if(getValue*1>1000){
+                alertWarmInDialog(this,"预期年化收益率不能大于1,000.00%", ".opencomputer",function(){});
+                $(this).val(getValue.slice(0,getValue.length-1));
+                return false;
+            }
+        }else{
+            if(getValue*1>1000){
+                alertWarmInDialog(this,"预期年化收益率不能大于1,000.00%", ".opencomputer",function(){});
+                $(this).val(getValue.slice(0,getValue.length-1));
+                return false;
+            }
         }
-        if(event.which == 46||event.keyCode==46){
-            hasDotB=true;
-        }
+		
         changeRIABoard();
     }).on("blur",function(e){
         var value = $(this).val(), reg = /\.$/;
