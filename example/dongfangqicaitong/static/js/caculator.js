@@ -648,6 +648,12 @@ function getRealString(realStrArr, getValue){
     tempStr=realStrArr.join("").replace(",","");
     var arr=tempStr.split(".");
     var flag=true;
+
+    //对原始输入值作判断，输入诸如“9999.....、999..”时判断为非法
+    if(/^\.{2,}&/.test(tempStr)){
+        flag=false;
+    }
+
     //99.999、99.99、99.9
     if(arr.length>2){
         realStr=arr[0]+"."+arr[1];
@@ -659,11 +665,6 @@ function getRealString(realStrArr, getValue){
 
         //截取最多保留两位小数点
         realStrArr=(""+Math.floor(realStr*100)/100+"").split("");
-
-        //对原始输入值作判断，输入诸如“9999.....”时判断为非法
-        if(arr.length>3){
-            flag=false;
-        }
     }
 
     console.log(flag);
