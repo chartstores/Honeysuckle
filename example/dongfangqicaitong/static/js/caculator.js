@@ -118,6 +118,7 @@ $(function(){
         if(hasDotA&&(event.which == 46||event.keyCode==46||event.keyCode==229||event.keyCode==190||event.which == 110)){
             $(this).val("");
 			realStrA=[];
+			hasDotA=false;
         }
 		
         if(realStrA.indexOf('.') == -1){
@@ -145,6 +146,14 @@ $(function(){
             if(getValue*1>1000000){
                 alertWarmInDialog(this,"投资本金不能大于1,000,000万元", ".opencomputer",function(){});
                 $(this).val(getValue.slice(0,getValue.length-1));
+                return false;
+            }
+
+            if(getValue.length==4&&getValue*1<0.01){
+                alertWarmInDialog(this,"投资本金不能低于0.01万元", ".opencomputer",function(){});
+                $(this).val('');
+                hasDotA=false;
+                realStrA=[];
                 return false;
             }
         }else{
@@ -273,6 +282,7 @@ $(function(){
         if(hasDotB&&(event.which == 46||event.keyCode==46||event.keyCode==229||event.keyCode==190||event.which == 110)){
             $(this).val("");
 			realStrB=[];
+            hasDotB=false;
         }
 		
         if(realStrB.indexOf('.') == -1){
@@ -299,6 +309,14 @@ $(function(){
                 $(this).val(getValue.slice(0,getValue.length-1));
                 return false;
             }
+
+            if(getValue.length==4&&getValue*1<0.01){
+                alertWarmInDialog(this,"预期年化收益率不能低于0.01%", ".opencomputer",function(){});
+                $(this).val('');
+                hasDotB=false;
+                realStrB=[];
+                return false;
+            }
         }else{
             if(getValue*1>1000){
                 alertWarmInDialog(this,"预期年化收益率不能大于1,000.00%", ".opencomputer",function(){});
@@ -306,7 +324,6 @@ $(function(){
                 return false;
             }
         }
-		
         changeRIABoard();
     }).on("blur",function(e){
         var value = $(this).val(), reg = /\.$/;
