@@ -111,8 +111,10 @@ $(function(){
 			realStrA.push(event.key);
         }
 
-        if(getValue.length==0){
+        //何种情况下置空
+        if(getValue.length==0&&event.key!=0&&event.key!='.'){
             realStrA=[];
+            hasDotA=false;
         }
 
         if(hasDotA&&(event.which == 46||event.keyCode==46||event.keyCode==229||event.keyCode==190||event.which == 110)){
@@ -275,8 +277,10 @@ $(function(){
 			realStrB.push(event.key);
         }
 
-        if(getValue.length==0){
+        //何种情况下置空
+        if(getValue.length==0&&event.key!=0&&event.key!='.'){
             realStrB=[];
+            hasDotB=false;
         }
 
         if(hasDotB&&(event.which == 46||event.keyCode==46||event.keyCode==229||event.keyCode==190||event.which == 110)){
