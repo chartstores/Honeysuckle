@@ -7,9 +7,24 @@
     <title>收益测算</title>
     <link rel="stylesheet" type="text/css" href="static/libs/normalize/normalize.css" />
     <link rel="stylesheet" type="text/css" href="static/css/main.css" />
+    <style type="text/css">
+        #debug-info{
+            position:fixed;
+            top:0;
+            z-index:100;
+            width:100%;
+            height:40px;
+        }
+        #debug-info div{
+            position:absolute;
+            top:0;
+            background-color: #fff;
+            height:40px;
+        }
+    </style>
 </head>
 <body>
-<div id="debug-info" style="position:fixed;top:0;z-index:100; width:100%;height:40px;"></div>
+<div id="debug-info"></div>
 <div class="caculator">
     <div class="content">
         <dl>

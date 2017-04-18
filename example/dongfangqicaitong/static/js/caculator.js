@@ -157,7 +157,24 @@ $(function(){
 		//入栈
         //入栈规则
         if(event.keyCode!=8){
-			realStrA.push(event.key);
+            //存储规则
+            //必须是数字和小数点
+            var numberPatt=/\d|\./g;
+            if(numberPatt.test(event.key)){
+                realStrA.push(event.key);
+            }
+            //对比真实输入值和现在获取的值
+            //如果两个值不相同，则取realStrB
+            // console.log("未处理");
+            // console.log(getValue);
+            // console.log(realStrA);
+            //譬如输入999.99.99.99、99.、999.，则取
+            // console.log("已处理");
+            getValue=getRealString(realStrA,getValue).getValue;
+            realStrA=getRealString(realStrA,getValue).realStrArr;
+            // console.log(getValue);
+            // console.log(realStrA);
+            // console.info("--------------------------------------------------------");
         }
 
         //输入....之后置空||兼容
@@ -178,8 +195,8 @@ $(function(){
             hasDotA=true;
         }
 
-        // $("#debug-info").append("<div>182,"+realStrA.toString()+"</div>");
-        // realStrA = getValue.slice(0,getValue.length).split("");
+        // $("#debug-info").append("<div>现在输入的值是:"+getValue+"</div>");
+        //有小数的情况
         if(getValue.indexOf('.') != -1){
             hasDotA=true;
             // $("#debug-info").append("<div>149,"+getValue+"</div>");
@@ -188,24 +205,36 @@ $(function(){
                 alertWarmInDialog(this,"投资本金不能大于1,000,000万元", ".opencomputer",function(){});
                 $(this).val(getValue.slice(0,getValue.length-1));
                 realStrA= (""+$(this).val()*1+"").split("");
-            }
-            if(arr[1].length>2){
-                alertWarmInDialog(this,"投资本金最多只能有两位小数！", ".opencomputer",function(){});
-                $(this).val(getValue.slice(0,getValue.length-1));
-                realStrA= (""+$(this).val()*1+"").split("");
-            }
-            if(getValue*1>1000000){
-                alertWarmInDialog(this,"投资本金不能大于1,000,000万元", ".opencomputer",function(){});
-                $(this).val(getValue.slice(0,getValue.length-1));
-                realStrA= (""+$(this).val()*1+"").split("");
+            }else if(arr[0]*1==1000000){
+                //小数点只能是00
+                if(arr[1]*1>0){
+                    alertWarmInDialog(this,"投资本金不能大于1,000,000万元", ".opencomputer",function(){});
+                    $(this).val(getValue.slice(0,getValue.length-1));
+                    realStrA= (""+$(this).val()*1+"").split("");
+                }
+
+                if(arr[1].length>2){
+                    alertWarmInDialog(this,"投资本金最多只能有两位小数！", ".opencomputer",function(){});
+                    $(this).val(getValue.slice(0,getValue.length-1));
+                    realStrA= (""+$(this).val()*1+"").split("");
+                }
+
+            }else{
+                //只能是两位小数点
+                if(arr[1].length>2){
+                    alertWarmInDialog(this,"投资本金最多只能有两位小数！", ".opencomputer",function(){});
+                    $(this).val(getValue.slice(0,getValue.length-1));
+                    realStrA= (""+$(this).val()*1+"").split("");
+                }
+
+                if(getValue.length==4&&getValue*1<0.01){
+                    alertWarmInDialog(this,"投资本金不能低于0.01万元", ".opencomputer",function(){});
+                    $(this).val('');
+                    hasDotA=false;
+                    realStrA=[];
+                }
             }
 
-            if(getValue.length==4&&getValue*1<0.01){
-                alertWarmInDialog(this,"投资本金不能低于0.01万元", ".opencomputer",function(){});
-                $(this).val('');
-                hasDotA=false;
-                realStrA=[];
-            }
         }else{
             // $("#debug-info").append("<div>173,"+getValue+"</div>");
             if(getValue*1>1000000){
@@ -213,9 +242,11 @@ $(function(){
                 $(this).val(getValue.slice(0,getValue.length-1));
                 realStrA= (""+$(this).val()*1+"").split("");
             }else if(getValue*1==1000000){
-                realStrA= (""+$(this).val()*1+"").split("");
+                if(realStrA.indexOf('.') == -1){
+                    realStrA= (""+$(this).val()*1+"").split("");
+                }
             }else if(getValue*1<1000000){
-
+                    console.log(250);
             }
         }
 
@@ -361,7 +392,7 @@ $(function(){
         }
 
         //1....无效
-        if(hasDotB&&(event.which==46)){
+        if(hasDotB&&event.which==46){
             event.preventDefault();
             return false;
         }
@@ -390,6 +421,7 @@ $(function(){
 
         //出栈
         if(event.keyCode==8){
+            //出栈规则
 			realStrB.pop();
             if(getValue.length==0){
                 realStrB=[];
@@ -398,13 +430,33 @@ $(function(){
         }
 		
 		//入栈
+        var isValid=true;//标记当前输入是否合法
         if(event.keyCode!=8){
-			realStrB.push(event.key);
+            //存储规则
+            //必须是数字和小数点
+            var numberPatt=/\d|\./g;
+            if(numberPatt.test(event.key)){
+                realStrB.push(event.key);
+            }
+            //对比真实输入值和现在获取的值
+            //如果两个值不相同，则取realStrB
+            console.log("未处理");
+            console.log(getValue);
+            console.log(realStrB);
+            //譬如输入999.99.99.99、99.、999.，则取
+            console.log("已处理");
+            getValue=getRealString(realStrB,getValue).getValue;
+            realStrB=getRealString(realStrB,getValue).realStrArr;
+            isValid=getRealString(realStrB,getValue).isValid;
+            console.log(getValue);
+            console.log(realStrB);
+            console.info("--------------------------------------------------------");
         }
+
 
         //何种情况下置空
         //输入....之后置空
-        if(getValue.length==0&&(hasDotB)){
+        if((getValue.length==0&&hasDotB)||!isValid){
             $(this).val("");
             realStrB=[];
             hasDotB=false;
@@ -420,31 +472,41 @@ $(function(){
             hasDotB=true;
         }
 
-        // realStrB = getValue.slice(0,getValue.length).split("");
+        // $("#debug-info").append("<div>现在输入的值是:"+getValue+"</div>");
         if(getValue.indexOf('.') != -1){
             var arr=getValue.split(".");
             if(arr[0]*1>1000){
                 alertWarmInDialog(this,"预期年化收益率不能大于1,000.00%", ".opencomputer",function(){});
                 $(this).val(getValue.slice(0,getValue.length-1));
                 realStrB= (""+$(this).val()*1+"").split("");
-            }
-            if(arr[1].length>2){
-                alertWarmInDialog(this,"预期年化收益率最多只能是两位小数！", ".opencomputer",function(){});
-                $(this).val(getValue.slice(0,getValue.length-1));
-                realStrB= (""+$(this).val()*1+"").split("");
-            }
-            if(getValue*1>1000){
-                alertWarmInDialog(this,"预期年化收益率不能大于1,000.00%", ".opencomputer",function(){});
-                $(this).val(getValue.slice(0,getValue.length-1));
-                realStrB= (""+$(this).val()*1+"").split("");
+            }else if(arr[0]*1==1000){
+                //小数点只能是00
+                if(arr[1]*1>0){
+                    alertWarmInDialog(this,"预期年化收益率不能大于1,000.00%", ".opencomputer",function(){});
+                    $(this).val(getValue.slice(0,getValue.length-1));
+                    realStrB= (""+$(this).val()*1+"").split("");
+                }
+                //只能是两位小数点
+                if(arr[1].length>2){
+                    alertWarmInDialog(this,"预期年化收益率最多只能是两位小数！", ".opencomputer",function(){});
+                    $(this).val(getValue.slice(0,getValue.length-1));
+                    realStrB= (""+$(this).val()*1+"").split("");
+                }
+            }else{
+                //只能是两位小数点
+                if(arr[1].length>2){
+                    alertWarmInDialog(this,"预期年化收益率最多只能是两位小数！", ".opencomputer",function(){});
+                    $(this).val(getValue.slice(0,getValue.length-1));
+                    realStrB= (""+$(this).val()*1+"").split("");
+                }
+                if(arr[1].length==4&&getValue*1<0.01){
+                    alertWarmInDialog(this,"预期年化收益率不能低于0.01%", ".opencomputer",function(){});
+                    $(this).val('');
+                    hasDotB=false;
+                    realStrB=[];
+                }
             }
 
-            if(getValue.length==4&&getValue*1<0.01){
-                alertWarmInDialog(this,"预期年化收益率不能低于0.01%", ".opencomputer",function(){});
-                $(this).val('');
-                hasDotB=false;
-                realStrB=[];
-            }
         }else {
             if (getValue * 1 > 1000) {
                 alertWarmInDialog(this, "预期年化收益率不能大于1,000.00%", ".opencomputer", function () {
@@ -452,14 +514,16 @@ $(function(){
                 $(this).val(getValue.slice(0, getValue.length - 1));
                 realStrB = ("" + $(this).val() * 1 + "").split("");
             } else if (getValue * 1 == 1000) {
-                realStrB = ("" + $(this).val() * 1 + "").split("");
+                //当前的输入是1000.？还是1000？
+                if(realStrB.indexOf('.') == -1){
+                    realStrB = ("" + $(this).val() * 1 + "").split("");
+                }
             } else if (getValue * 1 < 1000) {
-                //realStrB="999999.99999999"
-                // realStrB= (""+$(this).val()*1+"").split("");
+                console.log("473");
+                // console.log(realStrB);
             }
         }
 
-        // console.log(realStrB);
         //重置状态
         if(realStrB.indexOf('.') == -1){
             hasDotB=false;
@@ -571,6 +635,43 @@ $(function(){
 function isInterception(event){
     var flag=false;
 
+}
+
+//格式化获取真实的输入值和getValue
+// console.info(getRealString(["9", "9", "9","."],"999"));
+console.info(getRealString(["9", "9", "9",".","."],"999"));
+// console.info(getRealString(["9", "9", "9", ".",".",".","."],"999"));
+// console.info(getRealString(["9", "9", "9", ".",".","9",".","."],"999"));
+function getRealString(realStrArr, getValue){
+    var tempStr='';
+    var realStr='';
+    tempStr=realStrArr.join("").replace(",","");
+    var arr=tempStr.split(".");
+    var flag=true;
+    //99.999、99.99、99.9
+    if(arr.length>2){
+        realStr=arr[0]+"."+arr[1];
+        //取两位小数点
+        tempStr=arr[0]+"."+arr[1];
+
+        //保留小数点
+        tempStr=""+Math.floor(tempStr*100)/100+"";
+
+        //截取最多保留两位小数点
+        realStrArr=(""+Math.floor(realStr*100)/100+"").split("");
+
+        //对原始输入值作判断，输入诸如“9999.....”时判断为非法
+        if(arr.length>3){
+            flag=false;
+        }
+    }
+
+    console.log(flag);
+    if(tempStr!=getValue){
+        return {realStrArr:realStrArr,getValue:tempStr,isValid:flag};
+    }else{
+        return {realStrArr:realStrArr,getValue:getValue,isValid:flag};
+    }
 }
 function changeRIABoard(){
     var a = $(".computer-money").val(); //投资金额
