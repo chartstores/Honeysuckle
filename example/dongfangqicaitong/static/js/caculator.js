@@ -155,6 +155,8 @@ $(function(){
         }
 		
 		//入栈
+        var isValid=true;//标记当前输入是否合法
+        var temp;
         //入栈规则
         if(event.keyCode!=8){
             //存储规则
@@ -164,21 +166,24 @@ $(function(){
                 realStrA.push(event.key);
             }
             //对比真实输入值和现在获取的值
-            //如果两个值不相同，则取realStrB
+            //如果两个值不相同，则取realStrA
             // console.log("未处理");
             // console.log(getValue);
             // console.log(realStrA);
             //譬如输入999.99.99.99、99.、999.，则取
             // console.log("已处理");
-            getValue=getRealString(realStrA,getValue).getValue;
-            realStrA=getRealString(realStrA,getValue).realStrArr;
+            temp=getRealString(realStrA,getValue);
+            getValue=temp.getValue;
+            realStrA=temp.realStrArr;
+            isValid=temp.isValid;
             // console.log(getValue);
             // console.log(realStrA);
+            // console.log(isValid);
             // console.info("--------------------------------------------------------");
         }
 
         //输入....之后置空||兼容
-        if(getValue.length==0&&hasDotA){
+        if((getValue.length==0&&hasDotA)||!isValid){
             $(this).val("");
             realStrA=[];
             hasDotA=false;
@@ -431,6 +436,7 @@ $(function(){
 		
 		//入栈
         var isValid=true;//标记当前输入是否合法
+        var temp;
         if(event.keyCode!=8){
             //存储规则
             //必须是数字和小数点
@@ -440,17 +446,19 @@ $(function(){
             }
             //对比真实输入值和现在获取的值
             //如果两个值不相同，则取realStrB
-            console.log("未处理");
-            console.log(getValue);
-            console.log(realStrB);
+            // console.log("未处理");
+            // console.log(getValue);
+            // console.log(realStrB);
             //譬如输入999.99.99.99、99.、999.，则取
-            console.log("已处理");
-            getValue=getRealString(realStrB,getValue).getValue;
-            realStrB=getRealString(realStrB,getValue).realStrArr;
-            isValid=getRealString(realStrB,getValue).isValid;
-            console.log(getValue);
-            console.log(realStrB);
-            console.info("--------------------------------------------------------");
+            // console.log("已处理");
+            temp=getRealString(realStrB,getValue);
+            getValue=temp.getValue;
+            realStrB=temp.realStrArr;
+            isValid=temp.isValid;
+            // console.log(getValue);
+            // console.log(realStrB);
+            // console.log(isValid);
+            // console.info("--------------------------------------------------------");
         }
 
 
@@ -638,10 +646,11 @@ function isInterception(event){
 }
 
 //格式化获取真实的输入值和getValue
-console.info(getRealString(["9", "9", "9","."],"999"));
-console.info(getRealString(["9", "9", "9",".","."],"999"));
-console.info(getRealString(["9", "9", "9", ".",".",".","."],"999"));
-console.info(getRealString(["9", "9", "9", ".",".","9",".","."],"999"));
+// console.info(getRealString(["9", "9", "9"],"999"));
+// console.info(getRealString(["9", "9", "9","."],"999"));
+// console.info(getRealString(["9", "9", "9",".","."],"999"));
+// console.info(getRealString(["9", "9", "9", ".",".",".","."],"999"));
+// console.info(getRealString(["9", "9", "9", ".",".","9",".","."],"999"));
 function getRealString(realStrArr, getValue){
     var tempStr='';
     var realStr='';
@@ -650,7 +659,7 @@ function getRealString(realStrArr, getValue){
     var flag=true;
 
     //对原始输入值作判断，输入诸如“9999.....、999..”时判断为非法
-    var numberPatt=/^((?!0)\d+\.{2,}(\d{1,2})?)$/g;
+    var numberPatt=/\.{2,}/g;
     if(numberPatt.test(tempStr)){
         flag=false;
     }
@@ -667,8 +676,6 @@ function getRealString(realStrArr, getValue){
         //截取最多保留两位小数点
         realStrArr=(""+Math.floor(realStr*100)/100+"").split("");
     }
-
-    console.log(flag);
     if(tempStr!=getValue){
         return {realStrArr:realStrArr,getValue:tempStr,isValid:flag};
     }else{
