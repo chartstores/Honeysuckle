@@ -106,8 +106,13 @@ $(function(){
         }
 		
 		//入栈
+        //入栈规则
         if(event.keyCode!=8){
 			realStrA.push(event.key);
+        }
+
+        if(getValue.length==0){
+            realStrA=[];
         }
 
         if(hasDotA&&(event.which == 46||event.keyCode==46||event.keyCode==229||event.keyCode==190||event.which == 110)){
@@ -261,6 +266,10 @@ $(function(){
 			realStrB.push(event.key);
         }
 
+        if(getValue.length==0){
+            realStrB=[];
+        }
+
         if(hasDotB&&(event.which == 46||event.keyCode==46||event.keyCode==229||event.keyCode==190||event.which == 110)){
             $(this).val("");
 			realStrB=[];
@@ -272,6 +281,7 @@ $(function(){
 			hasDotB=true;
 		}
 
+        console.log(realStrB);
         if(getValue.indexOf('.') != -1){
             var arr=getValue.split(".");
             if(arr[0]*1>1000){
