@@ -1,11 +1,9 @@
-var hasDotA=false;
-var dotACounter=0;
-var hasDotB=false;
-var dotBCounter=0;
-var realStrA=[];
-var realStrB=[];
-
 $(function(){
+    var hasDotA=false;
+    var hasDotB=false;
+    var realStrA=[];
+    var realStrB=[];
+
     $(".ui-input .computer-money").on("keypress", function(event) {
         //对已输入值做判断处理
         var event= event || window.event;
@@ -86,9 +84,13 @@ $(function(){
             }
         }
 
-        if(getValue*1>=1000000||(getValue*1>=1000000&&event.which != 46&&event.which != 48)){
+        if(getValue*1>1000000||(getValue*1>=1000000&&event.which != 46&&event.which != 48)){
             event.preventDefault();
             return false;
+        }else{
+            if(event.which = 46||event.keyCode==46||event.keyCode==229||event.keyCode==190){
+                hasDotA=true;
+            }
         }
 
     }).on("keydown",function(event){
@@ -97,12 +99,25 @@ $(function(){
             event.preventDefault();
             return false;
         }
+
+        // $("#debug-info").append("<div>"+realStrA+","+event.keyCode+","+hasDotA+"</div>");
+        if(hasDotA&&(event.which == 46||event.keyCode==46||event.keyCode==229||event.keyCode==190||event.which == 110)){
+            $(this).val("");
+            realStrA=[];
+            hasDotA=false;
+        }
+
     }).on("keyup",function(event){
         var getValue=$(this).val();
-		
+
 		//出栈
         if(event.keyCode==8){
 			realStrA.pop();
+			//删除置空
+            if(getValue.length==0){
+                realStrA=[];
+                hasDotA=false;
+            }
         }
 		
 		//入栈
@@ -111,16 +126,11 @@ $(function(){
 			realStrA.push(event.key);
         }
 
-        //何种情况下置空
-        if(getValue.length==0&&event.key!=0&&event.key!='.'){
+        //输入....之后置空||兼容
+        if(getValue.length==0&&(hasDotA&&event.keyCode==229)){
+            $(this).val("");
             realStrA=[];
             hasDotA=false;
-        }
-
-        if(hasDotA&&(event.which == 46||event.keyCode==46||event.keyCode==229||event.keyCode==190||event.which == 110)){
-            $(this).val("");
-			realStrA=[];
-			hasDotA=false;
         }
 		
         if(realStrA.indexOf('.') == -1){
@@ -128,27 +138,28 @@ $(function(){
         }else{
 			hasDotA=true;
 		}
-		
-		console.log(realStrA);
 
-        // $("#debug-info").append("<div>"+realStrA+","+event.keyCode+","+hasDotA+"</div>");
+		//兼容
+        if(!hasDotA&&realStrA[realStrA.length-1]=="Unidentified"&&realStrA.length>0&&event.keyCode==229){
+            hasDotA=true;
+        }
 
         if(getValue.indexOf('.') != -1){
             var arr=getValue.split(".");
             if(arr[0]*1>1000000){
                 alertWarmInDialog(this,"投资本金不能大于1,000,000万元", ".opencomputer",function(){});
                 $(this).val(getValue.slice(0,getValue.length-1));
-                return false;
+                realStrA= (""+$(this).val()*1+"").split("");
             }
             if(arr[1].length>2){
                 alertWarmInDialog(this,"投资本金最多只能有两位小数！", ".opencomputer",function(){});
                 $(this).val(getValue.slice(0,getValue.length-1));
-                return false;
+                realStrA= (""+$(this).val()*1+"").split("");
             }
             if(getValue*1>1000000){
                 alertWarmInDialog(this,"投资本金不能大于1,000,000万元", ".opencomputer",function(){});
                 $(this).val(getValue.slice(0,getValue.length-1));
-                return false;
+                realStrA= (""+$(this).val()*1+"").split("");
             }
 
             if(getValue.length==4&&getValue*1<0.01){
@@ -156,14 +167,28 @@ $(function(){
                 $(this).val('');
                 hasDotA=false;
                 realStrA=[];
-                return false;
             }
         }else{
             if(getValue*1>1000000){
                 alertWarmInDialog(this,"投资本金不能大于1,000,000万元", ".opencomputer",function(){});
                 $(this).val(getValue.slice(0,getValue.length-1));
-                return false;
+                realStrA= (""+$(this).val()*1+"").split("");
+            }else if(getValue*1==1000000){
+                realStrA= (""+$(this).val()*1+"").split("");
             }
+        }
+
+        console.log(realStrA);
+        //重置状态
+        if(realStrA.indexOf('.') == -1){
+            hasDotA=false;
+        }else{
+            hasDotA=true;
+        }
+
+        //兼容
+        if(!hasDotA&&realStrA[realStrA.length-1]=="Unidentified"&&realStrA.length>0&&event.keyCode==229){
+            hasDotA=true;
         }
         changeRIABoard();
     }).on("blur",function(event){
@@ -254,9 +279,13 @@ $(function(){
             }
         }
 
-        if(getValue*1>=1000||(getValue*1>=1000&&event.which != 46&&event.which != 48)){
+        if(getValue*1>1000||(getValue*1>=1000&&event.which != 46&&event.which != 48)){
             event.preventDefault();
             return false;
+        }else{
+            if(event.which = 46||event.keyCode==46||event.keyCode==229||event.keyCode==190){
+                hasDotB=true;
+            }
         }
     }).on("keydown",function(){
         //1....无效
@@ -264,12 +293,24 @@ $(function(){
             event.preventDefault();
             return false;
         }
+
+        // $("#debug-info").append("<div>"+hasDotB+","+getValue.length+","+event.keyCode+"</div>");
+        if(hasDotB&&(event.which == 46||event.keyCode==46||event.keyCode==229||event.keyCode==190||event.which == 110)){
+            $(this).val("");
+            realStrB=[];
+            hasDotB=false;
+        }
+
     }).on("keyup",function(event){
         var getValue=$(this).val();
 
         //出栈
         if(event.keyCode==8){
 			realStrB.pop();
+            if(getValue.length==0){
+                realStrB=[];
+                hasDotB=false;
+            }
         }
 		
 		//入栈
@@ -278,40 +319,39 @@ $(function(){
         }
 
         //何种情况下置空
-        if(getValue.length==0&&event.key!=0&&event.key!='.'){
+        //输入....之后置空
+        if(getValue.length==0&&(hasDotB&&event.keyCode==229)){
+            $(this).val("");
             realStrB=[];
             hasDotB=false;
         }
 
-        if(hasDotB&&(event.which == 46||event.keyCode==46||event.keyCode==229||event.keyCode==190||event.which == 110)){
-            $(this).val("");
-			realStrB=[];
-            hasDotB=false;
-        }
-		
         if(realStrB.indexOf('.') == -1){
             hasDotB=false;
         }else{
 			hasDotB=true;
 		}
 
-        console.log(realStrB);
+		if(!hasDotB&&realStrB[realStrB.length-1]=="Unidentified"&&realStrB.length>0&&event.keyCode==229){
+            hasDotB=true;
+        }
+
         if(getValue.indexOf('.') != -1){
             var arr=getValue.split(".");
             if(arr[0]*1>1000){
                 alertWarmInDialog(this,"预期年化收益率不能大于1,000.00%", ".opencomputer",function(){});
                 $(this).val(getValue.slice(0,getValue.length-1));
-                return false;
+                realStrB= (""+$(this).val()*1+"").split("");
             }
             if(arr[1].length>2){
                 alertWarmInDialog(this,"预期年化收益率最多只能是两位小数！", ".opencomputer",function(){});
                 $(this).val(getValue.slice(0,getValue.length-1));
-                return false;
+                realStrB= (""+$(this).val()*1+"").split("");
             }
             if(getValue*1>1000){
                 alertWarmInDialog(this,"预期年化收益率不能大于1,000.00%", ".opencomputer",function(){});
                 $(this).val(getValue.slice(0,getValue.length-1));
-                return false;
+                realStrB= (""+$(this).val()*1+"").split("");
             }
 
             if(getValue.length==4&&getValue*1<0.01){
@@ -319,14 +359,27 @@ $(function(){
                 $(this).val('');
                 hasDotB=false;
                 realStrB=[];
-                return false;
             }
         }else{
             if(getValue*1>1000){
                 alertWarmInDialog(this,"预期年化收益率不能大于1,000.00%", ".opencomputer",function(){});
                 $(this).val(getValue.slice(0,getValue.length-1));
-                return false;
+                realStrB= (""+$(this).val()*1+"").split("");
+            }else if(getValue*1<=1000){
+                realStrB= (""+$(this).val()*1+"").split("");
             }
+        }
+
+        console.log(realStrB);
+        //重置状态
+        if(realStrB.indexOf('.') == -1){
+            hasDotB=false;
+        }else{
+            hasDotB=true;
+        }
+
+        if(!hasDotB&&realStrB[realStrB.length-1]=="Unidentified"&&realStrB.length>0&&event.keyCode==229){
+            hasDotB=true;
         }
         changeRIABoard();
     }).on("blur",function(e){
