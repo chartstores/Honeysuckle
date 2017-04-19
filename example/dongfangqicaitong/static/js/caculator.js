@@ -503,7 +503,7 @@ $(function(){
             hasDotB=true;
             var arr=getValue.split(".");
             if(arr[0]*1>1000){
-                alertWarmInDialog(this,"513,预期年化收益率不能大于1,000.00%", ".opencomputer",function(){});
+                alertWarmInDialog(this,"预期年化收益率不能大于1,000.00%", ".opencomputer",function(){});
                 //1001 4位判断
                 //10001 5位判断
                 $(this).val("");
@@ -513,7 +513,7 @@ $(function(){
             }else if(arr[0]*1==1000){
                 //小数点只能是00
                 if(arr[1]*1>0){
-                    alertWarmInDialog(this,"523,预期年化收益率不能大于1,000.00%", ".opencomputer",function(){});
+                    alertWarmInDialog(this,"预期年化收益率不能大于1,000.00%", ".opencomputer",function(){});
 
                     //1000.1、1000.01、1000.001
                     $(this).val("");
@@ -549,7 +549,7 @@ $(function(){
 
         }else {
             if (getValue * 1 > 1000) {
-                alertWarmInDialog(this, "568，预期年化收益率不能大于1,000.00%", ".opencomputer", function () {
+                alertWarmInDialog(this, "预期年化收益率不能大于1,000.00%", ".opencomputer", function () {
                 });
                 $(this).val("");
                 hasDotB=false;
