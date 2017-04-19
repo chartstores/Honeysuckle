@@ -117,16 +117,12 @@ $(function(){
         }
 
         //1....无效
-        if(hasDotA&&(event.which==46)){
+        if(hasDotA&&event.which==46){
             event.preventDefault();
-            return false;
-        }
-
-        // $("#debug-info").append("<div>"+realStrA+","+event.keyCode+","+hasDotA+"</div>");
-        if(hasDotA&&(event.keyCode==46)){
             $(this).val("");
             realStrA=[];
             hasDotA=false;
+            return false;
         }
 
     }).on("keyup",function(event){
@@ -196,9 +192,9 @@ $(function(){
 		}
 
 		//兼容
-        if(!hasDotA&&realStrA[realStrA.length-1]=="Unidentified"&&realStrA.length>0){
-            hasDotA=true;
-        }
+        // if(!hasDotA&&realStrA[realStrA.length-1]=="Unidentified"&&realStrA.length>0){
+        //     hasDotA=true;
+        // }
 
         // $("#debug-info").append("<div>现在输入的值是:"+getValue+"</div>");
         //有小数的情况
@@ -414,18 +410,14 @@ $(function(){
         //1....无效
         if(hasDotB&&event.which==46){
             event.preventDefault();
-            return false;
-        }
-
-        // $("#debug-info").append("<div>"+hasDotB+","+getValue.length+","+event.keyCode+"</div>");
-        if(hasDotB&&(event.which == 46||event.keyCode==46)){
             $(this).val("");
             realStrB=[];
             hasDotB=false;
+            return false;
         }
 
     }).on("keyup",function(event){
-        // $("#debug-info").html("<div>当前输入值是:event.keyCode="+event.keyCode+",event.key="+event.key+"</div>");
+        // $("#debug-info").html("<div>428-"+event.target.value+"</div>");
         if(event.which==190||event.keyCode==190){
             event.which=46;
             event.keyCode=46;
@@ -493,9 +485,9 @@ $(function(){
 			hasDotB=true;
 		}
 
-		if(!hasDotB&&realStrB[realStrB.length-1]=="Unidentified"&&realStrB.length>0){
-            hasDotB=true;
-        }
+		// if(!hasDotB&&realStrB[realStrB.length-1]=="Unidentified"&&realStrB.length>0){
+         //    hasDotB=true;
+        // }
 
         // $("#debug-info").append("<div>现在输入的值是:"+getValue+"</div>");
         if(getValue.indexOf('.') != -1){
