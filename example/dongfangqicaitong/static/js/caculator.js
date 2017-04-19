@@ -208,28 +208,48 @@ $(function(){
             var arr=getValue.split(".");
             if(arr[0]*1>1000000){
                 alertWarmInDialog(this,"投资本金不能大于1,000,000万元", ".opencomputer",function(){});
-                $(this).val(getValue.slice(0,getValue.length-1));
-                realStrA= (""+$(this).val()*1+"").split("");
+                $(this).val("");
+                hasDotA=false;
+                realStrA=[];
+                // realStrA= (""+$(this).val()*1+"").split("");
             }else if(arr[0]*1==1000000){
                 //小数点只能是00
                 if(arr[1]*1>0){
                     alertWarmInDialog(this,"投资本金不能大于1,000,000万元", ".opencomputer",function(){});
                     $(this).val(getValue.slice(0,getValue.length-1));
-                    realStrA= (""+$(this).val()*1+"").split("");
+                    // realStrA= (""+$(this).val()*1+"").split("");
+                    if(arr[1].length==2){
+                        $(this).val("");
+                        hasDotA=false;
+                        realStrA=[];
+                    }
+
+                    if(arr[1].length>2){
+                        $(this).val("");
+                        hasDotA=false;
+                        realStrA=[];
+                    }
                 }
 
-                if(arr[1].length>2){
+
+                //只能是两位小数点
+                //1000000.000非法
+                if(arr[1].length>2&&arr[1]*1==0){
                     alertWarmInDialog(this,"投资本金最多只能有两位小数！", ".opencomputer",function(){});
-                    $(this).val(getValue.slice(0,getValue.length-1));
-                    realStrA= (""+$(this).val()*1+"").split("");
+                    $(this).val("");
+                    hasDotA=false;
+                    realStrA=[];
+                    // realStrA= (""+$(this).val()*1+"").split("");
                 }
 
             }else{
                 //只能是两位小数点
                 if(arr[1].length>2){
                     alertWarmInDialog(this,"投资本金最多只能有两位小数！", ".opencomputer",function(){});
-                    $(this).val(getValue.slice(0,getValue.length-1));
-                    realStrA= (""+$(this).val()*1+"").split("");
+                    $(this).val('');
+                    hasDotA=false;
+                    realStrA=[];
+                    // realStrA= (""+$(this).val()*1+"").split("");
                 }
 
                 if(getValue.length==4&&getValue*1<0.01){
@@ -244,19 +264,21 @@ $(function(){
             // $("#debug-info").append("<div>173,"+getValue+"</div>");
             if(getValue*1>1000000){
                 alertWarmInDialog(this,"投资本金不能大于1,000,000万元", ".opencomputer",function(){});
-                $(this).val(getValue.slice(0,getValue.length-1));
-                realStrA= (""+$(this).val()*1+"").split("");
+                $(this).val('');
+                hasDotA=false;
+                realStrA=[];
+                // realStrA= (""+$(this).val()*1+"").split("");
             }else if(getValue*1==1000000){
                 if(realStrA.indexOf('.') == -1){
                     realStrA= (""+$(this).val()*1+"").split("");
                 }
             }else if(getValue*1<1000000){
-                    console.log(250);
+                console.log("274");
             }
         }
 
         // $("#debug-info").append("<div>186,hasDotA="+hasDotA+",realStrA="+realStrA.toString()+"</div>");
-        // console.log(realStrA);
+        console.log(realStrA);
 
         //重置状态
         if(realStrA.indexOf('.') == -1){
@@ -482,30 +504,53 @@ $(function(){
 
         // $("#debug-info").append("<div>现在输入的值是:"+getValue+"</div>");
         if(getValue.indexOf('.') != -1){
+            hasDotB=true;
             var arr=getValue.split(".");
             if(arr[0]*1>1000){
                 alertWarmInDialog(this,"预期年化收益率不能大于1,000.00%", ".opencomputer",function(){});
-                $(this).val(getValue.slice(0,getValue.length-1));
-                realStrB= (""+$(this).val()*1+"").split("");
+                //1001 4位判断
+                //10001 5位判断
+                $(this).val("");
+                hasDotB=false;
+                realStrB=[];
+                // realStrB= (""+$(this).val()*1+"").split("");
             }else if(arr[0]*1==1000){
                 //小数点只能是00
                 if(arr[1]*1>0){
                     alertWarmInDialog(this,"预期年化收益率不能大于1,000.00%", ".opencomputer",function(){});
-                    $(this).val(getValue.slice(0,getValue.length-1));
-                    realStrB= (""+$(this).val()*1+"").split("");
+
+                    //1000.01
+                    if(arr[1].length==2){
+                        $(this).val("");
+                        hasDotB=false;
+                        realStrB=[];
+                    }
+
+                    //1000.001
+                    if(arr[1].length>2){
+                        $(this).val("");
+                        hasDotB=false;
+                        realStrB=[];
+                    }
+                    // realStrB= (""+$(this).val()*1+"").split("");
                 }
                 //只能是两位小数点
-                if(arr[1].length>2){
+                // 1000.000 非法
+                if(arr[1].length>2&&arr[1]*1==0){
                     alertWarmInDialog(this,"预期年化收益率最多只能是两位小数！", ".opencomputer",function(){});
-                    $(this).val(getValue.slice(0,getValue.length-1));
-                    realStrB= (""+$(this).val()*1+"").split("");
+                    $(this).val("");
+                    hasDotB=false;
+                    realStrB=[];
+                    // realStrB= (""+$(this).val()*1+"").split("");
                 }
             }else{
                 //只能是两位小数点
                 if(arr[1].length>2){
                     alertWarmInDialog(this,"预期年化收益率最多只能是两位小数！", ".opencomputer",function(){});
-                    $(this).val(getValue.slice(0,getValue.length-1));
-                    realStrB= (""+$(this).val()*1+"").split("");
+                    $(this).val("");
+                    hasDotB=false;
+                    realStrB=[];
+                    // realStrB= (""+$(this).val()*1+"").split("");
                 }
                 if(arr[1].length==4&&getValue*1<0.01){
                     alertWarmInDialog(this,"预期年化收益率不能低于0.01%", ".opencomputer",function(){});
@@ -519,8 +564,10 @@ $(function(){
             if (getValue * 1 > 1000) {
                 alertWarmInDialog(this, "预期年化收益率不能大于1,000.00%", ".opencomputer", function () {
                 });
-                $(this).val(getValue.slice(0, getValue.length - 1));
-                realStrB = ("" + $(this).val() * 1 + "").split("");
+                $(this).val("");
+                hasDotB=false;
+                realStrB=[];
+                // realStrB = ("" + $(this).val() * 1 + "").split("");
             } else if (getValue * 1 == 1000) {
                 //当前的输入是1000.？还是1000？
                 if(realStrB.indexOf('.') == -1){
