@@ -161,7 +161,7 @@ $(function(){
         if(event.keyCode!=8){
             //存储规则
             //必须是数字和小数点
-            var numberPatt=/\d|\./g;
+            var numberPatt=/(\d)?|(\.)?/g;
             if(numberPatt.test(event.key)){
                 realStrA.push(event.key);
             }
@@ -440,7 +440,7 @@ $(function(){
         if(event.keyCode!=8){
             //存储规则
             //必须是数字和小数点
-            var numberPatt=/\d|\./g;
+            var numberPatt=/(\d)?|(\.)?/g;
             if(numberPatt.test(event.key)){
                 realStrB.push(event.key);
             }
@@ -528,10 +528,10 @@ $(function(){
                 }
             } else if (getValue * 1 < 1000) {
                 console.log("473");
-                // console.log(realStrB);
             }
         }
 
+        console.log(realStrB);
         //重置状态
         if(realStrB.indexOf('.') == -1){
             hasDotB=false;
@@ -651,16 +651,28 @@ function isInterception(event){
 // console.info(getRealString(["9", "9", "9",".","."],"999"));
 // console.info(getRealString(["9", "9", "9", ".",".",".","."],"999"));
 // console.info(getRealString(["9", "9", "9", ".",".","9",".","."],"999"));
+//当输入10000.00000、100.0000时，判断为非法输入
+// console.info(getRealString(["1", "0", "0", "0","0",".","0","0","0","0","0"],"10000"));
+// console.info(getRealString(["1", "0", "0", ".","0","0","0","0"],"100"));
+// getRealString(["1", "0", ".", "0", "0", "0", "0", "0", "0", "0", "0"],"10.00000000");
+
 function getRealString(realStrArr, getValue){
-    var tempStr='';
+    // $("#debug-info").html("<div>690---"+realStrArr.length+"---"+getValue+"</div>");
     var realStr='';
-    tempStr=realStrArr.join("").replace(",","");
+    var tempStr=realStrArr.join("").replace(",","");
     var arr=tempStr.split(".");
     var flag=true;
 
     //对原始输入值作判断，输入诸如“9999.....、999..”时判断为非法
-    var numberPatt=/\.{2,}/g;
-    if(numberPatt.test(tempStr)){
+    //正确值99.、999.
+    var numberPattA=/\.{2,}/g;
+    if(numberPattA.test(tempStr)){
+        flag=false;
+    }
+    //对原始输入值作判断，输入诸如“1000.00000、10000.0000、100...0.0100、.00000、0.0001、10.00000000”时判断为非法
+    //正确值1000.00、10000.00、0.00
+    var numberPattB=/(\d)?\.+(\d){3,}/g;
+    if(numberPattB.test(tempStr)){
         flag=false;
     }
 
@@ -671,11 +683,13 @@ function getRealString(realStrArr, getValue){
         tempStr=arr[0]+"."+arr[1];
 
         //保留小数点
-        tempStr=""+Math.floor(tempStr*100)/100+"";
+        // tempStr=""+Math.floor(tempStr*100)/100+"";
 
         //截取最多保留两位小数点
-        realStrArr=(""+Math.floor(realStr*100)/100+"").split("");
+        // realStrArr=(""+Math.floor(realStr*100)/100+"").split("");
     }
+    // $("#debug-info").html(("<div>690,"+realStrArr.toString()+","+tempStr+"</div>");
+    // $("#debug-info").html(("<div>690,"+"10.00000000".split("").toString()+"</div>");
     if(tempStr!=getValue){
         return {realStrArr:realStrArr,getValue:tempStr,isValid:flag};
     }else{
