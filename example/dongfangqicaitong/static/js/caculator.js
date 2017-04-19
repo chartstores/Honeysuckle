@@ -183,6 +183,7 @@ $(function(){
         }
 
         //输入....之后置空||兼容
+        // $("#debug-info").html(getValue.length+","+hasDotA+","+isValid);
         if((getValue.length==0&&hasDotA)||!isValid){
             $(this).val("");
             realStrA=[];
@@ -218,17 +219,10 @@ $(function(){
                     alertWarmInDialog(this,"投资本金不能大于1,000,000万元", ".opencomputer",function(){});
                     $(this).val(getValue.slice(0,getValue.length-1));
                     // realStrA= (""+$(this).val()*1+"").split("");
-                    if(arr[1].length==2){
-                        $(this).val("");
-                        hasDotA=false;
-                        realStrA=[];
-                    }
-
-                    if(arr[1].length>2){
-                        $(this).val("");
-                        hasDotA=false;
-                        realStrA=[];
-                    }
+                    //1000000.1、1000000.01、1000000.001
+                    $(this).val("");
+                    hasDotA=false;
+                    realStrA=[];
                 }
 
 
@@ -432,6 +426,7 @@ $(function(){
         }
 
     }).on("keyup",function(event){
+        // $("#debug-info").html("<div>当前输入值是:event.keyCode="+event.keyCode+",event.key="+event.key+"</div>");
         if(event.which==190||event.keyCode==190){
             event.which=46;
             event.keyCode=46;
@@ -464,6 +459,7 @@ $(function(){
             //必须是数字和小数点
             var numberPatt=/(\d)?|(\.)?/g;
             if(numberPatt.test(event.key)){
+                // $("#debug-info").html("<div>入栈:"+event.key+"</div>");
                 realStrB.push(event.key);
             }
             //对比真实输入值和现在获取的值
@@ -507,7 +503,7 @@ $(function(){
             hasDotB=true;
             var arr=getValue.split(".");
             if(arr[0]*1>1000){
-                alertWarmInDialog(this,"预期年化收益率不能大于1,000.00%", ".opencomputer",function(){});
+                alertWarmInDialog(this,"513,预期年化收益率不能大于1,000.00%", ".opencomputer",function(){});
                 //1001 4位判断
                 //10001 5位判断
                 $(this).val("");
@@ -517,21 +513,12 @@ $(function(){
             }else if(arr[0]*1==1000){
                 //小数点只能是00
                 if(arr[1]*1>0){
-                    alertWarmInDialog(this,"预期年化收益率不能大于1,000.00%", ".opencomputer",function(){});
+                    alertWarmInDialog(this,"523,预期年化收益率不能大于1,000.00%", ".opencomputer",function(){});
 
-                    //1000.01
-                    if(arr[1].length==2){
-                        $(this).val("");
-                        hasDotB=false;
-                        realStrB=[];
-                    }
-
-                    //1000.001
-                    if(arr[1].length>2){
-                        $(this).val("");
-                        hasDotB=false;
-                        realStrB=[];
-                    }
+                    //1000.1、1000.01、1000.001
+                    $(this).val("");
+                    hasDotB=false;
+                    realStrB=[];
                     // realStrB= (""+$(this).val()*1+"").split("");
                 }
                 //只能是两位小数点
@@ -562,7 +549,7 @@ $(function(){
 
         }else {
             if (getValue * 1 > 1000) {
-                alertWarmInDialog(this, "预期年化收益率不能大于1,000.00%", ".opencomputer", function () {
+                alertWarmInDialog(this, "568，预期年化收益率不能大于1,000.00%", ".opencomputer", function () {
                 });
                 $(this).val("");
                 hasDotB=false;
@@ -704,7 +691,7 @@ function isInterception(event){
 // getRealString(["1", "0", ".", "0", "0", "0", "0", "0", "0", "0", "0"],"10.00000000");
 
 function getRealString(realStrArr, getValue){
-    // $("#debug-info").html("<div>690---"+realStrArr.length+"---"+getValue+"</div>");
+    // $("#debug-info").html("<div>690---"+realStrArr.join("")+"---"+getValue+"</div>");
     var realStr='';
     var tempStr=realStrArr.join("").replace(",","");
     var arr=tempStr.split(".");
@@ -714,12 +701,14 @@ function getRealString(realStrArr, getValue){
     //正确值99.、999.
     var numberPattA=/\.{2,}/g;
     if(numberPattA.test(tempStr)){
+        // $("#debug-info").html(718);
         flag=false;
     }
     //对原始输入值作判断，输入诸如“1000.00000、10000.0000、100...0.0100、.00000、0.0001、10.00000000”时判断为非法
-    //正确值1000.00、10000.00、0.00
+    //正确值1000.00、10000.00、0.00、1.
     var numberPattB=/(\d)?\.+(\d){3,}/g;
     if(numberPattB.test(tempStr)){
+        // $("#debug-info").html(725);
         flag=false;
     }
 
