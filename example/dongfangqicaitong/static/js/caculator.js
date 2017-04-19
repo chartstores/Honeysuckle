@@ -6,8 +6,7 @@ $(function(){
 
     $(".ui-input .computer-money").on("keypress", function(event) {
         //对已输入值做判断处理
-        var event= event || window.event;
-        var getValue = ""+$(this).val()*1+"";
+        var getValue = event.target.value;
 
         if(event.which==190||event.keyCode==190){
             event.which=46;
@@ -142,7 +141,7 @@ $(function(){
             event.keyCode=46;
             event.key=".";
         }
-        var getValue=$(this).val();
+        var getValue=event.target.value;
 
 		//出栈
         if(event.keyCode==8){
@@ -299,7 +298,8 @@ $(function(){
             event.key=".";
         }
 
-        var value = $(this).val(), reg = /\.$/;
+        var value = event.target.value,
+            reg = /\.$/;
         if (reg.test(value)) {
             value = value.replace(reg, "");
             $(this).val(value);
@@ -308,9 +308,8 @@ $(function(){
 
     $(".ui-input .computer-bf").on("keypress",function(event){
         //对已输入值做判断处理
-        var event= event || window.event;
-        var getValue = ""+$(this).val()*1+"";
-
+        var getValue = event.target.value;
+        // $("#debug-info").html("<div>316-"+event.target.value+"</div>");
         if(event.which==190||event.keyCode==190){
             event.which=46;
             event.keyCode=46;
@@ -366,7 +365,7 @@ $(function(){
         //匹配999.9、999.91、999.12
         var intPatt=/^\d{3,}$/g;
         if(intPatt.test(getValue)){
-            //46->dot、48->0
+            //46->.、48->0
             if(getValue*1==100&&event.which != 46&&event.which != 48){
                 event.preventDefault();
                 return;
@@ -439,7 +438,7 @@ $(function(){
             event.key=".";
         }
 
-        var getValue=$(this).val();
+        var getValue=event.target.value;
 
         //出栈
         if(event.keyCode==8){
@@ -590,7 +589,8 @@ $(function(){
             event.key=".";
         }
 
-        var value = $(this).val(), reg = /\.$/;
+        var value = event.target.value,
+            reg = /\.$/;
         if (reg.test(value)) {
             value = value.replace(reg, "");
             $(this).val(value);
@@ -627,7 +627,7 @@ $(function(){
             event.keyCode=46;
             event.key=".";
         }
-        var c = ""+$(this).val()*1+"";//投资期限
+        var c = event.target.value;//投资期限
         if (!chcknullnum(c)) {
             // alertWarmInDialog(this,"投资期限不能为空且只能是数字！", ".opencomputer", function () {
             // });
@@ -658,8 +658,8 @@ $(function(){
             event.keyCode=46;
             event.key=".";
         }
-        var c = $(this).val()*1;
-        if(c>0){
+        var c = event.target.value;
+        if(c*1>0){
             $(this).val(c);
         }
     });
