@@ -269,13 +269,6 @@ $(function(){
         // $("#debug-info").append("<div>186,hasDotA="+hasDotA+",realStrA="+realStrA.toString()+"</div>");
         console.log(realStrA);
 
-        //重置状态
-        if(realStrA.indexOf('.') == -1){
-            hasDotA=false;
-        }else{
-            hasDotA=true;
-        }
-
         //兼容
         if(!hasDotA&&realStrA[realStrA.length-1]=="Unidentified"&&realStrA.length>0){
             hasDotA=true;
@@ -557,12 +550,6 @@ $(function(){
         }
 
         console.log(realStrB);
-        //重置状态
-        if(realStrB.indexOf('.') == -1){
-            hasDotB=false;
-        }else{
-            hasDotB=true;
-        }
 
         if(!hasDotB&&realStrB[realStrB.length-1]=="Unidentified"&&realStrB.length>0){
             hasDotB=true;
