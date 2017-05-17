@@ -64,8 +64,7 @@ function paintCharts(ec){
                         labelLine: {
                             show : true,
                             lineStyle: {
-                                width:0.5,
-                                color: '#6c6c77'
+                                width:0.5
                             }
                         }
                     },
