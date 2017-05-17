@@ -23,6 +23,7 @@ module.exports = function (grunt) {
 
     var dist=[
         'example/',
+        'example/funnel/1',
         'demo/',
         'games/'
     ];
