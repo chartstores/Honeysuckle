@@ -1,10 +1,13 @@
 var config={
     data:[
         {value:100, name:'新增注册'},
-        {value:80, name:'新增绑卡'},
-        {value:60, name:'新增投资'},
-        {value:40, name:'重复投资'},
-        {value:20, name:'新增用户'}
+        {value:75, name:'新增绑卡'},
+        {value:50, name:'新增投资'},
+        {value:25, name:'重复投资'},
+        {value:125, name:'新增用户'},
+        {value:150, name:'新增用户2'},
+        {value:170, name:'新增用户3'},
+        {value:70, name:'新增用户4'},
     ]
 };
 initCharts();
@@ -30,8 +33,17 @@ function paintCharts(ec){
     container.style.width = window.innerWidth+"px";
     container.style.height = window.innerWidth*0.6+"px";
     var myChart = ec.init(container);
-    var legendNames=['新增注册','新增绑卡','新增投资','重复投资','新增用户'];
-    var seriesData=config.data.sort(function (a, b) { return a.value - b.value});
+    var legendNames=[];
+    var seriesData=config.data.sort(function (a, b) { return b.value-a.value});
+    var realSeriesValues={};
+    var step=parseInt(100/seriesData.length);
+    // var max=Math.max.apply(null, seriesValues);
+    for(var i=0;i<seriesData.length;i++){
+        realSeriesValues[(100-(step*i))]=seriesData[i].value;
+        legendNames.push(seriesData[i].name);
+        seriesData[i].value=100-(step*i);
+
+    }
 
     option = {
         color : ['#22c9b4','#2aa4c4','#2285c0','#254db5','#16388f'],
@@ -67,16 +79,6 @@ function paintCharts(ec){
                                 width:0.5
                             }
                         }
-                    },
-                    emphasis: {
-                        label: {
-                            position:'inside',
-                            formatter: '{c} 人',
-                            textStyle: {
-                                color: '#fff',
-                                fontSize:22
-                            }
-                        }
                     }
                 },
                 data:seriesData
@@ -95,8 +97,10 @@ function paintCharts(ec){
                         borderColor: '#fff',
                         borderWidth: 0,
                         label: {
-                            position: 'inside',
-                            formatter: '{c} 人',
+                            position: 'center',
+                            formatter: function (params) {
+                                return realSeriesValues[params.value] + '人';
+                            },
                             textStyle: {
                                 color: '#fff',
                                 fontSize:22
@@ -105,7 +109,7 @@ function paintCharts(ec){
                     },
                     emphasis: {
                         label: {
-                            position:'inside',
+                            position:'center',
                             formatter: '{c} 人',
                             textStyle: {
                                 color: '#fff',
