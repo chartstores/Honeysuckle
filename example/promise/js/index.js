@@ -34,8 +34,23 @@ function foo4(a,b,c){
 foo4.apply(this,[4,5,6]);
 foo3(1,2,3,foo4);
 
+//#4 有时我们要这样做递归
 
-//#4 有时我们遇到这样的情况,响应的顺序不按循环的顺序
+function foo5(a,b,c,callback){
+    //nodejs读写文件，异步模型
+    var readStream;
+
+    if(a<10){
+        readStream.on("close",function(){
+            a++;
+            callback(a,b,c,foo5);
+        });
+    }
+}
+
+foo5();
+
+//#5 有时我们遇到这样的情况,响应的顺序不按循环的顺序
 for(var i=0;i<10;i++){
     //发送10次ajax异步请求
     (function(index){
@@ -50,7 +65,7 @@ for(var i=0;i<10;i++){
     })(i);
 }
 
-//#5 给我一个承诺好不好，不要不按套路出牌
+//#6 给我一个承诺好不好，不要不按套路出牌
 for(var i=0;i<10;i++){
     //发送10次ajax异步请求
     (function(index){
@@ -67,7 +82,7 @@ for(var i=0;i<10;i++){
     })(i);
 }
 
-//#6 什么是promise？
+//#7 什么是promise？
 
 for(var i=0;i<10;i++){
     //发送10次ajax异步请求
@@ -89,6 +104,7 @@ for(var i=0;i<10;i++){
 }
 
 
-//#7 自我实现的一个promise
+//#8 自我实现的一个promise
+
 
 
