@@ -3,9 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <title>promise的使用</title>
+    <link type="text/css" href="libs/normalize/normalize.css" rel="stylesheet"/>
+    <style type="text/css">
+        dl, dt, dd {
+            margin: 0;
+            padding: 0;
+        }
+
+        dt {
+            padding: 5px 0;
+            font-weight: bold;
+        }
+
+        dd {
+            padding: 5px 0;
+        }
+        .container{
+            width:1024px;
+            margin:0 auto;
+            padding:10px 0;
+        }
+    </style>
 </head>
 <body>
+<div class="container">
+    <dl>
+        <dt>Deferred对象</dt>
+        <dd>（1） $.Deferred() 生成一个deferred对象。</dd>
+        　　
+        <dd>（2） deferred.done() 指定操作成功时的回调函数</dd>
+        　　
+        <dd>（3） deferred.fail() 指定操作失败时的回调函数</dd>
+        　　
+        <dd>（4） deferred.promise() 没有参数时，返回一个新的deferred对象，该对象的运行状态无法被改变；接受参数时，作用为在参数对象上部署deferred接口。</dd>
+        　　
+        <dd>（5） deferred.resolve() 手动改变deferred对象的运行状态为"已完成"，从而立即触发done()方法。</dd>
+        　　
+        <dd>（6）deferred.reject() 这个方法与deferred.resolve()正好相反，调用后将deferred对象的运行状态变为"已失败"，从而立即触发fail()方法。</dd>
+        　　
+        <dd>（7） $.when() 为多个操作指定回调函数。</dd>
+        　　
+        <dd>（8）deferred.then()</dd>
+    </dl>
+</div>
+<!--<script type="text/javascript" src="libs/jquery/jquery-3.2.1.min.js"></script>-->
 <script type="text/javascript" src="libs/jquery/jquery-1.8.3.min.js"></script>
-<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript" src="js/test7.js"></script>
 </body>
 </html>
