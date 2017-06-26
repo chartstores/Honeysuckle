@@ -4,12 +4,24 @@ body,ul,li,img{
     list-style: none;
 }
 
+.container {
+    width:1600px;
+    margin:0 auto;
+}
 .container ul{
     overflow: hidden;
 }
 .container li{
     float: left;
+    position:relative;
     width:50px;
     height:50px;
 }
 
+.container .layer{
+    position:absolute;
+    top:0;
+    width:50px;
+    height:50px;
+    /*background-color: rgba(241, 93, 80, 0.3);*/
+}

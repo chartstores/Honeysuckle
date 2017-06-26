@@ -8,7 +8,7 @@ function initPage(){
             number=i*rol+j+1;
             number=number>9?number:'0'+number;
             // console.log(number);
-            $("#container ul:last").append("<li><img src='images/mosaic_"+number+".jpg'/></li>");
+            $("#container ul:last").append("<li><img src='images/mosaic_"+number+".jpg'/><div class='layer'></div></li>");
         }
     }
 }
