@@ -1,0 +1,21 @@
+ul,li{
+    list-style: none;
+}
+.container{
+    width:1024px;
+    margin:0 auto;
+}
+
+.local-img{
+    height:100px;
+    padding:10px;
+    border:1px solid #f99027;
+}
+
+.btn-area{
+    padding:10px 0;
+}
+
+.btn-area input{
+    width:150px;
+}

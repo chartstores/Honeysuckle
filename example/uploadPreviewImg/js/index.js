@@ -1,10 +1,7 @@
 //下面用于图片上传预览功能
 function setImagePreview(avalue) {
-    //input
     var docObj = document.getElementById("doc");
-//img
     var imgObjPreview = document.getElementById("preview");
-    //div
     var divs = document.getElementById("localImag");
     if (docObj.files && docObj.files[0]) {
         //火狐下，直接设img属性

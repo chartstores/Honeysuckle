@@ -3,27 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>预览上传前的图片</title>
+    <link type="text/css" rel="stylesheet" href="libs/normalize/normalize.css"/>
+    <link type="text/css" rel="stylesheet" href="css/index.css"/>
 </head>
 <body>
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
-    <tbody>
-    <tr>
-        <td height="101" align="center">
-            <div id="localImag" style="border: 1px solid red;">
-                <img id="preview" src="" width="100" height="100" style="display: block;border: 1px solid blue;"/>
+<div class="container">
+    <ul>
+        <li>
+            <div id="localImag"  class="local-img">
+                <img id="preview" src="" class="preview"/>
             </div>
-        </td>
-    </tr>
-    <tr>
-        <td align="center" style="padding-top:10px;">
-            <form method="get" action="xznetwork" name="textfile">
-                <input type="file" name="file" id="doc" multiple="multiple" style="width:150px;"
-                       onchange="javascript:setImagePreview();">
+        </li>
+        <li class="btn-area">
+            <form method="get" action="domain/upload" name="textfile">
+                <input id="doc" type="file" name="file" multiple="multiple" onchange="setImagePreview();">
             </form>
-        </td>
-    </tr>
-    </tbody>
-</table>
+        </li>
+    </ul>
+</div>
 <script type="text/javascript" src="libs/jquery/jquery-3.2.1.js"></script>
 <script type="text/javascript" src="js/index.js"></script>
 </body>
