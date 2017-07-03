@@ -12,6 +12,10 @@ ul,li{
     border:1px solid #f99027;
 }
 
+.local-img img{
+    margin-right: 10px;
+}
+
 .btn-area{
     padding:10px 0;
 }

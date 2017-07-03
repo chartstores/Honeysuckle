@@ -3,14 +3,16 @@ function setImagePreview(avalue) {
     var docObj = document.getElementById("doc");
     var imgObjPreview = document.getElementById("preview");
     var divs = document.getElementById("localImag");
+    //动态创建多个img
+    var tempImg;
     if (docObj.files && docObj.files[0]) {
-        //火狐下，直接设img属性
-        imgObjPreview.style.display = 'block';
-        imgObjPreview.style.width = '100px';
-        imgObjPreview.style.height = '100px';
-        //imgObjPreview.src = docObj.files[0].getAsDataURL();
-        //火狐7以上版本不能用上面的getAsDataURL()方式获取，需要一下方式
-        imgObjPreview.src = window.URL.createObjectURL(docObj.files[0]);
+        for(var i=0;i<docObj.files.length;i++){
+            tempImg=document.createElement("img");
+            tempImg.className="preview";
+            tempImg.style.height = '100px';
+            tempImg.src = window.URL.createObjectURL(docObj.files[i]);
+            divs.appendChild(tempImg);
+        }
     } else {
         //IE下，使用滤镜
         docObj.select();
