@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>位移：translate</title>
+<style type="text/css">
+	html,body{font-family:"Microsoft Yahei";color:#076a07;font-size:14px;background:#c5d7ca;padding:30px 0 50px;}
+	h3{text-align: center;}
+	pre{font-weight:700;font-size: 20px;width:1400px;margin:20px auto 150px;}
+
+	/*translateX(a):水平方向移动a*/
+	.bg1{width:200px;height:200px;background:green;margin:0 auto; margin-top: 150px;transition:1s;-webkit-transform:perspective(600px) translateX(0);}
+    .bg1:hover{-webkit-transform:perspective(600px) translateX(100px);}
+
+
+	/*translateY(a): 垂直方向移动a*/
+	.bg2{width:200px;height:200px;background:green;margin:0 auto; margin-top: 150px;transition:1s;-webkit-transform:perspective(600px) translateY(0);}
+	.bg2:hover{-webkit-transform:perspective(600px) translateY(-50px);}
+
+
+	/*translateZ(a): 垂直Z轴（这个Z轴是一条垂直于X和Y所在平面的一条线）移动*/
+	.bg3{width:200px;height:200px;background:green;margin:0 auto; margin-top: 100px;transition:1s;-webkit-transform:perspective(600px) translateZ(0);}
+	.bg3:hover{-webkit-transform:perspective(600px) translateZ(200px);}
+	/*等同于scale(a,a):水平方向缩放a倍,垂直方向缩放a倍*/
+	.bg33{width:200px;height:200px;background:green;margin:0 auto; margin-top: 150px;transition:1s;-webkit-transform:perspective(600px) scale(1,1);}
+	.bg33:hover{-webkit-transform:perspective(600px) scale(1.5,1.5);}
+
+
+	/*translate(a,b): 水平方向移动a,垂直方向移动b*/
+	.bg4{width:200px;height:200px;background:green;margin:0 auto; margin-top: 150px;transition:1s;-webkit-transform:perspective(600px) translate(0,0);}
+    .bg4:hover{-webkit-transform:perspective(600px) translate(100px,100px);}
+
+
+	/*translate3d(x,y,z):水平方向移动x,垂直方向移动y,垂直z轴方向移动z*/
+	.bg5{width:200px;height:200px;background:green;margin:0 auto; margin-top: 150px;transition:1s;-webkit-transform:perspective(600px) translate3d(0,0,0);}
+    .bg5:hover{-webkit-transform:perspective(600px) translate3d(100px,100px,100px);}
+
+</style>
+</head>
+<body>
+<h1 style="text-align: center;">位移：translate</h1>
+
+<div class="bg1"></div>
+<h3>translateX(a):水平方向移动a</h3>
+<pre>
+	.bg1{width:200px;height:200px;background:green;margin:0 auto; margin-top: 150px;transition:1s;-webkit-transform:perspective(600px) translateX(0);}
+    .bg1:hover{-webkit-transform:perspective(600px) translateX(100px);}
+</pre>
+
+<div class="bg2"></div>
+<h3>translateY(a): 垂直方向移动a</h3>
+<pre>
+.bg2{width:200px;height:200px;background:green;margin:0 auto; margin-top: 150px;transition:1s;-webkit-transform:perspective(600px) translateY(0);}
+.bg2:hover{-webkit-transform:perspective(600px) translateY(-50px);}
+</pre>
+
+<div class="bg3"></div>
+<h3>translateZ(a): 垂直Z轴（这个Z轴是一条垂直于X和Y所在平面的一条线）移动</h3>
+<pre>
+.bg3{width:200px;height:200px;background:green;margin:0 auto; margin-top: 100px;transition:1s;-webkit-transform:perspective(600px) translateZ(0);}
+.bg3:hover{-webkit-transform:perspective(600px) translateZ(200px);}
+</pre>
+
+<div class="bg33"></div>
+<h3>scale(a,a)等同于translateZ(a):水平方向缩放a倍,垂直方向缩放a倍</h3>
+<pre>
+.bg33{width:200px;height:200px;background:green;margin:0 auto; margin-top: 150px;transition:1s;-webkit-transform:perspective(600px) scale(1,1);}
+.bg33:hover{-webkit-transform:perspective(600px) scale(1.5,1.5);}
+</pre>
+
+<div class="bg4"></div>
+<h3>translate(a,b): 水平方向移动a,垂直方向移动b</h3>
+<pre>
+.bg4{width:200px;height:200px;background:green;margin:0 auto; margin-top: 150px;transition:1s;-webkit-transform:perspective(600px) translate(0,0);}
+.bg4:hover{-webkit-transform:perspective(600px) translate(100px,100px);}
+</pre>
+
+<div class="bg5"></div>
+<h3>translate3d(x,y,z):水平方向移动x,垂直方向移动y,垂直z轴方向移动z</h3>
+<pre>
+.bg5{width:200px;height:200px;background:green;margin:0 auto; margin-top: 150px;transition:1s;-webkit-transform:perspective(600px) translate3d(0,0,0);}
+.bg5:hover{-webkit-transform:perspective(600px) translate3d(100px,100px,100px);}
+</pre>
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>animation-fill-mode运动运行后停留在最后一帧</title>
+<style type="text/css">
+	html,body{font-family:"Microsoft Yahei";color:#076a07;font-size:14px;background:#c5d7ca;padding:30px 0 50px;}
+	pre{font-weight:700;font-size: 20px;width:800px;margin:20px auto 150px;}
+	h2{text-align: center;margin-top: 150px;}
+
+	.bg1{width:200px;height:200px;background:green;margin:0 auto;}
+	.bg1:hover{ -webkit-animation:2s rainbow backwards; }
+	/*animation-fill-mode : none | forwards | backwards ;*/
+	/*
+	（1）none：默认值，回到动画没开始时的状态
+	（2）backwards：让动画回到第一帧的状态
+	（3）forwards：让动画停留在最后一种状态
+	*/
+
+	@-webkit-keyframes rainbow {  0% { background: green; }  50% { background: blue; }  100% { background:red; }}
+
+	.bg2{width:200px;height:200px;background:green;margin:0 auto;}
+	.bg2:hover{ -webkit-animation:2s rainbow forwards; }
+
+</style>
+</head>
+<body>
+<h1 style="text-align: center;">animation-fill-mode运动运行后停留在最后一帧</h1>
+
+<h2>animation:2s rainbow backwards</h2>
+<div class="bg1"></div>
+<pre>
+.bg{width:200px;height:200px;background:green;margin:0 auto;}
+.bg:hover{ -webkit-animation:2s rainbow backwards; }
+animation-fill-mode : none | forwards | backwards ;
+（1）none：默认值，回到动画没开始时的状态
+（2）backwards：让动画回到第一帧的状态
+（3）forwards：让动画停留在最后一种状态
+@-webkit-keyframes rainbow {  0% { background: green; }  50% { background: blue; }  100% { background:red; }}
+</pre>
+
+<h2>animation:2s rainbow forwards</h2>
+<div class="bg2"></div>
+
+</body>
+</html>

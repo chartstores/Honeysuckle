@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>animation多个动画连写</title>
+<style type="text/css">
+	html,body{font-family:"Microsoft Yahei";color:#076a07;font-size:14px;background:#c5d7ca;padding-top:30px;}
+	pre{font-weight:700;font-size: 20px;width:800px;margin:20px auto 150px;}
+
+
+	.p3-boss{
+		-webkit-transform: scale(0.6);
+		margin:0 auto;
+		width: 426px;
+		height: 481px;
+		opacity: 0;
+		background: url('images/p3-boss.png') 0 0 no-repeat;
+		background-size: 426px 962px;
+		-webkit-animation:fadeOut 2s 1 forwards,change 1s steps(1,end) 2s infinite;
+	}
+	@-webkit-keyframes fadeOut {
+		100%{ opacity: 1;}
+	}
+	@-webkit-keyframes change {
+		50%{background: url('images/p3-boss.png') 0 -482px no-repeat;}
+	}
+
+
+
+</style>
+</head>
+<body>
+<h1 style="text-align: center;">animation多个动画连写</h1>
+
+<div class="p3-boss"></div>
+<pre>
+	.p3-boss{
+		-webkit-transform: scale(0.6);
+		margin:0 auto;
+		width: 426px;
+		height: 481px;
+		opacity: 0;
+		background: url('images/p3-boss.png') 0 0 no-repeat;
+		background-size: 426px 962px;
+		-webkit-animation:fadeOut 2s 1 forwards,change 1s steps(1,end) 2s infinite;
+	}
+	@-webkit-keyframes fadeOut {
+		100%{ opacity: 1;}
+	}
+	@-webkit-keyframes change {
+		50%{background: url('images/p3-boss.png') 0 -482px no-repeat;}
+	}
+</pre>
+
+</body>
+</html>

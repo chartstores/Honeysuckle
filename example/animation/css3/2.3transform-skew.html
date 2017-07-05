@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>倾斜：skew</title>
+<style type="text/css">
+	html,body{font-family:"Microsoft Yahei";color:#076a07;font-size:14px;background:#c5d7ca;padding:30px 0 50px;}
+	h3{text-align: center;}
+	pre{font-weight:700;font-size: 20px;width:1400px;margin:20px auto 150px;}
+
+	/*skewX(a):水平方向倾斜a度*/
+	.bg1{width:200px;height:200px;background:green;margin:0 auto; margin-top: 150px;transition:1s;-webkit-transform:perspective(600px) skewX(0);}
+    .bg1:hover{-webkit-transform:perspective(600px) skewX(10deg);}
+
+
+	/*skewY(a):垂直方向倾斜a度*/
+	.bg2{width:200px;height:200px;background:green;margin:0 auto; margin-top: 150px;transition:1s;-webkit-transform:perspective(600px) skewY(0);}
+    .bg2:hover{-webkit-transform:perspective(600px) skewY(10deg);}
+
+
+	/*skew(a,b):水平方向倾斜a度,垂直方向倾斜b度*/
+	.bg3{width:200px;height:200px;background:green;margin:0 auto; margin-top: 150px;transition:1s;-webkit-transform:perspective(600px) skew(0,0);}
+	.bg3:hover{-webkit-transform:perspective(600px) skew(10deg,10deg);}
+
+
+</style>
+</head>
+<body>
+<h1 style="text-align: center;">倾斜：skew</h1>
+
+<div class="bg1"></div>
+<h3>skewX(a):水平方向倾斜a度</h3>
+<pre>
+.bg1{width:200px;height:200px;background:green;margin:0 auto; margin-top: 150px;transition:1s;-webkit-transform:perspective(600px) skewX(0);}
+.bg1:hover{-webkit-transform:perspective(600px) skewX(10deg);}
+</pre>
+
+<div class="bg2"></div>
+<h3>skewY(a):垂直方向倾斜a度</h3>
+<pre>
+.bg2{width:200px;height:200px;background:green;margin:0 auto; margin-top: 150px;transition:1s;-webkit-transform:perspective(600px) skewY(0);}
+.bg2:hover{-webkit-transform:perspective(600px) skewY(10deg);}
+</pre>
+
+<div class="bg3"></div>
+<h3>skew(a,b):水平方向倾斜a度,垂直方向倾斜b度</h3>
+<pre>
+.bg3{width:200px;height:200px;background:green;margin:0 auto; margin-top: 150px;transition:1s;-webkit-transform:perspective(600px) skew(0,0);}
+.bg3:hover{-webkit-transform:perspective(600px) skew(10deg,10deg);}
+</pre>
+
+</body>
+</html>

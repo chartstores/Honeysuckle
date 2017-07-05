@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>animation-iteration-count动画循环次数</title>
+<style type="text/css">
+	html,body{font-family:"Microsoft Yahei";color:#076a07;font-size:14px;background:#c5d7ca;padding-top:30px;}
+	pre{font-weight:700;font-size: 20px;width:800px;margin:20px auto 150px;}
+
+	.bg{width:200px;height:200px;background:green;margin:0 auto; margin-top: 150px;}
+	.bg:hover{ -webkit-animation: infinite rainbow 3s alternate 1s;}
+	/*设定动画执行的次数，其值可以是数字也可以是infinite（循环执行）*/
+	@-webkit-keyframes rainbow {  0% { background: green; }  50% { background: blue; }  100% { background:red; }}
+
+/*	animation-name	规定 @keyframes 动画的名称
+	animation-duration	规定动画完成一个周期所花费的秒或毫秒。默认是 0
+	animation-timing-function	规定动画的速度曲线。默认是 "ease"
+	animation-delay	规定动画何时开始。默认是 0
+	animation-iteration-count	规定动画被播放的次数。默认是 1
+	animation-direction	规定动画是否在下一周期逆向地播放。默认是 "normal"
+	animation-play-state	规定动画是否正在运行或暂停。默认是 "running"
+	animation-fill-mode   规定对象动画时间之外的状态。*/
+
+	/*animation后面的多个参数简写时的位置是可以随意的，不过，周期时间位于延迟时间的前面
+	  当只有一个时间参数时，则该时间是指周期时间
+	*/
+
+</style>
+</head>
+<body>
+<h1 style="text-align: center;">animation-iteration-count动画循环次数</h1>
+
+<div class="bg"></div>
+<pre>
+.bg{width:200px;height:200px;background:green;margin:0 auto; margin-top: 150px;}
+.bg:hover{ -webkit-animation: infinite rainbow 3s alternate 1s;}
+设定动画执行的次数，其值可以是数字也可以是infinite（循环执行）
+@-webkit-keyframes rainbow {  0% { background: green; }  50% { background: blue; }  100% { background:red; }}
+</pre>
+
+</body>
+</html>

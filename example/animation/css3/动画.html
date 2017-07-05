@@ -1,0 +1,212 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>动画导航菜单</title>
+<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+<style type="text/css">
+    html,body{font-family:"Microsoft Yahei";color:#666;font-size:18px;background:#c5d7ca;}
+    h1{text-align: center;color:#076a07;margin:38px;}
+
+    .wrap{margin:30px auto 190px;width:500px;position:relative;-webkit-perspective:800px;}
+    .wrap2{margin-bottom:265px;}
+    .wrap.last{margin-bottom:380px;}
+    .wrap h2{ height:45px;background:#59a35e; text-align:center; font:22px/45px "Microsoft Yahei"; color:#fff; position:relative;z-index:2;-webkit-transition:.3s;cursor: pointer; border-top-left-radius: 5px;  border-top-right-radius: 5px;}
+    .wrap h2:hover{background:#549a59;}
+    .wrap div{ position:absolute; top:37px;left:0;/*-webkit-perspective:800px; */-webkit-transform-style:preserve-3d; -webkit-transform-origin:top; -webkit-transform:rotateX(-120deg); -webkit-transition:.5s;}
+    .wrap>div{ top:45px;}
+    .wrap>div.open{ top:47px;}
+    .wrap .open{-webkit-transform:rotateX(0deg); -webkit-animation:open 2s; }
+    .wrap a{ display:block;text-decoration:none;width:500px;height:35px; font:18px/35px "Microsoft Yahei"; background:#5ead63; text-indent:15px; color:#fff; -webkit-transition:.3s; box-shadow:inset 0 0 30px 20px #383b3e; }
+    .wrap .open>a{ box-shadow:none;}
+    .wrap a:hover{ background:#57a05c;text-indent:22px;}
+    @-webkit-keyframes open{
+        0% {  -webkit-transform:rotateX(-120deg);  }
+        40% {  -webkit-transform:rotateX(30deg);  }
+        60% {  -webkit-transform:rotateX(-20deg);  }
+        80% {  -webkit-transform:rotateX(10deg);  }
+        100% {  -webkit-transform:rotateX(0deg);  }
+    }
+
+</style>
+</head>
+<body>
+
+<h1>css3常见动画讲解</h1>
+
+    <div class="wrap">
+        <h2>一、transition 过渡</h2>
+        <div>
+            <a href="1.1transition-property.html" target="_blank">1. 动画变换属性：transition-property</a>
+            <div>
+                <a href="1.2transition-duration.html" target="_blank">2. 动画执行周期：transition-duration</a>
+                <div>
+                    <a href="1.3transition-delay.html" target="_blank">3. 动画延迟时间：transition-delay</a>
+                    <div>
+                        <a href="1.4transition-timing-function.html" target="_blank">4. 动画速率变化：transition-timing-function</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="wrap wrap2">
+        <h2>二、transform 变形</h2>
+        <div>
+            <a href="perspective.html" target="_blank">了解perspective</a>
+            <div>
+                <a href="2.1transform-rotate.html" target="_blank">1. 旋转：rotate</a>
+                <div>
+                    <a href="2.2transform-scale.html" target="_blank">2. 缩放：scale</a>
+                    <div>
+                        <a href="2.3transform-skew.html" target="_blank">3. 倾斜：skew</a>
+                        <div>
+                            <a href="2.4transform-translate.html" target="_blank">4. 位移：translate</a>
+                            <div>
+                                <a href="2.5transform多个值连写.html" target="_blank">transform多值连写</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="wrap last">
+        <h2>三、animation 动画</h2>
+        <div>
+            <a href="javascript:;">1. 动画名：animation-name</a>
+            <div>
+                <a href="javascript:;">2. 动画周期：animation-duration</a>
+                <div>
+                    <a href="javascript:;">3. 动画延迟：animation-delay</a>
+                    <div>
+                        <a href="1.5transition-timing-function-steps.html" target="_blank" >4. 动画速率：animation-timing-function</a>
+                        <div>
+                            <a href="3.1animation-iteration-count动画循环次数.html" target="_blank" >5. 动画执行次数：animation-iteration-count</a>
+                            <div>
+                                <a href="3.2animation-direction动画循环播放的方向.html" target="_blank" >6. 动画方向：animation-direction</a>
+                                <div>
+                                    <a href="3.3animation-fill-mode运动运行后停留在最后一帧.html" target="_blank" >7. 动画运行后是否停留在最后一帧：animation-fill-mode</a>
+                                    <div>
+                                        <a href="3.4animation-play-state离开停留在当前状态.html" target="_blank" >8. 动画暂停与执行：animation-play-state </a>
+                                        <div>
+                                            <a href="3.5animatioin多个动画连写.html" target="_blank">animation多值连写</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="wrap">
+        <h2>四、demo</h2>
+        <div>
+            <a href="翻书.html" target="_blank">翻书</a>
+            <div>
+                <a href="菜单.html" target="_blank">菜单</a>
+                <div>
+                    <a href="时钟.html" target="_blank">时钟</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+<script>
+    $(function(){
+
+        var oTimer=null;
+        var flag = true,flag1 = true,flag2 = true,flag3 = true,flag4 = true;
+        $("h2").on("click",function(){
+
+            var wrapIndex = $(this).parents(".wrap").index();
+            console.log(wrapIndex);
+
+            var $wrap = $(this).parents(".wrap");
+            var $aDiv = $wrap.find("div");
+
+            if(wrapIndex==1){
+                flag = flag1;
+            }else if(wrapIndex==2){
+                flag = flag2;
+            }else if(wrapIndex==3){
+                flag = flag3;
+            }else if(wrapIndex==4){
+                flag = flag4;
+            }
+
+            if(flag){
+                var i = $aDiv.length-1;
+                clearInterval(oTimer);
+                oTimer = setInterval(function(){
+                    $aDiv.eq(i).removeClass();
+                    i--;
+                    if(i<0)
+                    {
+                        clearInterval(oTimer);
+                    }
+                },50);
+                /*flag = false;*/
+                if(wrapIndex==1){
+                    flag1 = false;
+                }else if(wrapIndex==2){
+                    flag2 = false;
+                }else if(wrapIndex==3){
+                    flag3 = false;
+                }else if(wrapIndex==4){
+                    flag4 = false;
+                }
+            }else{
+                i = 0;
+                clearInterval(oTimer);
+                oTimer = setInterval(function(){
+                    $aDiv.eq(i).addClass("open");
+                    i++;
+                    if(i==$aDiv.length)
+                    {
+                        clearInterval(oTimer);
+                    }
+                },100);
+                /*flag = true;*/
+                if(wrapIndex==1){
+                    flag1 = true;
+                }else if(wrapIndex==2){
+                    flag2 = true;
+                }else if(wrapIndex==3){
+                    flag3 = true;
+                }else if(wrapIndex==4){
+                    flag4 = true;
+                }
+            }
+
+        });
+
+
+        /*初始化*/
+        var $allDiv = $(".wrap").find("div");
+        var j = 0;
+        oTimer2 = setInterval(function(){
+            $allDiv.eq(j).addClass("open");
+            j++;
+            if(j==$allDiv.length)
+            {
+                clearInterval(oTimer2);
+            }
+        },100);
+
+
+    });
+</script>
+
+
+</body>
+</html>

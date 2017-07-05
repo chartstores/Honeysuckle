@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>rotate</title>
+<style type="text/css">
+	html,body{font-family:"Microsoft Yahei";color:#076a07;font-size:14px;background:#c5d7ca;padding:30px 0 50px;}
+	h1{text-align: center;margin-bottom:150px;}
+	pre{font-weight:700;font-size: 20px;width:1400px;margin:20px auto 150px;}
+
+	.bg{width:200px;height:200px;background:green;margin:0 auto; margin-top: 150px;-webkit-transition:2s;-webkit-transform:rotateX(0deg);}
+	.bg:hover{-webkit-transform:rotateX(180deg);}
+
+	.wrap{perspective:600px;}
+	.bg0{width:200px;height:200px;background:green;margin:0 auto; margin-top: 150px;-webkit-transition:2s;-webkit-transform:rotateX(0deg);}
+	.bg0:hover{-webkit-transform:rotateX(180deg);}
+	/*上面等同于下面*/
+	.bg1{width:200px;height:200px;background:green;margin:0 auto; margin-top: 150px;-webkit-transition:2s;-webkit-transform:perspective(600px) rotateX(0deg);}
+	.bg1:hover{-webkit-transform:perspective(600px) rotateX(180deg);}
+
+
+
+	/*以下两种情况perspective无效*/
+/*	第一种：perspective()要置rotateX()之前*/
+	.bg2{width:200px;height:200px;background:green;margin:0 auto; margin-top: 150px;-webkit-transition:2s;-webkit-transform:rotateX(0deg) perspective(600px);}
+	.bg2:hover{-webkit-transform:rotateX(180deg) perspective(600px);}
+/*	第二种：perspective:300px要放置父元素里*/
+	.bg3{width:200px;height:200px;background:green;margin:0 auto; margin-top: 150px;perspective:600px;-webkit-transition:2s;-webkit-transform:rotateX(0deg);}
+	.bg3:hover{-webkit-transform:rotateX(180deg);}
+
+
+
+/*perspective：none | <length>
+perspective属性包括两个属性：none和具有单位的长度值。其中perspective属性的默认值为none，表示无限的角度来看3D物体，但看上去是平的。另一个值<length>接受一个长度单位大于0的值。而且其单位不能为百分比值。<length>值越大，角度出现的越远，从而创建一个相当低的强度和非常小的3D空间变化。反之，此值越小，角度出现的越近，从而创建一个高强度的角度和一个大型3D变化。
+比如你站在10英尺和1000英尺的地方看一个10英尺的立方体。在10英尺的地方，你距离立方体是一样的尺寸。因此视角转变远远大于站在1000英尺处的，立体尺寸是你距离立方体距离的百分之一。同样的思维适用于perspective的<length>值。*/
+
+/*依据上面的介绍，我们可对perspective取值做一个简单的结论：
+perspective取值为none或不设置，就没有真3D空间。
+perspective取值越小，3D效果就越明显，也就是你的眼睛越靠近真3D。
+perspective的值无穷大，或值为0时与取值为none效果一样。*/
+
+/*在3D变形中，除了perspective属性可以激活一个3D空间之外，在3D变形的函数中的perspective()也可以激活3D空间。
+他们不同的地方是：perspective用在舞台元素上（变形元素们的共同父元素）；
+perspective()就是用在当前变形元素上，并且可以与其他的transform函数一起使用。
+例如：
+.wrap{perspective: 600px}
+.bg{transform:rotateX(0deg)}
+等同于
+.wrap .bg{transform: perspective(600px) rotateX(0deg);}
+*/
+
+/*虽然perspective属性和perspective()函数所起的功能是一样的，但其取值以及以运用的对像有所不同：
+perspective属性可以取值为none或长度值；而perspective()函数取值只能大于0，如果取值为0或比0小的值，将无法激活3D空间；
+perspective属性用于变形对像父元素；而perspective()函数用于变形对像自身，并和transform其他函数一起使用。*/
+
+</style>
+</head>
+<body>
+<h1>perspective</h1>
+
+<pre>
+在3D变形中，除了perspective属性可以激活一个3D空间之外，在3D变形的函数中的perspective()也可以激活3D空间。
+他们不同的地方是：perspective用在舞台元素上（变形元素们的共同父元素）；
+perspective()就是用在当前变形元素上，并且可以与其他的transform函数一起使用。
+例如：
+父元素.wrap{perspective: 600px}
+子元素.bg{transform:rotateX(0deg)}
+等同于
+.bg{transform: perspective(600px) rotateX(0deg);}
+
+虽然perspective属性和perspective()函数所起的功能是一样的，但其取值以及以运用的对像有所不同：
+perspective属性可以取值为none或长度值；而perspective()函数取值只能大于0，如果取值为0或比0小的值，将无法激活3D空间；
+perspective属性用于变形对像父元素；而perspective()函数用于变形对像自身，并和transform其他函数一起使用。
+</pre>
+
+
+<div class="bg"></div>
+<pre>
+.bg{width:200px;height:200px;background:green;margin:0 auto; margin-top: 150px;-webkit-transition:2s;-webkit-transform:rotateX(0deg);}
+.bg:hover{-webkit-transform:rotateX(180deg);}
+</pre>
+
+
+<div class="wrap">
+	<div class="bg0"></div>
+</div>
+<pre>
+.wrap{perspective:600px;}
+.bg0{width:200px;height:200px;background:green;margin:0 auto; margin-top: 150px;-webkit-transition:2s;-webkit-transform:rotateX(0deg);}
+.bg0:hover{-webkit-transform:rotateX(180deg);}
+</pre>
+
+
+<div class="bg1"></div>
+<pre>
+.bg1{width:200px;height:200px;background:green;margin:0 auto; margin-top: 150px;-webkit-transition:2s;-webkit-transform:perspective(600px) rotateX(0deg);}
+.bg1:hover{-webkit-transform:perspective(600px) rotateX(180deg);}
+</pre>
+
+
+<div class="bg2"></div>
+<pre>
+以下两种情况perspective无效
+情况一：perspective()要置rotateX()之前
+.bg{width:200px;height:200px;background:green;margin:0 auto; margin-top: 150px;-webkit-transition:2s;-webkit-transform:rotateX(0deg) perspective(600px);}
+.bg:hover{-webkit-transform:rotateX(180deg) perspective(600px);}
+</pre>
+
+
+<div>
+	<div class="bg3"></div>
+</div>
+<pre>
+情况二：perspective:600px要放置父元素里
+.bg{width:200px;height:200px;background:green;margin:0 auto; margin-top: 150px;perspective:600px;-webkit-transition:2s;-webkit-transform:rotateX(0deg);}
+.bg:hover{-webkit-transform:rotateX(180deg);}
+</pre>
+
+
+
+</body>
+</html>

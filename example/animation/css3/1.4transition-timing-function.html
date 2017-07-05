@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>动画速率变化：transition-timing-function</title>
+<style type="text/css">
+	html,body{font-family:"Microsoft Yahei";color:#076a07;font-size:14px;background:#c5d7ca;padding:30px 0 50px;}
+	h2{text-align: center;margin-top: 150px;}
+	a{color:#076a07;text-decoration: none;margin-right:20px;}
+	pre{font-weight:700;font-size: 20px;width:1200px;margin:150px auto 150px;line-height: 30px;}
+
+/*transition-timing-function默认值ease*/
+	.bg1{width:200px;height:200px;background:green;margin:0 auto; -webkit-transition:width 1s .1s ease;}
+	.bg1:hover{ width: 400px;}
+/*完整写法*/
+/*.bg{
+    width:200px;height:200px;background:green;margin:0 auto;
+    -webkit-transition-property: width;
+    -webkit-transition-duration: 1s;
+    -webkit-transition-delay: .1s;
+    -webkit-transition-timing-function: ease;
+	}
+	.bg:hover{ width: 400px;}*/
+
+
+/*自定义cubic-bezier曲线*/
+	.bg2{width:200px;height:200px;background:green;margin:0 auto; -webkit-transition:1s width cubic-bezier(.94,-0.6,.1,1.3);}
+	.bg2:hover{ width: 400px;}
+
+
+/*在线设置速度曲线 http://cubic-bezier.com*/
+
+
+/*	transition-timing-function的值允许你根据时间的推进去改变属性值的变换速率，transition-timing-function有9个可能值：
+	1、ease：（逐渐变慢）默认值，ease函数等同于贝塞尔曲线(.25, .1, .25, 1)；
+	2、linear：（匀速），linear 函数等同于贝塞尔曲线(0, 0, 1, 1)；
+	3、ease-in：(加速)，ease-in 函数等同于贝塞尔曲线(.42, 0, 1, 1)；
+	4、ease-out：（减速），ease-out 函数等同于贝塞尔曲线(0, 0, .58, 1)；
+	5、ease-in-out：（加速然后减速），ease-in-out 函数等同于贝塞尔曲线(.42, 0, .58, 1)；
+	6、cubic-bezier：（该值允许你去自定义一个时间曲线）， 特定的cubic-bezier曲线。 (x1, y1, x2, y2)四个值特定于曲线上点P1和点P2。
+		X轴的取值区间是 [0, 1]，否则无效，Y轴任意。附：在线定义速率 http://cubic-bezier.com
+	7、step-start：等同于 steps(1, start)。
+	8、step-end：等同于 steps(1, end)。
+	9、steps(Num,end)：接受两个参数的步进函数。第一个参数必须为正整数，指定函数的步数。第二个参数取值可以是start或end，指定每一步的值发生变化的时间点。第二个参数是可选的，默认值为end。
+	@-webkit-keyframes rainbow {  0% { background: green; }  50% { background: blue; }  100% { background:red; }}
+	steps(1,start)在变化过程中，都是以下一帧的显示效果来填充间隔动画，所以0% 到 50%  直接就显示了蓝色blue
+														动画分成1步，动画执行时以下一帧的显示效果来填充间隔动画；
+	steps(1,end)与上面相反，都是以上一帧的显示效果来填充间隔动画，所以0% 到 50% 直接就显示了绿色green
+													动画分成1步，以上一帧的显示效果来填充间隔动画，默认值为end。*/
+
+</style>
+</head>
+<body>
+<h1 style="text-align: center;">动画速率变化：transition-timing-function</h1>
+
+<h2>transition:width 1s .1s ease</h2>
+<div class="bg1"></div>
+
+<h2><a href="http://cubic-bezier.com" target="_blank">贝塞尔曲线</a>transition:1s width cubic-bezier(.94,-0.6,.1,1.3);</h2>
+<div class="bg2"></div>
+
+<pre>
+	transition-timing-function的值允许你根据时间的推进去改变属性值的变换速率，transition-timing-function有9个可能值：
+	1、ease：（逐渐变慢）默认值，ease函数等同于贝塞尔曲线(.25, .1, .25, 1)；
+	2、linear：（匀速），linear 函数等同于贝塞尔曲线(0, 0, 1, 1)；
+	3、ease-in：(加速)，ease-in 函数等同于贝塞尔曲线(.42, 0, 1, 1)；
+	4、ease-out：（减速），ease-out 函数等同于贝塞尔曲线(0, 0, .58, 1)；
+	5、ease-in-out：（加速然后减速），ease-in-out 函数等同于贝塞尔曲线(.42, 0, .58, 1)；
+	6、cubic-bezier：（该值允许你去自定义一个时间曲线）， 特定的cubic-bezier曲线。 (x1, y1, x2, y2)四个值特定于曲线上点P1和点P2。
+	   X轴的取值区间是 [0, 1]，否则无效，Y轴任意。附：在线定义速率<a href="http://cubic-bezier.com" target="_blank" style="margin-left:10px;">http://cubic-bezier.com</a>
+	7、step-start：等同于 steps(1, start)。
+	8、step-end：等同于 steps(1, end)。
+	9、steps(Num,end)：接受两个参数的函数。第一个参数必须为正整数，指定函数的步数。
+	   第二个参数取值可以是start或end，指定每一步的值发生变化的时间点。
+	   第二个参数是可选的，默认值为end。
+
+	@-webkit-keyframes rainbow {  0% { background: green; }  50% { background: blue; }  100% { background:red; }}
+	steps(1,start)在变化过程中，都是以下一帧的显示效果来填充间隔动画，所以0% 到 50%  直接就显示了蓝色blue
+	动画分成1步，动画执行时以下一帧的显示效果来填充间隔动画；
+	steps(1,end)与上面相反，都是以上一帧的显示效果来填充间隔动画，所以0% 到 50% 直接就显示了绿色green
+	动画分成1步，以上一帧的显示效果来填充间隔动画，默认值为end。
+</pre>
+<div style="text-align: center;font-weight:700;font-size: 20px;">
+<a href="1.5transition-timing-function-steps.html" target="_blank" >前往steps的demo</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>transform多值连写</title>
+<style type="text/css">
+	html,body{font-family:"Microsoft Yahei";color:#076a07;font-size:14px;background:#c5d7ca;padding-top:30px;}
+	pre{font-weight:700;font-size: 20px;width:1200px;margin:20px auto 150px;}
+
+	/*transform多值连写*/
+	.bg{width:200px;height:200px;background:green;margin:0 auto; margin-top: 150px;transition:1s;-webkit-transform:perspective(600px) translate(0,0) rotate(0) scale(1,1) skew(0,0);}
+    .bg:hover{-webkit-transform:perspective(600px) translate(50px,50px) rotate(180deg) scale(1.5,1.5) skew(10deg,10deg);}
+
+</style>
+</head>
+<body>
+<h1 style="text-align: center;">transform多值连写</h1>
+
+<div class="bg"></div>
+<pre>
+.bg{width:200px;height:200px;background:green;margin:0 auto; margin-top: 150px;transition:1s;
+-webkit-transform:perspective(600px) translate(0,0) rotate(0) scale(1,1) skew(0,0);}
+.bg:hover{-webkit-transform:perspective(600px) translate(50px,50px) rotate(180deg) scale(1.5,1.5) skew(10deg,10deg);}
+</pre>
+
+</body>
+</html>

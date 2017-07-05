@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>动画延迟时间：transition-delay</title>
+<style type="text/css">
+	html,body{font-family:"Microsoft Yahei";color:#076a07;font-size:14px;background:#c5d7ca;padding:30px 0 50px;}
+	h2{text-align: center;margin-top: 150px;}
+	pre{font-weight:700;font-size: 20px;width:1000px;margin:20px auto 150px;}
+
+	/*transition-delay,延迟*/
+	.bg1{width:200px;height:200px;background:green;margin:0 auto; -webkit-transition:.5s 1s;}
+	.bg1:hover{ height: 300px;width:300px;}
+	/*1s为延迟时间*/
+
+	/*宽先变大，高再变大*/
+		.bg2{width:200px;height:200px;background:green;margin:0 auto;-webkit-transition:1s width, .5s 1s height;}
+        .bg2:hover{ height: 300px;width:300px;}
+
+/*	transition简写时，属性值位置可以随意调换，
+	如果有两个时间属性值的话，第一个是动画周期时间，第二个是动画延迟时间
+	如果只有一个时间属性值的话，这个属性值是动画周期时间*/
+
+
+
+
+
+</style>
+</head>
+<body>
+<h1 style="text-align: center;">动画延迟时间：transition-delay</h1>
+
+<h2>transition:.5s 1s;</h2>
+<div class="bg1"></div>
+<pre>
+.bg1{width:200px;height:200px;background:green;margin:0 auto; -webkit-transition:.5s 1s;}
+.bg1:hover{ height: 300px;width:300px;}
+</pre>
+
+<h2>transition:1s width, .5s 1s height</h2>
+<div class="bg2"></div>
+<pre>
+.bg2{width:200px;height:200px;background:green;margin:0 auto;-webkit-transition:1s width, .5s 1s height;}
+.bg2:hover{ height: 300px;width:300px;}
+</pre>
+
+<div style="text-align:left;font-size:18px;width:650px;margin:50px auto;font-weight: 700;">
+	<div>transition简写时，属性值位置可以随意调换，</div>
+	<div>如果有两个时间属性值的话，第一个是动画周期时间，第二个是动画延迟时间</div>
+	<div>如果只有一个时间属性值的话，这个属性值是动画周期时间</div>
+</div>
+
+</body>
+</html>

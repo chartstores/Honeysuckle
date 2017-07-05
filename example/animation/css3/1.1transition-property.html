@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>动画变换属性：transition-property</title>
+<style type="text/css">
+	html,body{font-family:"Microsoft Yahei";color:#076a07;font-size:14px;background:#c5d7ca;padding-top:30px;}
+	h1{text-align: center;margin-bottom:150px;}
+	h2{text-align: center;}
+	pre{font-weight:700;font-size: 20px;width:1000px;margin:20px auto 150px;}
+
+	/*一个属性*/
+	.bg1{width:200px;height:200px;background:green;margin:0 auto; -webkit-transition: width 1s;}
+	.bg1:hover{ width: 400px;}
+
+	/*多个属性*/
+	/*写法一*/
+	.bg2{width:200px;height:200px;background:green;margin:0 auto;-webkit-transition: height 1s,width 1s;}
+	.bg2:hover{ height:300px;width:300px;}
+	/*写法二*/
+	.bg3{width:200px;height:200px;background:green;margin:0 auto;-webkit-transition: all 1s;}
+	.bg3:hover{ height: 300px;width:300px;}
+	/*写法三*/
+	.bg4{width:200px;height:200px;background:green;margin:0 auto;-webkit-transition: 1s;}
+	.bg4:hover{ height: 300px;width:300px;}
+
+
+</style>
+</head>
+<body>
+<h1>动画变换属性：transition-property</h1>
+
+<pre>
+动画变换的属性：transition-property 例如width,height,color等
+transition-property是用来指定当元素其中一个属性改变时执行transition效果，其主要有以下几个值：
+none(没有属性改变)；
+all（所有属性改变）这个也是其默认值；
+indent（元素属性名）；
+当其值为none时，transition不执行，
+当指定为all时，则元素产生任何属性值变化时都将执行transition效果，ident是可以指定元素的某一个属性值。
+</pre>
+
+<h2>一个属性变换 transition: width 1s</h2>
+<div class="bg1"></div>
+<pre>.bg1{width:200px;height:200px;background:green;margin:0 auto;-webkit-transition: width 1s;}
+.bg1:hover{ width: 400px;}</pre>
+
+<h2>多个属性变换（写法一） transition: height 1s,width 1s</h2>
+<div class="bg2"></div>
+<pre>.bg2{width:200px;height:200px;background:green;margin:0 auto;-webkit-transition: height 1s,width 1s;}
+.bg2:hover{ height:300px;width:300px;}</pre>
+
+<h2>多个属性变换（写法二） transition: all 1s</h2>
+<div class="bg3"></div>
+<pre>
+.bg3{width:200px;height:200px;background:green;margin:0 auto;-webkit-transition: all 1s;}
+.bg3:hover{ height: 300px;width:300px;}
+</pre>
+
+<h2>多个属性变换（写法三） transition: 1s</h2>
+<div class="bg4"></div>
+<pre>
+.bg4{width:200px;height:200px;background:green;margin:0 auto;-webkit-transition: 1s;}
+.bg4:hover{ height: 300px;width:300px;}
+</pre>
+
+</body>
+</html>

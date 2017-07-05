@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>rotate</title>
+	<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.11.1/jquery.js"></script>
+	<style type="text/css">
+		html,body{font-family:"Microsoft Yahei";color:#076a07;font-size:14px;background:#c5d7ca;padding:30px 0 50px;}
+		h3{text-align: center;}
+		pre{font-weight:700;font-size: 20px;width:1400px;margin:20px auto 150px;}
+
+		/*rotateX:围绕X轴（这个X轴是一条水平线）顺时针的方向旋转：上里下外*/
+		.bg1{width:200px;height:200px;background:green;margin:0 auto; margin-top: 100px;transform:perspective(600px) rotateX(0deg);transition:2s;}
+		.bg1:hover{transform:perspective(600px) rotateX(180deg);}
+
+		/*rotateY:围绕Y轴（这个Y轴是一条垂直线）逆时针的方向旋转：里左外右*/
+		.bg2{width:200px;height:200px;background:green;margin:0 auto; margin-top: 100px;transform:perspective(600px) rotateY(0deg);transition:2s;}
+		.bg2:hover{transform:perspective(600px) rotateY(180deg);}
+
+		/*rotateZ:围绕Z轴（这个Z轴是一条垂直于X和Y所在平面的一条线）顺时针的方向旋转：左上右下*/
+		.bg3{width:200px;height:200px;background:green;margin:0 auto; margin-top: 100px;transform:perspective(600px) rotateZ(0deg);transition:2s;}
+		.bg3:hover{transform:perspective(600px) rotateZ(180deg);}
+
+
+		/*rotate(a)等同于rotateZ(a)*/
+		.bg4{width:200px;height:200px;background:green;margin:0 auto; margin-top: 100px;transform:perspective(600px) rotate(0deg);transition:2s;}
+		.bg4:hover{transform:perspective(600px) rotate(180deg);}
+
+		/*rotate3d(x,y,z,angle):4个参数，前三个，对应x,y,z 轴，是标示你是否希望沿着该轴旋转，是为1，不是为0，最后一个标示旋转的角度。*/
+		.bg5{width:200px;height:200px;background:green;margin:0 auto; margin-top: 100px;transform:perspective(600px) rotate3d(1,1,1,0deg);transition:2s;}
+		.bg5:hover{transform:perspective(600px) rotate3d(1,1,1,180deg);}
+
+
+
+	</style>
+</head>
+<body>
+<h1 style="text-align: center;">旋转：rotate</h1>
+
+<div class="bg1"></div>
+<h3>rotateX:围绕X轴（这个X轴是一条水平线）顺时针的方向旋转：上里下外</h3>
+<pre>
+.bg1{width:200px;height:200px;background:green;margin:0 auto; margin-top: 100px;transform:perspective(600px) rotateX(0deg);transition:2s;}
+.bg1:hover{transform:perspective(600px) rotateX(180deg);}</pre>
+
+<div class="bg2"></div>
+<h3>rotateY:围绕Y轴（这个Y轴是一条垂直线）逆时针的方向旋转：里左外右</h3>
+<pre>
+.bg2{width:200px;height:200px;background:green;margin:0 auto; margin-top: 100px;transform:perspective(600px) rotateY(0deg);transition:2s;}
+.bg2:hover{transform:perspective(600px) rotateY(180deg);}
+</pre>
+
+<div class="bg3"></div>
+<h3>rotateZ:围绕Z轴（这个Z轴是一条垂直于X和Y所在平面的一条线）顺时针的方向旋转：左上右下</h3>
+<pre>
+.bg3{width:200px;height:200px;background:green;margin:0 auto; margin-top: 100px;transform:perspective(600px) rotateZ(0deg);transition:2s;}
+.bg3:hover{transform:perspective(600px) rotateZ(180deg);}
+</pre>
+
+<div class="bg4"></div>
+<h3>rotate(a)等同于rotateZ(a)</h3>
+<pre>
+.bg4{width:200px;height:200px;background:green;margin:0 auto; margin-top: 100px;transform:perspective(600px) rotate(0deg);transition:2s;}
+.bg4:hover{transform:perspective(600px) rotate(180deg);}
+</pre>
+
+<div class="bg5"></div>
+<h3>rotate3d(x,y,z,angle):4个参数，前三个，对应x,y,z 轴，是标示你是否希望沿着该轴旋转，是为1，不是为0，最后一个标示旋转的角度。</h3>
+<pre>
+.bg5{width:200px;height:200px;background:green;margin:0 auto; margin-top: 100px;transform:perspective(600px) rotate3d(1,1,1,0deg);transition:2s;}
+.bg5:hover{transform:perspective(600px) rotate3d(1,1,1,180deg);}
+</pre>
+
+</body>
+</html>

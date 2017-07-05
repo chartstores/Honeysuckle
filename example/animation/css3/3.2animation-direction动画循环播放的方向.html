@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>animation-direction动画循环播放的方向</title>
+<style type="text/css">
+	html,body{font-family:"Microsoft Yahei";color:#076a07;font-size:14px;background:#c5d7ca;padding-top:30px;}
+	pre{font-weight:700;font-size: 20px;width:800px;margin:20px auto 150px;}
+
+	.bg{width:200px;height:200px;background:green;margin:0 auto; margin-top: 150px;}
+	.bg:hover{ -webkit-animation: rainbow 3s alternate 1s infinite;}
+	/*设定动画执行的方向，其值可以是normal（正常顺序播放）或alternate（反向播放）*/
+	/*alternate 第一帧渐变到最后一帧，最后一帧再倒退到第一帧，一直这样循环下去*/
+	/*normal 第一帧渐变到最后一帧，然后最后一帧跳到第一帧，第一帧又渐变到最后一帧，一直这样循环下去*/
+	@-webkit-keyframes rainbow {  0% { background: green; }  50% { background: blue; }  100% { background:red; }}
+
+
+</style>
+</head>
+<body>
+<h1 style="text-align: center;">animation-direction动画循环播放的方向</h1>
+
+<div class="bg"></div>
+<pre>
+.bg{width:200px;height:200px;background:green;margin:0 auto; margin-top: 150px;}
+.bg:hover{ -webkit-animation: rainbow 3s alternate 1s infinite;}
+设定动画执行的方向，其值可以是normal（正常顺序播放）或alternate（反向播放）
+@-webkit-keyframes rainbow {  0% { background: green; }  50% { background: blue; }  100% { background:red; }}
+</pre>
+
+</body>
+</html>

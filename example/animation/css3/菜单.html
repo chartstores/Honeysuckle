@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>动画导航菜单</title>
+<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+<style type="text/css">
+    html,body{font-family:"Microsoft Yahei";color:#666;font-size:18px;background:#c5d7ca;}
+
+    .wrap{margin:150px auto 190px;width:500px;position:relative;-webkit-perspective:800px;}
+    .wrap:last-child{margin-bottom:250px;}
+    .wrap h2{ height:45px;background:#59a35e; text-align:center; font:22px/45px "Microsoft Yahei"; color:#fff; position:relative;z-index:2;-webkit-transition:.3s;cursor: pointer; border-top-left-radius: 5px;  border-top-right-radius: 5px;}
+    .wrap h2:hover{background:#549a59;}
+
+    .wrap div{ position:absolute; top:37px;left:0;-webkit-perspective:800px; -webkit-transform-origin:top; -webkit-transform:rotateX(-180deg); -webkit-transition:.5s;}
+
+    .wrap>div{ top:45px;}
+    .wrap>div.open{ top:47px;}
+
+    .wrap .open{-webkit-transform:rotateX(0deg); -webkit-animation:open 2s; }
+
+    .wrap a{ display:block;text-decoration:none;width:500px;height:35px; font:18px/35px "Microsoft Yahei"; background:#5ead63; text-indent:15px; color:#fff; transition:.3s; box-shadow:inset 0 0 30px 20px #383b3e; }
+    .wrap .open>a{ box-shadow:none;}
+    .wrap a:hover{ background:#57a05c;text-indent:20px;}
+    @-webkit-keyframes open{
+        0% {  -webkit-transform:rotateX(-180deg);  }
+        40% {  -webkit-transform:rotateX(30deg);  }
+        60% {  -webkit-transform:rotateX(-20deg);  }
+        80% {  -webkit-transform:rotateX(10deg);  }
+        100% {  -webkit-transform:rotateX(0deg);  }
+    }
+
+
+</style>
+</head>
+<body>
+
+    <div class="wrap">
+        <h2>transition 过渡</h2>
+        <div>
+            <a href="1.1transition-property.html">1. 动画变换属性：transition-property</a>
+            <div>
+                <a href="1.2transition-duration.html">2. 动画执行周期：transition-duration</a>
+                <div>
+                    <a href="1.3transition-delay.html">3. 动画延迟时间：transition-delay</a>
+                    <div>
+                        <a href="1.4transition-timing-function.html">4. 动画速率变化：transition-timing-function</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<script>
+    $(function(){
+
+        var oTimer=null;
+        var flag = false;
+
+        $("h2").on("click",function(){
+
+            var $wrap = $(this).parents(".wrap");
+            var $aDiv = $wrap.find("div");
+
+            if(flag){
+                var i = $aDiv.length-1;
+                clearInterval(oTimer);
+                oTimer = setInterval(function(){
+                    $aDiv.eq(i).removeClass();
+                    i--;
+                    if(i<0)
+                    {
+                        clearInterval(oTimer);
+                    }
+                },50);
+                flag = false;
+            }else{
+                i = 0;
+                clearInterval(oTimer);
+                oTimer = setInterval(function(){
+                    $aDiv.eq(i).addClass("open");
+                    i++;
+                    if(i==$aDiv.length)
+                    {
+                        clearInterval(oTimer);
+                    }
+                },100);
+                flag = true;
+            }
+
+        });
+
+
+    });
+</script>
+
+</body>
+</html>

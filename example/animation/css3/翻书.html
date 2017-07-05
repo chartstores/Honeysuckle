@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>翻书</title>
+<style type="text/css">
+	html,body{font-family:"Microsoft Yahei";color:#076a07;font-size:14px;background:#c5d7ca;padding-top:30px;}
+	pre{font-weight:700;font-size: 20px;width:1000px;margin:50px auto 150px;}
+
+	.out{background:#e9d2b9;width:220px;height:300px;margin:0 auto;margin-top: 200px;-webkit-perspective:800px;position:relative; box-shadow: 0 12px 20px -10px #494037;}
+	.bg{width:220px;height:300px;background:url(images/bookHeader.jpg) no-repeat;background-size:100% 100%;/*-webkit-transform-origin:0% 50%;*/ opacity: 1;-webkit-transform-origin:left center;-webkit-transform:rotateY(0deg);-webkit-transition:1.8s;}
+	.out:hover .bg{opacity: 0.6;-webkit-transform:rotateY(-180deg);}
+	.content{font-size:14px;width:220px;height:300px;background:#e6c098;position: absolute;left:0;top:0;z-index: 10;
+		-webkit-transform:scale(0);opacity: 0;-webkit-transition:1s .2s;}
+	.out:hover .content{-webkit-transform:scale(1.2);opacity: 1;}
+
+</style>
+</head>
+<body>
+
+<div class="out">
+	<div class="bg"></div>
+	<div class="content"></div>
+</div>
+
+
+</body>
+</html>

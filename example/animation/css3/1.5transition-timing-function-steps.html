@@ -1,0 +1,194 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>transition-timing-function:steps()</title>
+<style type="text/css">
+	html,body{font-family:"Microsoft Yahei";color:#076a07;font-size:14px;background:#c5d7ca;padding-top:30px;}
+	h2{text-align: center;margin-top: 150px;}
+	.explain{width:1000px;margin:0 auto;line-height: 33px;font-size:18px;margin-top:10px;}
+	pre{font-weight:700;font-size: 20px;width:1000px;margin:20px auto 150px;line-height: 30px;}
+
+
+	.bg00{width:200px;height:200px;background:green;margin:0 auto;-webkit-transition:1s linear; }
+	.bg00:hover{ background: blue;}
+
+	.bg01{width:200px;height:200px;background:green;margin:0 auto;-webkit-transition:1s steps(1,end); }
+	.bg01:hover{ background: blue;}
+
+	.bg02{width:200px;height:200px;background:green;margin:0 auto;-webkit-transition:1s steps(2,end); }
+	.bg02:hover{ background: blue;}
+
+
+	.bg1{width:200px;height:200px;background:green;margin:0 auto;}
+	.bg1:hover{ -webkit-animation:1s rainbow infinite steps(1,end); }
+	/*steps(1,end)相当于steps(1),默认是end*/
+	/*steps(1,start)在变化过程中，都是以下一帧的显示效果来填充间隔动画，所以0% 到 50%  直接就显示了蓝色blue
+    steps(1,end)与上面相反，都是以上一帧的显示效果来填充间隔动画，所以0% 到 50% 直接就显示了绿色green*/
+
+	.bg2{width:200px;height:200px;background:green;margin:0 auto;}
+	.bg2:hover{ -webkit-animation:1s rainbow infinite steps(1,start);}
+	/*steps(2,end)，end表示以上一帧来填充动画，2表示0-50%之间分两步，第一步0是绿色，第二步25%是绿蓝色。50%到100%也分两步，50%是蓝色，75%是蓝红色  */
+	/*这个动画在2S内执行一遍，其中有四步*/
+	@-webkit-keyframes rainbow {  0% { background:green; }  50% { background: blue; }  100% { background:red; }}
+
+
+	/*transition方式*/
+	.p6-monkey{
+		-webkit-transform: scale(0.6);
+		margin:-75px auto;
+		width: 350px;
+		height: 482px;
+		background: url('images/p6-monkey.png') 0 0 no-repeat;
+		background-size: 350px 964px;
+		-webkit-transition:.1s steps(1,end);
+	}
+	.p6-monkey:hover{
+		background: url('images/p6-monkey.png') 0 -482px no-repeat;
+	}
+
+	.p6-monkey2{
+		-webkit-transition:.5s linear;
+	}
+
+	/*transition方式*/
+/*	.p3-boss{
+		-webkit-transform: scale(0.6);
+		margin:-75px auto;
+		width: 426px;
+		height: 481px;
+		background: url('images/p3-boss.png') 0 0 no-repeat;
+		background-size: 426px 962px;
+		-webkit-transition:.1s steps(1,end);
+	}
+	.p3-boss:hover{
+		background: url('images/p3-boss.png') 0 -482px no-repeat;
+	}*/
+
+/*	.p3-boss{
+		-webkit-transform: scale(0.6);
+		margin:-75px auto;
+		width: 426px;
+		height: 481px;
+		background: url('images/p3-boss.png') 0 0 no-repeat;
+		background-size: 426px 962px;
+	}
+	.p3-boss:hover{
+		background: url('images/p3-boss.png') 0 -482px no-repeat;
+	}*/
+
+
+	/*animation方式*/
+	.p3-boss{
+		-webkit-transform: scale(0.6);
+		margin:-75px auto;
+		width: 426px;
+		height: 481px;
+		background: url('images/p3-boss.png') 0 0 no-repeat;
+		background-size: 426px 962px;
+		-webkit-animation:.8s change steps(1,end) infinite;
+	}
+	@-webkit-keyframes change {
+		50%{background: url('images/p3-boss.png') 0 -482px no-repeat;}
+	}
+
+
+
+</style>
+</head>
+<body>
+<h1 style="text-align: center;">闪现：transition-timing-function:steps()</h1>
+
+
+<h2>transition:1s linear</h2>
+<div class="bg00"></div>
+<pre>
+.bg00{width:200px;height:200px;background:green;margin:0 auto;-webkit-transition:1s linear; }
+.bg00:hover{ background: blue;}
+</pre>
+
+<pre  style="margin:0 auto;width:400px;">steps(Num,end)：
+接受两个参数的函数，
+第一个参数必须为正整数，指定函数的步数，
+第二个参数取值可以是start或end，
+指定每一步的值发生变化的时间点，
+第二个参数是可选的，默认值为end。
+</pre>
+
+<h2>steps第一个参数 transition:1s steps(1,end)</h2>
+<div class="bg01"></div>
+<pre>
+.bg01{width:200px;height:200px;background:green;margin:0 auto;-webkit-transition:1s steps(1,end); }
+.bg01:hover{ background: blue;}
+</pre>
+
+<h2>steps第一个参数 transition:1s steps(2,end)</h2>
+<div class="bg02"></div>
+<pre>
+.bg02{width:200px;height:200px;background:green;margin:0 auto;-webkit-transition:1s steps(2,end); }
+.bg02:hover{ background: blue;}
+</pre>
+
+<h2>steps第二个参数 animation:1s rainbow infinite steps(1,end)</h2>
+<div class="bg1"></div>
+<div class="explain">
+	<div>.bg1{width:200px;height:200px;background:green;margin:0 auto;}</div>
+	<div>.bg1:hover{ -webkit-animation:1s rainbow infinite steps(1,end); }</div>
+	<div>@-webkit-keyframes rainbow {  0% { background:green; }  50% { background: blue; }  100% { background:red; }}</div>
+	<div>steps(1,end)相当于steps(1),默认是end</div>
+<!--	<div>steps(1,start)在变化过程中，都是以下一帧的显示效果来填充间隔动画，所以0% 到 50%  直接就显示了蓝色blue</div>-->
+	<div>steps(1,end)在变化过程中，都是以上一帧的显示效果来填充间隔动画，所以0% 到 50% 直接就显示了绿色green</div>
+</div>
+
+<h2>steps第二个参数 animation:1s rainbow infinite steps(1,start)</h2>
+<div class="bg2"></div>
+<div class="explain">
+	<div>.bg2{width:200px;height:200px;background:green;margin:0 auto;}</div>
+	<div>.bg2:hover{ -webkit-animation:1s rainbow infinite steps(1,start);}</div>
+	<div>@-webkit-keyframes rainbow {  0% { background:green; }  50% { background: blue; }  100% { background:red; }}</div>
+	<div>steps(1,start)在变化过程中，都是以下一帧的显示效果来填充间隔动画，所以0% 到 50%  直接就显示了蓝色blue</div>
+
+</div>
+
+<h2>transition:.5s linear</h2>
+<div class="p6-monkey p6-monkey2"></div>
+<h2>transition:.1s steps(1,end)</h2>
+<div class="p6-monkey"></div>
+<div class="explain">
+	<pre>
+		.p6-monkey{
+			-webkit-transform: scale(0.6);
+			margin:0 auto;
+			width: 350px;
+			height: 482px;
+			background: url('images/p6-monkey.png') 0 0 no-repeat;
+			background-size: 350px 964px;
+			-webkit-transition:.1s steps(1,end);
+		}
+		.p6-monkey:hover{
+			background: url('images/p6-monkey.png') 0 -482px no-repeat;
+		}
+	</pre>
+</div>
+
+<h2>animation:.8s change steps(1,end) infinite</h2>
+<div class="p3-boss"></div>
+<div class="explain">
+	<pre>
+		.p3-boss{
+			-webkit-transform: scale(0.6);
+			margin:-75px auto;
+			width: 426px;
+			height: 481px;
+			background: url('images/p3-boss.png') 0 0 no-repeat;
+			background-size: 426px 962px;
+			-webkit-animation:.8s change steps(1,end) infinite;
+		}
+		@-webkit-keyframes change {
+			50%{background: url('images/p3-boss.png') 0 -482px no-repeat;}
+		}
+	</pre>
+</div>
+
+</body>
+</html>

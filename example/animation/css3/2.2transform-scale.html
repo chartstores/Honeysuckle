@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>缩放：scale</title>
+<style type="text/css">
+	html,body{font-family:"Microsoft Yahei";color:#076a07;font-size:14px;background:#c5d7ca;padding:30px 0 50px;}
+	h3{text-align: center;}
+	pre{font-weight:700;font-size: 20px;width:1400px;margin:20px auto 150px;}
+
+	/*scaleX(a):水平方向缩放a倍*/
+		.bg1{width:200px;height:200px;background:green;margin:0 auto; margin-top: 150px;transition:1s;-webkit-transform:perspective(600px) scaleX(1);}
+        .bg1:hover{-webkit-transform:perspective(600px) scaleX(1.5);}
+
+	/*scaleY(a):垂直方向缩放a倍*/
+		.bg2{width:200px;height:200px;background:green;margin:0 auto; margin-top: 150px;transition:1s;-webkit-transform:perspective(600px) scaleY(1);}
+        .bg2:hover{-webkit-transform:perspective(600px) scaleY(1.5);}
+
+	/*scale(a,b):水平方向缩放a倍,垂直方向缩放b倍*/
+		.bg3{width:200px;height:200px;background:green;margin:0 auto; margin-top: 150px;transition:1s;-webkit-transform:perspective(600px) scale(1,1);}
+        .bg3:hover{-webkit-transform:perspective(600px) scale(1.5,1.5);}
+
+</style>
+</head>
+<body>
+<h1 style="text-align: center;">缩放：scale</h1>
+
+<div class="bg1"></div>
+<h3>scaleX(a):水平方向缩放a倍</h3>
+<pre>
+.bg1{width:200px;height:200px;background:green;margin:0 auto; margin-top: 150px;transition:1s;-webkit-transform:perspective(600px) scaleX(1);}
+.bg1:hover{-webkit-transform:perspective(600px) scaleX(1.5);}
+</pre>
+
+<div class="bg2"></div>
+<h3>scaleY(a):垂直方向缩放a倍</h3>
+<pre>
+.bg2{width:200px;height:200px;background:green;margin:0 auto; margin-top: 150px;transition:1s;-webkit-transform:perspective(600px) scaleY(1);}
+.bg2:hover{-webkit-transform:perspective(600px) scaleY(1.5);}
+</pre>
+
+<div class="bg3"></div>
+<h3>scale(a,b):水平方向缩放a倍,垂直方向缩放b倍</h3>
+<pre>
+.bg3{width:200px;height:200px;background:green;margin:0 auto; margin-top: 150px;transition:1s;-webkit-transform:perspective(600px) scale(1,1);}
+.bg3:hover{-webkit-transform:perspective(600px) scale(1.5,1.5);}
+</pre>
+
+</body>
+</html>
