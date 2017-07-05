@@ -1,5 +1,5 @@
 //下面用于图片上传预览功能
-function setImagePreview(avalue) {
+function setImagePreview() {
     var docObj = document.getElementById("doc");
     var imgObjPreview = document.getElementById("preview");
     var localImgId = document.getElementById("localImg");
