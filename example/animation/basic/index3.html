@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>帧</title>
+    <style type="text/css">
+        body,ul,li{
+            margin:0;
+            padding:0;
+        }
+
+        ul,li{
+            list-style: none;
+        }
+
+        .rect{
+            position:relative;
+            width: 100px;
+            height: 100px;
+            /*border-radius:100%;*/
+            animation: steps 13s ease 2s 5;
+        }
+
+        @keyframes steps
+        {
+            0%   {
+                left:0px;
+                top:0px;
+                border:none;
+                border-top:3px solid #00AADC;
+                background: red;
+            }
+            25%  {
+                left:200px;
+                top:0px;
+                border:none;
+                border-right: 3px solid #f0ad4e;
+                background: yellow;
+            }
+            50%  {
+                left:200px;
+                top:200px;
+                border:none;
+                border-bottom: 3px solid #f0ad4e;
+                background: blue;
+            }
+            75%  {
+                left:0px;
+                top:200px;
+                border:none;
+                border-left: 3px solid #b2dba1;
+                background: #2f84c7;
+            }
+            100% {
+                left:0px;
+                top:0px;
+                border:none;
+                background: red;
+            }
+        }
+
+        .dotline{
+            width: 0px;
+            height: 10px;
+            background-color: green;
+            animation: paint 13s linear 2s 1;
+        }
+        @keyframes paint {
+            10%{
+                width:30px;
+            }
+
+            20%{
+                width:60px;
+            }
+
+            30%{
+                width:90px;
+            }
+
+            40%{
+                width:120px;
+            }
+
+            50%{
+                width:150px;
+            }
+
+            60%{
+                width:180px;
+            }
+
+            70%{
+                width:210px;
+            }
+
+            80%{
+                width:240px;
+            }
+
+            90%{
+                width:270px;
+            }
+
+            100%{
+                width:300px;
+            }
+        }
+
+
+        .clearfix{
+            clear: both;
+        }
+        .scroll{
+
+        }
+
+        .scroll li{
+            float:left;
+            width:0px;
+            height:20px;
+            margin-right: 10px;
+            background-color: green;
+        }
+        .scroll li:nth-child(1){
+            animation: moving 3s linear 2s 1 forwards;
+        }
+        .scroll li:nth-child(2){
+            animation: moving 3s linear 5s 1 forwards;
+        }
+        .scroll li:nth-child(3){
+            animation: moving 3s linear 8s 1 forwards;
+        }
+        .scroll li:nth-child(4){
+            animation: moving 3s linear 11s 1 forwards;
+        }
+        .scroll li:nth-child(5){
+            animation: moving 3s linear 14s 1 forwards;
+        }
+
+        @keyframes moving {
+            0%{
+                width: 0;
+            }
+            20%{
+                width:10px;
+            }
+            40%{
+                width:20px;
+            }
+            60%{
+                width:30px;
+            }
+            80%{
+                width:40px;
+            }
+            100%{
+                width:50px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="rect"></div>
+<div class="dotline"></div>
+<div class="scroll">
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+<div class="clearfix"></div>
+</body>
+</html>
