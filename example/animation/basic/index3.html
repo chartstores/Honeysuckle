@@ -158,6 +158,20 @@
                 width:50px;
             }
         }
+
+        .list{
+            width:500px;
+            height:20px;
+            background-color: red;
+        }
+        .list:hover{
+            animation: 1s 1s rainbow linear 3 forwards normal;
+        }
+        @keyframes rainbow {
+            from { background: #c00 }
+            50% { background: orange }
+            to { background: yellowgreen }
+        }
     </style>
 </head>
 <body>
@@ -173,5 +187,6 @@
     </ul>
 </div>
 <div class="clearfix"></div>
+<div class="list"></div>
 </body>
 </html>

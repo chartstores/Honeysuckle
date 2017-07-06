@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>过渡</title>
+    <style type="text/css">
+        .label a{
+            display: inline-block;
+            height:15px;
+            width:15px;
+            text-decoration: none;
+            background-color: #00AADC;
+            transition: 1s height,3s width;
+        }
+
+        .label a:hover{
+            height: 450px;
+            width: 450px;
+        }
+
+        .tp a{
+            display: inline-block;
+            height:15px;
+            width:15px;
+            text-decoration: none;
+            background-color: #00AADC;
+            //transition: 1s 1s height ease;
+            transition-property: height;
+            transition-duration: 1s;
+            transition-delay: 1s;
+            transition-timing-function: ease;
+        }
+
+        .tp a:hover{
+            height: 450px;
+            width: 450px;
+        }
+    </style>
+</head>
+<body>
+<blockquote>transition</blockquote>
+<div class="label">
+    <a href="#">&nbsp;</a>
+</div>
+<div class="tp">
+    <a href="#"></a>
+</div>
+</body>
+</html>
