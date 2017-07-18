@@ -1,13 +1,15 @@
-var level=[];
-function traverse(node) {
+function traverse(node,counter) {
     var children = node.children;
+    console.log("counter="+counter);
     console.info("value="+node.value+",code="+node.code);
 
     if (children != null) {
-        children.map(function(node,index){
-            var children = node.children;
+        children.map(function(row,index){
+            var children = row.children;
             if(children!=null){
-                traverse(node);
+                traverse(row,counter+1);
+            }else{
+                traverse(row,counter+1);
             }
         });
     }
@@ -20,7 +22,7 @@ function traverseTree() {
         children:sourceData
     };
     console.log(tree);
-    traverse(tree);
+    traverse(tree,0);
 }
 
 traverseTree();
