@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>进度条</title>
+    <style type="text/css">
+        body,ul,li{
+            margin:0;
+            padding:0;
+        }
+        ul,li{
+            list-style: none;
+        }
+
+        .clearfix{
+            clear: both;
+        }
+        .list1{
+            position:absolute;
+            top:50%;
+            bottom:0;
+            left:50%;
+            right:0;
+            width:400px;
+            height:400px;
+            margin:-200px 0 0 -200px;
+        }
+        .list1 ul{
+            display: inline-block;
+            overflow: hidden;
+            padding:150px;
+            background-color: #dbd3a1;
+        }
+        .list1 li{
+            position:relative;
+            float: left;
+            width: 2px;
+            height: 100px;
+            margin:0 9px;
+            background-color: green;
+        }
+
+        .list1 li:nth-child(1){
+            top:35px;
+            height:30px;
+        }
+        .list1 li:nth-child(2){
+            top:16px;
+            height:65px;
+        }
+        .list1 li:nth-child(3){
+            height:100px;
+        }
+        .list1 li:nth-child(4){
+            top:16px;
+            height:65px;
+        }
+        .list1 li:nth-child(5){
+            top:35px;
+            height:35px;
+        }
+
+        @keyframes dynamic {
+
+        }
+    </style>
+</head>
+<body>
+<div class="list1">
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <div class="clearfix"></div>
+</div>
+</body>
+</html>

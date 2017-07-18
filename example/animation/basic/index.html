@@ -4,16 +4,18 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>基础的CSS3动画</title>
     <style type="text/css">
-        div
-        {
+        div {
             position:relative;
             width:100px;
             height:100px;
             background:red;
-            /*animation:myfirst 5s;*/
-            /*-moz-animation:myfirst 5s; !* Firefox *!*/
-            /*-webkit-animation:myfirst 5s; !* Safari and Chrome *!*/
-            /*-o-animation:myfirst 5s; !* Opera *!*/
+            animation: myfirst 5s linear 2s infinite alternate;
+            /* Firefox: */
+            -moz-animation: myfirst 5s linear 2s infinite alternate;
+            /* Safari 和 Chrome: */
+            -webkit-animation: myfirst 5s linear 2s infinite alternate;
+            /* Opera: */
+            -o-animation: myfirst 5s linear 2s infinite alternate;
         }
 
         @keyframes myfirst
@@ -52,51 +54,6 @@
             100% {background: red; left:0px; top:0px;}
         }
 
-        /*div*/
-        /*{*/
-            /*animation-name: myfirst;*/
-            /*animation-duration: 5s;*/
-            /*animation-timing-function: linear;*/
-            /*animation-delay: 2s;*/
-            /*animation-iteration-count: infinite;*/
-            /*animation-direction: alternate;*/
-            /*animation-play-state: running;*/
-            /*!* Firefox: *!*/
-            /*-moz-animation-name: myfirst;*/
-            /*-moz-animation-duration: 5s;*/
-            /*-moz-animation-timing-function: linear;*/
-            /*-moz-animation-delay: 2s;*/
-            /*-moz-animation-iteration-count: infinite;*/
-            /*-moz-animation-direction: alternate;*/
-            /*-moz-animation-play-state: running;*/
-            /*!* Safari 和 Chrome: *!*/
-            /*-webkit-animation-name: myfirst;*/
-            /*-webkit-animation-duration: 5s;*/
-            /*-webkit-animation-timing-function: linear;*/
-            /*-webkit-animation-delay: 2s;*/
-            /*-webkit-animation-iteration-count: infinite;*/
-            /*-webkit-animation-direction: alternate;*/
-            /*-webkit-animation-play-state: running;*/
-            /*!* Opera: *!*/
-            /*-o-animation-name: myfirst;*/
-            /*-o-animation-duration: 5s;*/
-            /*-o-animation-timing-function: linear;*/
-            /*-o-animation-delay: 2s;*/
-            /*-o-animation-iteration-count: infinite;*/
-            /*-o-animation-direction: alternate;*/
-            /*-o-animation-play-state: running;*/
-        /*}*/
-
-        div
-        {
-            animation: myfirst 5s linear 2s infinite alternate;
-            /* Firefox: */
-            -moz-animation: myfirst 5s linear 2s infinite alternate;
-            /* Safari 和 Chrome: */
-            -webkit-animation: myfirst 5s linear 2s infinite alternate;
-            /* Opera: */
-            -o-animation: myfirst 5s linear 2s infinite alternate;
-        }
     </style>
 </head>
 <body>
